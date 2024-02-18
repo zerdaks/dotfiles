@@ -1,0 +1,11 @@
+.DS_Store
+
+.config/*
+
+!.config/fish
+!.config/nvim
+!.config/skhd
+!.config/yabai
+
+.config/nvim/lazy-lock.json
+.config/nvim/spell/*

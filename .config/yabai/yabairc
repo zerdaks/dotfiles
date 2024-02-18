@@ -1,0 +1,21 @@
+# bsp or float (default: float)
+yabai -m config layout bsp
+
+# spawn new windows to the right for vertical splits, or bottom for horizontal splits
+yabai -m config window_placement second_child
+
+# set gaps to 5pt (default: 0)
+yabai -m config top_padding 5
+yabai -m config bottom_padding 5
+yabai -m config left_padding 5
+yabai -m config right_padding 5
+yabai -m config window_gap 5
+
+# set mouse interaction modifier key (default: fn)
+yabai -m config mouse_modifier fn
+
+# always float these apps
+yabai -m rule --add app="^Calculator$" manage=off
+yabai -m rule --add app="^CatoClient$" manage=off
+yabai -m rule --add app="^Raycast$" manage=off
+yabai -m rule --add app="^System Settings$" manage=off
