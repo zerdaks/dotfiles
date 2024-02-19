@@ -10,6 +10,7 @@ brew-install:
 
 	brew install fish
 	brew install font-hack-nerd-font
+	brew install fzf
 
 	brew install gitleaks
 	brew install glow
