@@ -10,10 +10,6 @@ vim.opt.relativenumber = true
 -- Open help windows to the right of the current window
 vim.cmd('autocmd BufWinEnter * if &buftype == "help" | wincmd L | endif')
 
--- Configure Undotree
-vim.g.undotree_SplitWidth = 80
-vim.g.undotree_SetFocusWhenToggle = 1
-
 -- Configure for Obsidian
 vim.opt.conceallevel = 1
 
