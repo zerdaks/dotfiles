@@ -144,6 +144,14 @@ return {
   },
 
   {
+    'tpope/vim-fugitive',
+    config = function()
+      local opts = { noremap = true }
+      vim.keymap.set('n', '<leader>g', '<cmd>vertical rightbelow Git<CR>', opts)
+    end,
+  },
+
+  {
     'windwp/nvim-autopairs',
     config = function()
       require('nvim-autopairs').setup {}
