@@ -16,6 +16,10 @@ vim.opt.conceallevel = 1
 -- Use fuzzy-matching to find completion matches
 vim.opt.wildoptions = 'fuzzy'
 
+-- Open splits below and to the right
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+
 --[[
 WHITESPACE
 --]]
