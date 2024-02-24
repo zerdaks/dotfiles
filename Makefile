@@ -1,4 +1,9 @@
-all: brew-config brew-install more-install start-services
+all: brew-config brew-install additional-install
+
+# Configure Homebrew
+brew-config:
+	brew tap homebrew/aliases
+	brew alias clean='cleanup && brew doctor'
 
 # Install dependencies using Homebrew
 brew-install:
@@ -9,11 +14,9 @@ brew-install:
 	brew install eza
 
 	brew install fish
-	brew install font-hack-nerd-font
 	brew install fzf
 
 	brew install gitleaks
-	brew install glow
 	brew install gnupg
 	brew install go
 
@@ -23,15 +26,16 @@ brew-install:
 	brew install luarocks
 
 	brew install mactex-no-gui
-	brew install make
 
 	brew install npm
 	brew install nvim
 
 	brew install p7zip
 	brew install peco
-	brew install postgresql@14
 	brew install python3
+
+	brew install postgresql@14
+	brew services start postgresql@14
 
 	brew install rbenv
 
@@ -48,25 +52,27 @@ brew-install:
 	# install a window manager for macOS
 	brew install koekeishiya/formulae/skhd
 	brew install koekeishiya/formulae/yabai
+	skhd --start-service
+	yabai --start-service
 
-	brew install nikolaeu/numi/numi-cli
+	brew tap homebrew/cask-fonts
+	brew install font-hack-nerd-font
 
 # Install additional dependencies
 additional-install:
 	# install a plugin manager for fish
-	curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+	curl -sL https://git.io/fisher | fish && fish -c "fisher install jorgebucaran/fisher"
 
 	# install fish plugins
-	fisher install IlanCosman/tide@v5 # a prompt for fish
-	fisher install jethrokuan/z # directory jumping
+	fish -c "fisher install IlanCosman/tide@v5" # a prompt for fish
+	fish -c "fisher install jethrokuan/z" # directory jumping
 
 	# install a plugin manager for tmux
-	git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+	git clone https://github.com/tmux-plugins/tpm $(HOME)/.tmux/plugins/tpm || true
 
 	# install the latest version of Ruby
-	set ruby_version $(rbenv install -l | grep -v - | tail -1)
-	rbenv install $ruby_version
-	rbenv global $ruby_version
+	rbenv install $$(rbenv install -l | grep -v - | tail -1) || true
+	rbenv global $$(rbenv install -l | grep -v - | tail -1) || true
 
 	# install a commit message formatter for Git
 	npm install -g commitizen
@@ -74,15 +80,4 @@ additional-install:
 	# install a language server for Go
 	go install golang.org/x/tools/gopls@latest
 
-# Configure Homebrew
-brew-config:
-	brew tap homebrew/aliases
-	brew alias clean='cleanup && brew doctor'
-
-# Start services
-start-services:
-	brew services start postgresql@14
-	skhd --start-service
-	yabai --start-service
-
-.PHONY: all brew-install additional-install brew-config start-services
+.PHONY: all brew-install additional-install brew-config
