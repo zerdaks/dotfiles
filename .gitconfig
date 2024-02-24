@@ -28,6 +28,7 @@
 [user]
 	name = zerdaks
 	email = 7451424+zerdaks@users.noreply.github.com
+	signingkey = EC96D9796A10157E
 [url "https://github.com/"]
 	insteadOf = git://github.com/
 [pull]
