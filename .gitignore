@@ -2,7 +2,7 @@
 
 .config/*
 
-!.config/fish
+!.config/fish/config.fish
 !.config/nvim
 !.config/skhd
 !.config/yabai
