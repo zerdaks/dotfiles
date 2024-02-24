@@ -34,6 +34,7 @@ git clone git@github.com:zerdaks/dotfiles.git
 
 ```bash
 cd dotfiles/
+brew install make
 make
 stow .
 ```
@@ -44,22 +45,16 @@ stow .
 tide configure
 ```
 
-## Install Neovim plugins
+## Configure Neovim
 
 ```bash
-nvim
-
+vim
 :Lazy # followed by shift-u to update all
-
-:TSUpdate
-:TSInstallInfo
-
 :Mason # followed by shift-u to update all
-
-:Copilot setup
+:Copilot auth
 ```
 
-## Install tmux plugins
+## Configure tmux
 
 > System Settings &rarr; Keyboard &rarr; Keyboard Shortcuts... &rarr; Input Sources &rarr; Select the previous input source (uncheck)
 
