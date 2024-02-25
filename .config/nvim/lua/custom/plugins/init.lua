@@ -129,10 +129,26 @@ return {
   {
     'nvim-telescope/telescope.nvim',
     config = function()
+      local actions = require('telescope.actions')
+      require('telescope').setup {
+        defaults = {
+          mappings = {
+            i = {
+              ['<C-u>'] = false,
+              ['<C-d>'] = false,
+              ['<C-down>'] = actions.cycle_history_next,
+              ['<C-up>'] = actions.cycle_history_prev
+            },
+            n = {
+              ['<CR>'] = actions.send_selected_to_qflist + actions.open_qflist,
+            },
+          },
+        },
+      }
       local builtin = require('telescope.builtin')
       vim.keymap.set('n', '<leader>fo', builtin.oldfiles, {})
       vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-      vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+      vim.keymap.set('n', '<leader>fg', require('telescope').extensions.live_grep_args.live_grep_args, {})
     end
   },
 
