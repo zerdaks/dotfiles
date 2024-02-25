@@ -146,9 +146,10 @@ return {
         },
       }
       local builtin = require('telescope.builtin')
-      vim.keymap.set('n', '<leader>fo', builtin.oldfiles, {})
-      vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-      vim.keymap.set('n', '<leader>fg', require('telescope').extensions.live_grep_args.live_grep_args, {})
+      local opts = { noremap = true }
+      vim.keymap.set('n', '<leader>fo', builtin.oldfiles, opts)
+      vim.keymap.set('n', '<leader>ff', builtin.find_files, opts)
+      vim.keymap.set('n', '<leader>fg', require('telescope').extensions.live_grep_args.live_grep_args, opts)
     end
   },
 
