@@ -10,7 +10,7 @@ vim.opt.relativenumber = true
 -- Open help windows to the right of the current window
 vim.cmd('autocmd BufWinEnter * if &buftype == "help" | wincmd L | endif')
 
--- Configure for Obsidian
+-- Conceal text
 vim.opt.conceallevel = 1
 
 -- Use fuzzy-matching to find completion matches
