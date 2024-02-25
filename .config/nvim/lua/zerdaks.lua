@@ -122,6 +122,9 @@ vim.keymap.set('n', '<S-l>', '<C-w>l', opts)
 -- Clear search highlights
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', opts)
 
+-- Do not copy deleted text
+vim.keymap.set('n', 'x', '"_x', opts)
+
 -- NON-RECURSIVE VISUAL AND SELECT MODES
 
 -- Do not copy deleted text
