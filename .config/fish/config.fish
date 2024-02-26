@@ -59,6 +59,13 @@ function gpp
 	pbpaste
 end
 
+function c
+	clear
+	if tmux list-sessions >/dev/null 2>&1
+		tmux clear-history
+	end
+end
+
 # add Homebrew to path
 set -gx PATH /opt/homebrew/bin $PATH
 set -gx PATH /opt/homebrew/sbin $PATH
