@@ -59,10 +59,6 @@ function gpp
 	pbpaste
 end
 
-function numi
-	numi-cli "$argv"
-end
-
 # add Homebrew to path
 set -gx PATH /opt/homebrew/bin $PATH
 set -gx PATH /opt/homebrew/sbin $PATH
