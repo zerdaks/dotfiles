@@ -9,9 +9,9 @@
 	d = diff
 	dc = diff --cached
 	f = fetch --prune
+	fz = "!git l | fzf | awk '{print $2}' | xargs -I {} git diff {}^ {}"
 	l = log --pretty=format:\"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%Creset\" --all --date=relative --graph
 	m = "!git merge --no-commit $1"
-	p = "!git l | peco --layout=bottom-up | awk '{print $2}' | xargs -I {} git diff {}^ {}"
 	pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)"
 	ps = "!git push origin $(git rev-parse --abbrev-ref HEAD)"
 	psf = "!git push --force origin $(git rev-parse --abbrev-ref HEAD)"

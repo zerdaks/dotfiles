@@ -12,7 +12,6 @@ alias g git
 
 alias hc 'history clear'
 alias hd 'history delete'
-alias hp 'history | peco --layout=bottom-up'
 
 alias ll 'eza -l -g --icons'
 alias lla 'll -a'
@@ -47,14 +46,14 @@ function dback
 		--exclude .git/
 end
 
-function findp
-	find . -name "*$argv*" | peco --layout=bottom-up | pbcopy
+function fzfind
+	find . -name "*$argv*" | fzf | pbcopy
 	echo -e "\e[31mCopied to clipboard\e[0m"
 	pbpaste
 end
 
-function gpp
-	grep -r $argv . --exclude-dir='.git' | peco --layout=bottom-up | pbcopy
+function fzgrep
+	grep -r $argv . --exclude-dir='.git' | fzf | pbcopy
 	echo -e "\e[31mCopied to clipboard\e[0m"
 	pbpaste
 end

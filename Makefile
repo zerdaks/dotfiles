@@ -31,7 +31,6 @@ brew-install:
 	brew install nvim
 
 	brew install p7zip
-	brew install peco
 	brew install python3
 
 	brew install postgresql@14
