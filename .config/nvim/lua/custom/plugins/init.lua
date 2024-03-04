@@ -1,5 +1,5 @@
 return {
-  {
+  { -- bufferline
     'akinsho/bufferline.nvim',
     version = '*',
     dependencies = {
@@ -14,19 +14,82 @@ return {
     end,
   },
 
-  {
-    'debugloop/telescope-undo.nvim',
-    dependencies = {
-      'nvim-telescope/telescope.nvim',
-    },
+  { -- copilot
+    'zbirenbaum/copilot.lua',
+    cmd = 'Copilot',
+    event = 'InsertEnter',
     config = function()
-      require('telescope').load_extension('undo')
-      local opts = { noremap = true }
-      vim.keymap.set('n', '<leader>u', '<cmd>Telescope undo<CR>', opts)
+      require('copilot').setup {
+        suggestion = {
+          auto_trigger = true,
+          keymap = {
+            accept = '<C-l>',
+          },
+        },
+        filetypes = {
+          markdown = true,
+        },
+      }
     end,
   },
 
-  {
+  { -- gruvbox (theme)
+    'ellisonleao/gruvbox.nvim',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require('gruvbox').setup {
+        bold = false,
+        contrast = 'hard',
+      }
+      -- vim.cmd.colorscheme("gruvbox")
+    end,
+  },
+
+  { -- leap
+    'ggandor/leap.nvim',
+    config = function()
+      require('leap').set_default_keymaps(true)
+    end,
+  },
+
+  { -- noice (folke)
+    'folke/noice.nvim',
+    dependencies = {
+      'MunifTanjim/nui.nvim',
+      'rcarriga/nvim-notify',
+    },
+    config = function()
+      require('telescope').load_extension 'noice'
+      require('noice').setup {
+        routes = {
+          -- show @recording messages as notifications
+          {
+            filter = {
+              event = 'msg_showmode',
+            },
+            view = 'notify',
+          },
+        },
+      }
+      local opts = { noremap = true }
+      vim.keymap.set('n', '<leader>nd', '<cmd>NoiceDismiss<CR>', opts)
+    end,
+  },
+
+  { -- nvim-autopairs
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    config = function()
+      require('nvim-autopairs').setup {}
+    end,
+  },
+
+  { -- nvim-jdtls
+    'mfussenegger/nvim-jdtls',
+  },
+
+  { -- obsidian
     'epwalsh/obsidian.nvim',
     version = '*',
     lazy = true,
@@ -46,37 +109,146 @@ return {
         },
       },
       follow_url_func = function(url)
-        vim.fn.jobstart({ 'open', url })
+        vim.fn.jobstart { 'open', url }
       end,
       open_app_foreground = true,
     },
   },
 
-  {
-    'folke/noice.nvim',
+  { -- oil
+    'stevearc/oil.nvim',
     dependencies = {
-      'MunifTanjim/nui.nvim',
-      'rcarriga/nvim-notify',
+      'nvim-tree/nvim-web-devicons',
     },
     config = function()
-      require('telescope').load_extension('noice')
-      require('noice').setup({
-        routes = {
-          -- show @recording messages as notifications
-          {
-            filter = {
-              event = 'msg_showmode',
-            },
-            view = 'notify',
-          },
+      require('oil').setup {
+        default_file_explorer = false, -- enable Netrw to fix GBrowse
+        view_options = {
+          show_hidden = true,
         },
-      })
+      }
       local opts = { noremap = true }
-      vim.keymap.set('n', '<leader>nd', '<cmd>NoiceDismiss<CR>', opts)
+      vim.keymap.set('n', '<C-f>', '<cmd>Oil<CR>', opts)
     end,
   },
 
-  {
+  { -- outline
+    'hedyhli/outline.nvim',
+    lazy = true,
+    cmd = { 'Outline', 'OutlineOpen' },
+    keys = {
+      {
+        '<leader>o',
+        '<cmd>OutlineOpen<CR>',
+        desc = 'Toggle outline',
+      },
+    },
+    config = function()
+      require('outline').setup {}
+    end,
+  },
+
+  { -- rainbow_csv
+    'mechatroner/rainbow_csv',
+    lazy = true,
+    ft = 'csv',
+  },
+
+  { -- solarized-osaka.nvim (theme)
+    'craftzdog/solarized-osaka.nvim',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      -- vim.cmd.colorscheme 'solarized-osaka'
+    end,
+  },
+
+  { -- telescope
+    'nvim-telescope/telescope.nvim',
+    config = function()
+      local actions = require 'telescope.actions'
+      require('telescope').setup {
+        defaults = {
+          mappings = {
+            i = {
+              ['<C-u>'] = false,
+              ['<C-d>'] = false,
+              ['<C-down>'] = actions.cycle_history_next,
+              ['<C-up>'] = actions.cycle_history_prev,
+            },
+            n = {
+              ['<CR>'] = actions.send_selected_to_qflist + actions.open_qflist,
+            },
+          },
+        },
+      }
+      local builtin = require 'telescope.builtin'
+      local opts = { noremap = true }
+      vim.keymap.set('n', '<leader>fb', builtin.buffers, opts)
+      vim.keymap.set('n', '<leader>ff', builtin.find_files, opts)
+      vim.keymap.set('n', '<leader>fg', require('telescope').extensions.live_grep_args.live_grep_args, opts)
+      vim.keymap.set('n', '<leader>fh', builtin.help_tags, opts)
+      vim.keymap.set('n', '<leader>fo', builtin.oldfiles, opts)
+    end,
+  },
+
+  { -- telescope-live-grep-args
+    'nvim-telescope/telescope-live-grep-args.nvim',
+    dependencies = {
+      'nvim-telescope/telescope.nvim',
+    },
+    config = function()
+      require('telescope').load_extension 'live_grep_args'
+    end,
+  },
+
+  { -- telescope-undo
+    'debugloop/telescope-undo.nvim',
+    dependencies = {
+      'nvim-telescope/telescope.nvim',
+    },
+    config = function()
+      require('telescope').load_extension 'undo'
+      local opts = { noremap = true }
+      vim.keymap.set('n', '<leader>u', '<cmd>Telescope undo<CR>', opts)
+    end,
+  },
+
+  { -- treesitter
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+    config = function()
+      ---@diagnostic disable-next-line: missing-fields
+      require('nvim-treesitter.configs').setup {
+        ensure_installed = {
+          'bash',
+          'css',
+          'fish',
+          'git_config',
+          'go',
+          'html',
+          'java',
+          'javascript',
+          'json',
+          'lua',
+          'make',
+          'markdown',
+          'markdown_inline',
+          'ruby',
+          'sql',
+          'vim',
+          'vimdoc',
+          'yaml',
+        },
+        auto_install = false,
+        ignore_install = { 'csv' }, -- rainbow_csv does not work if csv is installed
+        highlight = { enable = true },
+        indent = { enable = true },
+      }
+    end,
+  },
+
+  { -- twilight (folke)
     'folke/twilight.nvim',
     config = function()
       require('twilight').setup {
@@ -87,105 +259,11 @@ return {
       }
       local opts = { noremap = true }
       vim.keymap.set('n', '<leader>t', '<cmd>Twilight<CR>', opts)
-      require('twilight').enable() -- enable twilight on startup
+      require('twilight').enable() -- enable on startup
     end,
   },
 
-  {
-    'ggandor/leap.nvim',
-    config = function()
-      require('leap').set_default_keymaps(true)
-    end,
-  },
-
-  {
-    'hedyhli/outline.nvim',
-    lazy = true,
-    cmd = { 'Outline', 'OutlineOpen' },
-    keys = {
-      {
-        '<leader>o', '<cmd>Outline<CR>', desc = 'Toggle outline',
-      },
-    },
-    config = function()
-      require('outline').setup({
-      })
-    end,
-  },
-
-  {
-    'lervag/vimtex',
-    config = function()
-      local opts = { noremap = true }
-      vim.keymap.set('n', '<leader><CR>', '<cmd>VimtexCompile<CR>', opts)
-    end,
-  },
-
-  {
-    'mechatroner/rainbow_csv',
-    lazy = true,
-    ft = 'csv',
-  },
-
-  {
-    'mfussenegger/nvim-jdtls',
-  },
-
-  {
-    'nvim-telescope/telescope-live-grep-args.nvim',
-    dependencies = {
-      'nvim-telescope/telescope.nvim',
-    },
-    config = function()
-      require('telescope').load_extension('live_grep_args')
-    end,
-  },
-
-  {
-    'nvim-telescope/telescope.nvim',
-    config = function()
-      local actions = require('telescope.actions')
-      require('telescope').setup {
-        defaults = {
-          mappings = {
-            i = {
-              ['<C-u>'] = false,
-              ['<C-d>'] = false,
-              ['<C-down>'] = actions.cycle_history_next,
-              ['<C-up>'] = actions.cycle_history_prev
-            },
-            n = {
-              ['<CR>'] = actions.send_selected_to_qflist + actions.open_qflist,
-            },
-          },
-        },
-      }
-      local builtin = require('telescope.builtin')
-      local opts = { noremap = true }
-      vim.keymap.set('n', '<leader>fo', builtin.oldfiles, opts)
-      vim.keymap.set('n', '<leader>ff', builtin.find_files, opts)
-      vim.keymap.set('n', '<leader>fg', require('telescope').extensions.live_grep_args.live_grep_args, opts)
-    end
-  },
-
-  {
-    'stevearc/oil.nvim',
-    dependencies = {
-      'nvim-tree/nvim-web-devicons',
-    },
-    config = function()
-      require('oil').setup({
-        default_file_explorer = false, -- enable Netrw to fix GBrowse
-        view_options = {
-          show_hidden = true,
-        },
-      })
-      local opts = { noremap = true }
-      vim.keymap.set('n', '<C-f>', '<cmd>Oil<CR>', opts)
-    end,
-  },
-
-  {
+  { -- vim-fugitive
     'tpope/vim-fugitive',
     config = function()
       local opts = { noremap = true }
@@ -193,68 +271,7 @@ return {
     end,
   },
 
-  {
-    'windwp/nvim-autopairs',
-    config = function()
-      require('nvim-autopairs').setup {}
-    end,
-  },
-
-  {
-    'zbirenbaum/copilot.lua',
-    cmd ='Copilot',
-    event = 'InsertEnter',
-    config = function()
-      require('copilot').setup {
-        suggestion = {
-          auto_trigger = true,
-          keymap = {
-            accept = '<C-l>',
-            next = '<C-j>',
-            previous = '<C-k>',
-            dismiss = '<esc>',
-          },
-        },
-        filetypes = {
-          markdown = true,
-        },
-      }
-    end,
-  },
-
-  -- THEMES
-
-  {
-    'craftzdog/solarized-osaka.nvim',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      -- vim.cmd.colorscheme 'solarized-osaka'
-    end,
-  },
-
-  {
-    'ellisonleao/gruvbox.nvim',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require('gruvbox').setup {
-        bold = false,
-        contrast = 'hard',
-      }
-      vim.cmd.colorscheme 'gruvbox'
-    end,
-  },
-
-  {
-    'folke/tokyonight.nvim',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require('tokyonight').setup({
-        style = 'moon',
-      })
-      -- vim.cmd.colorscheme 'tokyonight'
-    end,
+  { -- vimtex
+    'lervag/vimtex',
   },
 }
