@@ -87,6 +87,10 @@ return {
 
   { -- nvim-jdtls
     'mfussenegger/nvim-jdtls',
+    config = function()
+      local opts = { noremap = true }
+      vim.keymap.set('n', '<leader>i', '<cmd>lua require"jdtls".organize_imports()<CR>', opts)
+    end,
   },
 
   { -- obsidian
