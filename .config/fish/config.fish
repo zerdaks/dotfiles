@@ -46,12 +46,14 @@ function dback
 		--exclude .git/
 end
 
+# Searches for files matching the provided pattern.
 function fzfind
 	find . -name "*$argv*" | fzf | pbcopy
 	echo -e "\e[31mCopied to clipboard\e[0m"
 	pbpaste
 end
 
+# Searches for text matching the provided pattern.
 function fzgrep
 	grep -r $argv . --exclude-dir='.git' | fzf | pbcopy
 	echo -e "\e[31mCopied to clipboard\e[0m"
