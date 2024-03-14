@@ -25,8 +25,6 @@ brew-install:
 	brew install lua
 	brew install luarocks
 
-	brew install mactex-no-gui
-
 	brew install npm
 	brew install nvim
 
