@@ -573,7 +573,7 @@ require('lazy').setup {
           },
         },
 
-        solargraph = {},
+        ruby_ls = {},
 
         texlab = {},
       }
