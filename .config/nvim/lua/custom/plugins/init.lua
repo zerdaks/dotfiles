@@ -275,6 +275,10 @@ return {
     end,
   },
 
+  { -- vim-rhubarb
+    'tpope/vim-rhubarb',
+  },
+
   { -- vimtex
     'lervag/vimtex',
   },
