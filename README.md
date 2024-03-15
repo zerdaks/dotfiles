@@ -4,37 +4,15 @@ This is the repository for my dotfiles. To install on macOS:
 
 ## Configure GitHub
 
-[Generating a new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key)
+[Connecting to GitHub with SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
 
-```bash
-ssh-keygen -t ed25519 -C 'your_email@example.com' -N '' -f ~/.ssh/id_ed25519
-```
-
-[Adding your SSH key to the ssh-agent](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent)
-
-```bash
-echo -e 'Host github.com\n  AddKeysToAgent yes\n  UseKeychain yes\n  IdentityFile ~/.ssh/id_ed25519' >> ~/.ssh/config
-```
-
-[Adding a new SSH key to your account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account#adding-a-new-ssh-key-to-your-account)
-
-```bash
-pbcopy < ~/.ssh/id_ed25519.pub
-```
-
-## Install Git and dotfiles
+## Install dotfiles
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew install git
+brew install git make
 git clone git@github.com:zerdaks/dotfiles.git
-```
-
-## Install software
-
-```bash
 cd dotfiles/
-brew install make
 make
 stow .
 ```
