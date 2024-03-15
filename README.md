@@ -63,3 +63,10 @@ vim
 ```bash
 tm # followed by prefix + shift-i to install all
 ```
+
+## Configure Copilot
+
+```bash
+gh auth login
+gh extension install github/gh-copilot
+```
