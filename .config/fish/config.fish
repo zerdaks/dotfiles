@@ -55,7 +55,7 @@ end
 
 # Searches for text matching the provided pattern.
 function fzgrep
-	grep -r $argv . --exclude-dir='.git' | fzf | pbcopy
+	grep -r $argv . --exclude-dir='.git' | fzf | cut -d ':' -f 1 | pbcopy
 	echo -e "\e[31mCopied to clipboard\e[0m"
 	pbpaste
 end
