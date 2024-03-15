@@ -17,6 +17,7 @@ brew-install:
 	brew install fzf
 
 	brew install gitleaks
+	brew install glow
 	brew install gnupg
 	brew install go
 
