@@ -33,6 +33,16 @@ return {
     end,
   },
 
+  { -- gitlinker
+    'ruifm/gitlinker.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    config = function()
+      require('gitlinker').setup {}
+    end,
+  },
+
   { -- gruvbox (theme)
     'ellisonleao/gruvbox.nvim',
     lazy = false,
@@ -50,6 +60,19 @@ return {
     'ggandor/leap.nvim',
     config = function()
       require('leap').set_default_keymaps(true)
+    end,
+  },
+
+  { -- neogit
+    'NeogitOrg/neogit',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+    },
+    config = function()
+      require('neogit').setup {}
+      local opts = { noremap = true }
+      vim.keymap.set('n', '<leader>ng', '<cmd>Neogit<CR>', opts)
     end,
   },
 
@@ -126,7 +149,6 @@ return {
     },
     config = function()
       require('oil').setup {
-        default_file_explorer = false, -- enable Netrw to fix GBrowse
         view_options = {
           show_hidden = true,
         },
@@ -265,18 +287,6 @@ return {
       vim.keymap.set('n', '<leader>t', '<cmd>Twilight<CR>', opts)
       require('twilight').enable() -- enable on startup
     end,
-  },
-
-  { -- vim-fugitive
-    'tpope/vim-fugitive',
-    config = function()
-      local opts = { noremap = true }
-      vim.keymap.set('n', '<leader>g', '<cmd>vertical rightbelow Git<CR>', opts)
-    end,
-  },
-
-  { -- vim-rhubarb
-    'tpope/vim-rhubarb',
   },
 
   { -- vimtex
