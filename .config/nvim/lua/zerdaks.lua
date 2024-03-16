@@ -8,7 +8,7 @@ vim.opt.spell = true
 vim.opt.relativenumber = true
 
 -- Open help windows to the right of the current window
-vim.cmd('autocmd BufWinEnter * if &buftype == "help" | wincmd L | endif')
+vim.cmd 'autocmd BufWinEnter * if &buftype == "help" | wincmd L | endif'
 
 -- Conceal text
 vim.opt.conceallevel = 1
@@ -46,20 +46,11 @@ local augroup = vim.api.nvim_create_augroup
 
 local save_fold = augroup('SaveFolds', { clear = true })
 
--- Save views for all file types when buffers are removed
-autocmd('BufWinLeave', {
-  pattern = '*.*',
-  callback = function()
-    vim.cmd.mkview()
-  end,
-  group = save_fold,
-})
-
 -- Restore views for all file types when buffers are loaded
 autocmd('BufWinEnter', {
   pattern = '*.*',
   callback = function()
-    vim.cmd.loadview({ mods = { emsg_silent = true } })
+    vim.cmd.loadview { mods = { emsg_silent = true } }
   end,
   group = save_fold,
 })
@@ -82,7 +73,7 @@ vim.keymap.set('n', '<leader>.', '', opts)
 vim.keymap.set('n', '<leader><leader>', '<cmd>bnext<CR>', opts)
 
 -- Repeat latest f, t, F or T in opposite direction
-vim.keymap.set('n', '\'', ',', opts)
+vim.keymap.set('n', "'", ',', opts)
 
 -- Delete a buffer
 vim.keymap.set('n', '<leader>db', '<cmd>bd<CR>', opts)
