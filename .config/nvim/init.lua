@@ -571,7 +571,8 @@ require('lazy').setup {
           },
         },
 
-        ruby_ls = {},
+        ruby_ls = {}, -- supports go to definitions for standard library and gems
+        solargraph = {}, -- supports go to references
 
         texlab = {},
       }
