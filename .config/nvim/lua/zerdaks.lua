@@ -75,11 +75,14 @@ vim.keymap.set('n', '<leader><leader>', '<cmd>bnext<CR>', opts)
 -- Repeat latest f, t, F or T in opposite direction
 vim.keymap.set('n', "'", ',', opts)
 
+-- Copy filename to clipboard
+vim.keymap.set('n', '<leader>cp', '<cmd>let @*=expand("%")<CR>', opts)
+
 -- Delete a buffer
 vim.keymap.set('n', '<leader>db', '<cmd>bd<CR>', opts)
 
--- Copy filename to clipboard
-vim.keymap.set('n', '<leader>cp', '<cmd>let @*=expand("%")<CR>', opts)
+-- Save a view of the current buffer
+vim.keymap.set('n', '<leader>mk', '<cmd>mkview<CR>', opts)
 
 -- Open a new tab page with an empty window
 vim.keymap.set('n', '<leader>to', '<cmd>tabedit<CR>', opts)
