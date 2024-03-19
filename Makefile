@@ -9,6 +9,7 @@ brew-config:
 brew-install:
 	brew install bat
 
+	brew install cloc
 	brew install colordiff
 
 	brew install eza
