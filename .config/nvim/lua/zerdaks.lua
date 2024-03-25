@@ -72,6 +72,9 @@ vim.keymap.set('n', '<leader>.', '', opts)
 -- Go to the next buffer
 vim.keymap.set('n', '<leader><leader>', '<cmd>bnext<CR>', opts)
 
+-- Go to next diagnostic message
+vim.keymap.set('n', '<leader>d', vim.diagnostic.goto_next, opts)
+
 -- Repeat latest f, t, F or T in opposite direction
 vim.keymap.set('n', "'", ',', opts)
 
