@@ -76,13 +76,13 @@ set -gx GOPATH $HOME/go
 set -gx PATH $GOPATH/bin $PATH
 
 # add Java to path
-set -gx PATH /opt/homebrew/opt/openjdk/bin $PATH
+set -gx PATH (brew --prefix)/opt/openjdk/bin $PATH
 
 # add Make to path
-set -gx PATH /opt/homebrew/opt/make/libexec/gnubin $PATH
+set -gx PATH (brew --prefix)/opt/make/libexec/gnubin $PATH
 
 # set up Node.js
-set -gx NODE_PATH /opt/homebrew/lib/node_modules/
+set -gx NODE_PATH (brew --prefix)/lib/node_modules/
 
 # set up rbenv
 status --is-interactive; and rbenv init - fish | source
