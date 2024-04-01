@@ -96,7 +96,7 @@ return {
         },
       }
       local opts = { noremap = true }
-      vim.keymap.set('n', '<leader>nd', '<cmd>NoiceDismiss<CR>', opts)
+      vim.keymap.set('n', '<leader>dn', '<cmd>NoiceDismiss<CR>', opts)
     end,
   },
 
