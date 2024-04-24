@@ -78,8 +78,8 @@ vim.keymap.set('n', '<leader>d', vim.diagnostic.goto_next, opts)
 -- Repeat latest f, t, F or T in opposite direction
 vim.keymap.set('n', "'", ',', opts)
 
--- Copy filename to clipboard
-vim.keymap.set('n', '<leader>cp', '<cmd>let @*=expand("%")<CR>', opts)
+-- Copy relative file path to clipboard
+vim.keymap.set('n', '<leader>cp', '<cmd>let @* = expand("%:p:~:.")<CR>', opts)
 
 -- Delete a buffer
 vim.keymap.set('n', '<leader>db', '<cmd>bd<CR>', opts)
