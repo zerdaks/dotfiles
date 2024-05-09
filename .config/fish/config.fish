@@ -46,14 +46,14 @@ function dback
 		--exclude .git/
 end
 
-# Searches for files matching the provided pattern.
+# searches for files matching the provided pattern
 function fzfind
 	find . -name "*$argv*" | fzf | pbcopy
 	echo -e "\e[31mCopied to clipboard\e[0m"
 	pbpaste
 end
 
-# Searches for text matching the provided pattern.
+# searches for text matching the provided pattern
 function fzgrep
 	grep -r $argv . --exclude-dir='.git' | fzf | cut -d ':' -f 1 | pbcopy
 	echo -e "\e[31mCopied to clipboard\e[0m"
@@ -67,21 +67,21 @@ function c
 	end
 end
 
-# add Homebrew to path
+# add homebrew to path
 set -gx PATH /opt/homebrew/bin $PATH
 set -gx PATH /opt/homebrew/sbin $PATH
 
-# add Go to path
+# add go to path
 set -gx GOPATH $HOME/go
 set -gx PATH $GOPATH/bin $PATH
 
-# add Java to path
+# add java to path
 set -gx PATH (brew --prefix)/opt/openjdk/bin $PATH
 
-# add Make to path
+# add make to path
 set -gx PATH (brew --prefix)/opt/make/libexec/gnubin $PATH
 
-# set up Node.js
+# set up node
 set -gx NODE_PATH (brew --prefix)/lib/node_modules/
 
 # set up rbenv
