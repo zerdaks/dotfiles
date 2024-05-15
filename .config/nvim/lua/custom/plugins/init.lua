@@ -154,7 +154,7 @@ return {
         },
       }
       local opts = { noremap = true }
-      vim.keymap.set('n', '<C-f>', '<cmd>Oil<CR>', opts)
+      vim.keymap.set('n', '-', '<cmd>Oil<CR>', opts)
     end,
   },
 
