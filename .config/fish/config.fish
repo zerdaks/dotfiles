@@ -78,6 +78,9 @@ set -gx PATH $GOPATH/bin $PATH
 # add java to path
 set -gx PATH (brew --prefix)/opt/openjdk/bin $PATH
 
+# add luarocks to path
+set -gx PATH $HOME/.luarocks/bin $PATH
+
 # add make to path
 set -gx PATH (brew --prefix)/opt/make/libexec/gnubin $PATH
 
