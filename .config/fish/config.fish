@@ -22,6 +22,7 @@ alias rmds 'find . -name ".DS_Store" | xargs rm'
 
 alias tm tmux
 
+alias unmount 'diskutil eject'
 alias unzip '7z x'
 
 alias vim nvim
