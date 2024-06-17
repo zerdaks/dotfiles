@@ -42,6 +42,7 @@ brew-install:
 	brew install stow
 
 	brew install tmux
+	brew install tig
 
 	brew install wget
 
