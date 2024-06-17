@@ -252,6 +252,7 @@ return {
           'css',
           'fish',
           'git_config',
+          'gitignore',
           'go',
           'html',
           'java',
