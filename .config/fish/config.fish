@@ -18,7 +18,7 @@ alias lla 'll -a'
 alias llt 'lla --tree --level=2 --ignore-glob=".git"'
 
 alias r 'source ~/.config/fish/config.fish'
-alias rmds 'find . -name ".DS_Store" | xargs rm'
+alias rmds 'find ~/Documents/ -name ".DS_Store" | xargs rm'
 
 alias tm tmux
 
