@@ -262,6 +262,7 @@ return {
           'make',
           'markdown',
           'markdown_inline',
+          'php',
           'ruby',
           'sql',
           'vim',
