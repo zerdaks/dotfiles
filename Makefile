@@ -17,7 +17,6 @@ brew-install:
 	brew install fish
 	brew install fzf
 
-	brew install gh
 	brew install gitleaks
 	brew install glow
 	brew install gnupg
