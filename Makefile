@@ -1,83 +1,94 @@
-all: brew-config brew-install additional-install
+default:
+	@echo "make config-brew"
+	@echo "make install-fish"
+	@echo "make config-fish"
+	@echo "make install-fonts"
+	@echo "make install-git-utils"
+	@echo "make install-go"
+	@echo "make install-lua"
+	@echo "make install-nvim"
+	@echo "make install-postgres"
+	@echo "make install-ruby"
+	@echo "make install-stow"
+	@echo "make install-tmux"
+	@echo "make install-utils"
+	@echo "make install-yabai"
 
-# Configure Homebrew
-brew-config:
+config-brew:
 	brew tap homebrew/aliases
 	brew alias clean='cleanup && brew doctor'
 
-# Install dependencies using Homebrew
-brew-install:
-	brew install bat
-
-	brew install cloc
-	brew install colordiff
-
-	brew install eza
-
+install-fish:
 	brew install fish
-	brew install fzf
+	# install a plugin manager
+	fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
+	# install a fish prompt
+	fish -c "fisher install IlanCosman/tide@v5"
+	# install directory jumping
+	fish -c "fisher install jethrokuan/z"
 
+config-fish:
+	tide configure
+
+install-fonts:
+	brew tap homebrew/cask-fonts
+	brew install font-hack-nerd-font
+
+install-git-utils:
 	brew install gitleaks
-	brew install glow
-	brew install gnupg
+	brew install tig
+	# install a commit message formatter
+	brew install npm
+	npm install -g commitizen
+
+intall-go:
 	brew install go
+	# install a language server for Go
+	go install golang.org/x/tools/gopls@latest
 
-	brew install jdtls
-
+install-lua:
 	brew install lua
 	brew install luarocks
 
-	brew install npm
+install-nvim:
 	brew install nvim
-
-	brew install p7zip
-	brew install python3
-
-	brew install postgresql@14
-	brew services start postgresql@14
-
-	brew install rbenv
-
-	brew install stow
-
-	brew install tmux
-	brew install tig
-
-	brew install wget
-
 	# install telescope dependencies
 	brew install fd
 	brew install ripgrep
+	# install language servers
+	brew install jdtls
 
-	# install a window manager for macOS
+install-postgres:
+	brew install postgresql
+	brew services start postgresql
+
+install-ruby:
+	brew install rbenv
+	rbenv install $$(rbenv install -l | grep -v - | tail -1) || true
+	rbenv global $$(rbenv install -l | grep -v - | tail -1)
+	rbenv install --list
+	rbenv global
+
+intall-stow:
+	brew install stow
+	stow .
+
+install-tmux:
+	brew install tmux
+	# install a plugin manager
+	git clone https://github.com/tmux-plugins/tpm $(HOME)/.tmux/plugins/tpm || true
+
+install-utils:
+	brew install bat
+	brew install colordiff
+	brew install eza
+	brew install fzf
+	brew install glow
+
+install-yabai:
 	brew install koekeishiya/formulae/skhd
 	brew install koekeishiya/formulae/yabai
 	skhd --start-service
 	yabai --start-service
 
-	brew tap homebrew/cask-fonts
-	brew install font-hack-nerd-font
-
-# Install additional dependencies
-additional-install:
-	# install a plugin manager for fish
-	curl -sL https://git.io/fisher | fish && fish -c "fisher install jorgebucaran/fisher"
-
-	# install fish plugins
-	fish -c "fisher install IlanCosman/tide@v5" # a prompt for fish
-	fish -c "fisher install jethrokuan/z" # directory jumping
-
-	# install a plugin manager for tmux
-	git clone https://github.com/tmux-plugins/tpm $(HOME)/.tmux/plugins/tpm || true
-
-	# install the latest version of Ruby
-	rbenv install $$(rbenv install -l | grep -v - | tail -1) || true
-	rbenv global $$(rbenv install -l | grep -v - | tail -1) || true
-
-	# install a commit message formatter for Git
-	npm install -g commitizen
-
-	# install a language server for Go
-	go install golang.org/x/tools/gopls@latest
-
-.PHONY: all brew-install additional-install brew-config
+.PHONY: default

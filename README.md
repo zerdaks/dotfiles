@@ -14,13 +14,6 @@ brew install git make
 git clone git@github.com:zerdaks/dotfiles.git
 cd dotfiles/
 make
-stow .
-```
-
-## Configure fish
-
-```bash
-tide configure
 ```
 
 ## Configure Neovim
