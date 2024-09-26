@@ -134,7 +134,7 @@ return {
         },
         {
           name = 'work',
-          path = '~/Documents/repos/fc-notes',
+          path = '~/Documents/repos/work-notes',
         },
       },
       follow_url_func = function(url)
