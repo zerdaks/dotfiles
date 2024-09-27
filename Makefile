@@ -66,8 +66,8 @@ install-ruby:
 	brew install rbenv
 	rbenv install $$(rbenv install -l | grep -v - | tail -1) || true
 	rbenv global $$(rbenv install -l | grep -v - | tail -1)
-	rbenv install --list
-	rbenv global
+	# required for Mason
+	(cd $(HOME) && rbenv local $$(rbenv install -l | grep -v - | tail -1))
 
 intall-stow:
 	brew install stow
