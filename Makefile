@@ -43,7 +43,7 @@ install-git-utils:
 
 intall-go:
 	brew install go
-	# install a language server for Go
+	# install a language server
 	go install golang.org/x/tools/gopls@latest
 
 install-lua:
