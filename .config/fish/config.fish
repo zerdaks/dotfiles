@@ -23,6 +23,7 @@ alias rmds 'find ~/Documents/ -name ".DS_Store" | xargs rm'
 alias tm tmux
 
 alias unmount 'diskutil eject'
+alias untar 'tar -xvzf'
 alias unzip '7z x'
 
 alias vim nvim
