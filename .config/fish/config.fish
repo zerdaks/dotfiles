@@ -49,14 +49,14 @@ function dback
 end
 
 # searches for files matching the provided pattern
-function fzfind
+function findfz
 	find . -name "*$argv*" | fzf | pbcopy
 	echo -e "\e[31mCopied to clipboard\e[0m"
 	pbpaste
 end
 
 # searches for text matching the provided pattern
-function fzgrep
+function grepfz
 	grep -r $argv . --exclude-dir='.git' | fzf | cut -d ':' -f 1 | pbcopy
 	echo -e "\e[31mCopied to clipboard\e[0m"
 	pbpaste
