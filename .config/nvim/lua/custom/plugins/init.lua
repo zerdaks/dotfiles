@@ -46,19 +46,6 @@ return {
     end,
   },
 
-  { -- gruvbox (theme)
-    'ellisonleao/gruvbox.nvim',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require('gruvbox').setup {
-        bold = false,
-        contrast = 'hard',
-      }
-      -- vim.cmd.colorscheme("gruvbox")
-    end,
-  },
-
   { -- leap
     'ggandor/leap.nvim',
     config = function()
@@ -181,15 +168,6 @@ return {
     'mechatroner/rainbow_csv',
     lazy = true,
     ft = 'csv',
-  },
-
-  { -- solarized-osaka.nvim (theme)
-    'craftzdog/solarized-osaka.nvim',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      -- vim.cmd.colorscheme 'solarized-osaka'
-    end,
   },
 
   { -- telescope
