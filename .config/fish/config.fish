@@ -12,6 +12,7 @@ alias g git
 
 alias hc 'history clear'
 alias hd 'history delete'
+alias hf 'history | fzf'
 
 alias ll 'eza -l -g --icons'
 alias lla 'll -a'
@@ -48,18 +49,12 @@ function dback
 		--exclude .git/
 end
 
-# searches for files matching the provided pattern
-function findfz
-	find . -name "*$argv*" | fzf | pbcopy
-	echo -e "\e[31mCopied to clipboard\e[0m"
-	pbpaste
+function ff
+	find . -name "*$argv*" | fzf
 end
 
-# searches for text matching the provided pattern
-function grepfz
-	grep -r $argv . --exclude-dir='.git' | fzf | cut -d ':' -f 1 | pbcopy
-	echo -e "\e[31mCopied to clipboard\e[0m"
-	pbpaste
+function fgrep
+	grep -r $argv . --exclude-dir='.git' | fzf
 end
 
 # add homebrew to path
