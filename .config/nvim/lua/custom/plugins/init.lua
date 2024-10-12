@@ -55,7 +55,7 @@ return {
         bold = false,
         contrast = 'hard',
       }
-      -- vim.cmd.colorscheme("gruvbox")
+      vim.cmd.colorscheme 'gruvbox'
     end,
   },
 
@@ -181,15 +181,6 @@ return {
     'mechatroner/rainbow_csv',
     lazy = true,
     ft = 'csv',
-  },
-
-  { -- solarized-osaka.nvim (theme)
-    'craftzdog/solarized-osaka.nvim',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      -- vim.cmd.colorscheme 'solarized-osaka'
-    end,
   },
 
   { -- telescope
