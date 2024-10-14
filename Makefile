@@ -91,4 +91,34 @@ install-yabai:
 	skhd --start-service
 	yabai --start-service
 
-.PHONY: default
+.PHONY: default \
+	config-brew \
+	install-fish \
+	config-fish \
+	install-fonts \
+	install-git-utils \
+	install-go \
+	install-lua \
+	install-nvim \
+	install-postgres \
+	install-ruby \
+	install-stow \
+	install-tmux \
+	install-utils \
+	install-yabai
+
+.SILENT: default \
+	config-brew \
+	install-fish \
+	config-fish \
+	install-fonts \
+	install-git-utils \
+	install-go \
+	install-lua \
+	install-nvim \
+	install-postgres \
+	install-ruby \
+	install-stow \
+	install-tmux \
+	install-utils \
+	install-yabai
