@@ -15,6 +15,18 @@ return {
     end,
   },
 
+  { -- catppuccin (theme)
+    'catppuccin/nvim',
+    name = 'catppuccin',
+    priority = 1000,
+    config = function()
+      require('catppuccin').setup {
+        flavour = 'mocha', -- latte, frappe, macchiato, mocha
+      }
+      vim.cmd.colorscheme 'catppuccin'
+    end,
+  },
+
   { -- copilot
     'zbirenbaum/copilot.lua',
     lazy = false,
@@ -55,7 +67,7 @@ return {
         bold = false,
         contrast = 'hard',
       }
-      vim.cmd.colorscheme 'gruvbox'
+      -- vim.cmd.colorscheme 'gruvbox'
     end,
   },
 
