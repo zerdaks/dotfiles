@@ -84,9 +84,6 @@ vim.keymap.set('n', '<leader>cp', '<cmd>let @* = expand("%:p:~:.")<CR>', opts)
 -- Delete a buffer
 vim.keymap.set('n', '<leader>db', '<cmd>bd<CR>', opts)
 
--- Delete all buffers
-vim.keymap.set('n', '<leader>da', '<cmd>bufdo bd<CR>', opts)
-
 -- Save a view of the current buffer
 vim.keymap.set('n', '<leader>mk', '<cmd>mkview<CR>', opts)
 
