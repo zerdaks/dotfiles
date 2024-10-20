@@ -111,10 +111,10 @@ vim.keymap.set('n', '<S-left>', '<nop>', opts)
 vim.keymap.set('n', '<S-right>', '<nop>', opts)
 
 -- Navigate splits
-vim.keymap.set('n', '<S-h>', '<C-w>h', opts)
-vim.keymap.set('n', '<S-j>', '<C-w>j', opts)
-vim.keymap.set('n', '<S-k>', '<C-w>k', opts)
-vim.keymap.set('n', '<S-l>', '<C-w>l', opts)
+vim.keymap.set('n', '<C-h>', '<C-w>h', opts)
+vim.keymap.set('n', '<C-j>', '<C-w>j', opts)
+vim.keymap.set('n', '<C-k>', '<C-w>k', opts)
+vim.keymap.set('n', '<C-l>', '<C-w>l', opts)
 
 -- Clear search highlights
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', opts)
