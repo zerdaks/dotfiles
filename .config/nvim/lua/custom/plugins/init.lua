@@ -1,5 +1,5 @@
 return {
-  { -- bufferline
+  { -- bufferline - buffer tab manager
     'akinsho/bufferline.nvim',
     -- version = '*',
     branch = 'main',
@@ -15,7 +15,7 @@ return {
     end,
   },
 
-  { -- catppuccin (theme)
+  { -- catppuccin - theme
     'catppuccin/nvim',
     name = 'catppuccin',
     priority = 1000,
@@ -27,7 +27,7 @@ return {
     end,
   },
 
-  { -- copilot
+  { -- copilot - Copilot integration
     'zbirenbaum/copilot.lua',
     lazy = false,
     cmd = 'Copilot',
@@ -48,7 +48,7 @@ return {
     end,
   },
 
-  { -- gitlinker
+  { -- gitlinker - Git URL generator
     'ruifm/gitlinker.nvim',
     dependencies = {
       'nvim-lua/plenary.nvim',
@@ -58,7 +58,7 @@ return {
     end,
   },
 
-  { -- gruvbox (theme)
+  { -- gruvbox - theme
     'ellisonleao/gruvbox.nvim',
     lazy = false,
     priority = 1000,
@@ -71,14 +71,14 @@ return {
     end,
   },
 
-  { -- leap
+  { -- leap - fast navigation
     'ggandor/leap.nvim',
     config = function()
       require('leap').set_default_keymaps(true)
     end,
   },
 
-  { -- neogit
+  { -- neogit - git client
     'NeogitOrg/neogit',
     dependencies = {
       'nvim-lua/plenary.nvim',
@@ -91,7 +91,7 @@ return {
     end,
   },
 
-  { -- noice (folke)
+  { -- noice (folke) - message notifications
     'folke/noice.nvim',
     dependencies = {
       'MunifTanjim/nui.nvim',
@@ -115,7 +115,7 @@ return {
     end,
   },
 
-  { -- nvim-autopairs
+  { -- nvim-autopairs - auto-closing pairs
     'windwp/nvim-autopairs',
     event = 'InsertEnter',
     config = function()
@@ -123,7 +123,7 @@ return {
     end,
   },
 
-  { -- nvim-jdtls
+  { -- nvim-jdtls - Java LSP
     'mfussenegger/nvim-jdtls',
     config = function()
       local opts = { noremap = true }
@@ -131,7 +131,7 @@ return {
     end,
   },
 
-  { -- obsidian
+  { -- obsidian - Obsidian integration
     'epwalsh/obsidian.nvim',
     version = '*',
     lazy = true,
@@ -157,7 +157,7 @@ return {
     },
   },
 
-  { -- oil
+  { -- oil - file explorer
     'stevearc/oil.nvim',
     dependencies = {
       'nvim-tree/nvim-web-devicons',
@@ -173,7 +173,7 @@ return {
     end,
   },
 
-  { -- outline
+  { -- outline - code outline viewer
     'hedyhli/outline.nvim',
     lazy = true,
     cmd = { 'Outline', 'OutlineOpen' },
@@ -189,13 +189,13 @@ return {
     end,
   },
 
-  { -- rainbow_csv
+  { -- rainbow_csv - CSV syntax highlighting
     'mechatroner/rainbow_csv',
     lazy = true,
     ft = 'csv',
   },
 
-  { -- telescope
+  { -- telescope - fuzzy finder
     'nvim-telescope/telescope.nvim',
     config = function()
       local actions = require 'telescope.actions'
@@ -224,7 +224,7 @@ return {
     end,
   },
 
-  { -- telescope-live-grep-args
+  { -- telescope-live-grep-args - live grep integration
     'nvim-telescope/telescope-live-grep-args.nvim',
     dependencies = {
       'nvim-telescope/telescope.nvim',
@@ -234,7 +234,7 @@ return {
     end,
   },
 
-  { -- telescope-undo
+  { -- telescope-undo - undo history viewer
     'debugloop/telescope-undo.nvim',
     dependencies = {
       'nvim-telescope/telescope.nvim',
@@ -246,7 +246,7 @@ return {
     end,
   },
 
-  { -- treesitter
+  { -- treesitter - syntax highlighting
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     config = function()
@@ -282,7 +282,7 @@ return {
     end,
   },
 
-  { -- twilight (folke)
+  { -- twilight (folke) - dim inactive code
     'folke/twilight.nvim',
     config = function()
       require('twilight').setup {
@@ -297,7 +297,7 @@ return {
     end,
   },
 
-  { -- vimtex
+  { -- vimtex - LaTeX support
     'lervag/vimtex',
   },
 }
