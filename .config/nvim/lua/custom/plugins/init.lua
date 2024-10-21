@@ -23,7 +23,7 @@ return {
       require('catppuccin').setup {
         flavour = 'mocha', -- latte, frappe, macchiato, mocha
       }
-      vim.cmd.colorscheme 'catppuccin'
+      -- vim.cmd.colorscheme 'catppuccin'
     end,
   },
 
@@ -193,6 +193,17 @@ return {
     'mechatroner/rainbow_csv',
     lazy = true,
     ft = 'csv',
+  },
+
+  { -- solarized-osaka - theme
+    {
+      'craftzdog/solarized-osaka.nvim',
+      lazy = false,
+      priority = 1000,
+      config = function()
+        vim.cmd.colorscheme 'solarized-osaka'
+      end,
+    },
   },
 
   { -- telescope - fuzzy finder
