@@ -24,9 +24,11 @@ vim.opt.splitright = true
 WHITESPACE
 --]]
 
--- Configure tab width
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
+-- Configure tabs
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.softtabstop = 4
 
 -- Configure white space
 vim.opt.list = true
