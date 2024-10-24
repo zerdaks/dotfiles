@@ -16,7 +16,6 @@ alias hf 'history | fzf'
 
 alias ll 'eza -l -g --icons'
 alias lla 'll -a'
-alias llt 'lla --tree --level=2 --ignore-glob=".git"'
 
 alias r 'source ~/.config/fish/config.fish'
 alias rmds 'find ~/Documents/ -name ".DS_Store" | xargs rm'
@@ -29,6 +28,25 @@ alias unzip '7z x'
 
 alias vim nvim
 alias vimdiff 'nvim -d'
+
+function llt
+    set dir "."
+    set level 2
+
+    if test (count $argv) -gt 0
+        if string match -r '^[0-9]+$' $argv[1]
+            set level $argv[1]
+        else
+            set dir $argv[1]
+        end
+
+        if test (count $argv) -gt 1
+            set level $argv[2]
+        end
+    end
+
+    lla --tree --level=$level --ignore-glob=".git" $dir
+end
 
 function back
 	rsync $argv[1] $argv[2] \
