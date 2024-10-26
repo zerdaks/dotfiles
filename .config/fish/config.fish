@@ -8,11 +8,12 @@ alias chrome 'open -a Google\ Chrome'
 
 alias diff colordiff
 
+alias fh 'history | fzf'
+
 alias g git
 
 alias hc 'history clear'
 alias hd 'history delete'
-alias hf 'history | fzf'
 
 alias ll 'eza -l -g --icons'
 alias lla 'll -a'
@@ -28,25 +29,6 @@ alias unzip '7z x'
 
 alias vim nvim
 alias vimdiff 'nvim -d'
-
-function llt
-    set dir "."
-    set level 2
-
-    if test (count $argv) -gt 0
-        if string match -r '^[0-9]+$' $argv[1]
-            set level $argv[1]
-        else
-            set dir $argv[1]
-        end
-
-        if test (count $argv) -gt 1
-            set level $argv[2]
-        end
-    end
-
-    lla --tree --level=$level --ignore-glob=".git" $dir
-end
 
 function back
 	rsync $argv[1] $argv[2] \
@@ -73,6 +55,25 @@ end
 
 function fgrep
 	grep -r $argv . --exclude-dir='.git' | fzf
+end
+
+function llt
+    set dir "."
+    set level 2
+
+    if test (count $argv) -gt 0
+        if string match -r '^[0-9]+$' $argv[1]
+            set level $argv[1]
+        else
+            set dir $argv[1]
+        end
+
+        if test (count $argv) -gt 1
+            set level $argv[2]
+        end
+    end
+
+    lla --tree --level=$level --ignore-glob=".git" $dir
 end
 
 # add homebrew to path
