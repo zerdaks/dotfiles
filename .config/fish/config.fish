@@ -8,7 +8,7 @@ alias chrome 'open -a Google\ Chrome'
 
 alias diff colordiff
 
-alias fh 'history | fzf'
+alias fh 'commandline -r (history | fzf)'
 
 alias g git
 
@@ -50,11 +50,18 @@ function dback
 end
 
 function ff
-	find . -name "*$argv*" | fzf
+    set selected (find . -name "*$argv*" -not -path "./.git/*" -not -path "./." | fzf)
+    if test -n "$selected"
+        printf "%s" "$selected" | pbcopy
+    end
 end
 
 function fgrep
-	grep -r $argv . --exclude-dir='.git' | fzf
+    set selected (grep -r $argv . --exclude-dir=".git" | fzf --with-nth=2..)
+    if test -n "$selected"
+        set filename (echo "$selected" | awk -F: '{print $1}')
+        printf "%s" "$filename" | pbcopy
+    end
 end
 
 function llt
