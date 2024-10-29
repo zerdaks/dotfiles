@@ -10,15 +10,9 @@ cmd + alt - up : yabai -m window --toggle zoom-fullscreen
 # place the top-left corner of the window on column 1, row 1
 cmd + alt - down : yabai -m window --toggle float --grid 20:20:1:1:18:18
 
-# rotate layout clockwise
-cmd + alt - r : yabai -m space --rotate 270
-
 # resize windows
 ctrl - left : (yabai -m window --resize left:-100:0 || yabai -m window --resize right:-100:0)
 ctrl - right : (yabai -m window --resize left:100:0 || yabai -m window --resize right:100:0)
-
-# balance windows
-cmd + alt - b : yabai -m space --balance
 
 # disable minimize window
 cmd - m :
