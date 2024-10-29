@@ -1,6 +1,8 @@
 local keymap = vim.keymap
 
--- NON-RECURSIVE NORMAL MODE
+-- https://stackoverflow.com/a/3776182
+
+-- NORMAL MODE
 
 -- Go to previous buffer
 keymap.set('n', '<leader>,', '<cmd>bprevious<CR>')
@@ -45,12 +47,12 @@ keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- Do not copy deleted text
 keymap.set('n', 'x', '"_x')
 
--- NON-RECURSIVE VISUAL AND SELECT MODES
+-- VISUAL AND SELECT MODES
 
 -- Do not copy deleted text
 keymap.set('v', 'd', '"_d')
 
--- NON-RECURSIVE VISUAL MODE
+-- VISUAL MODE
 
 -- Paste the same value multiple times
 -- 'p' to put/paste, 'gv' to select the text that was put, and 'y' to copy the selected text
