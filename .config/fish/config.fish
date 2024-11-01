@@ -1,19 +1,15 @@
 set fish_greeting ""
 
-alias arc 'open -a Arc'
-
 alias c clear
-alias cat 'bat'
-alias chrome 'open -a Google\ Chrome'
+alias cat bat
 
 alias diff colordiff
-
-alias fh 'commandline -r (history | fzf)'
 
 alias g git
 
 alias hc 'history clear'
 alias hd 'history delete'
+alias hf 'history | fzf'
 
 alias ll 'eza -l -g --icons'
 alias lla 'll -a'
@@ -28,40 +24,18 @@ alias untar 'tar -xvzf'
 alias unzip '7z x'
 
 alias vim nvim
-alias vimdiff 'nvim -d'
 
 function back
-	rsync $argv[1] $argv[2] \
-		--verbose \
-		--archive \
-		--delete \
-		--human-readable \
-		--exclude .git/
+    rsync $argv[1] $argv[2] \
+        --verbose \
+        --archive \
+        --delete \
+        --human-readable \
+        --exclude .git/
 end
 
 function dback
-	rsync $argv[1] $argv[2] \
-		--verbose \
-		--archive \
-		--dry-run \
-		--delete \
-		--human-readable \
-		--exclude .git/
-end
-
-function ff
-    set selected (find . -name "*$argv*" -not -path "./.git/*" -not -path "./." | fzf)
-    if test -n "$selected"
-        printf "%s" "$selected" | pbcopy
-    end
-end
-
-function fgrep
-    set selected (grep -r $argv . --exclude-dir=".git" | fzf --with-nth=2..)
-    if test -n "$selected"
-        set filename (echo "$selected" | awk -F: '{print $1}')
-        printf "%s" "$filename" | pbcopy
-    end
+    back $argv --dry-run
 end
 
 function llt
@@ -83,33 +57,34 @@ function llt
     lla --tree --level=$level --ignore-glob=".git" $dir
 end
 
-# add homebrew to path
+# add Homebrew to path
 set -gx PATH /opt/homebrew/bin $PATH
 set -gx PATH /opt/homebrew/sbin $PATH
 
-# add go to path
+# add Go to path
 set -gx GOPATH $HOME/go
 set -gx PATH $GOPATH/bin $PATH
 
-# add java to path
+# add Java to path
 set -gx PATH (brew --prefix)/opt/openjdk/bin $PATH
 
-# add luarocks to path
+# add Lua package manager to path
 set -gx PATH $HOME/.luarocks/bin $PATH
 
-# add make to path
+# add GNU Make to path
 set -gx PATH (brew --prefix)/opt/make/libexec/gnubin $PATH
 
-# set up node
+# configure Node.js
 set -gx NODE_PATH (brew --prefix)/lib/node_modules/
 
-# set up rbenv
+# configure Ruby version manager
 status --is-interactive; and rbenv init - fish | source
 
+# use a local configuration file if it exists
 set LOCAL_CONFIG (dirname (status --current-filename))/config-local.fish
 if test -f $LOCAL_CONFIG
-	source $LOCAL_CONFIG
+    source $LOCAL_CONFIG
 end
 
-# set up vi key bindings
+# set up Vi key bindings
 set -g fish_key_bindings fish_vi_key_bindings
