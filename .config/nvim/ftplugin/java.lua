@@ -1,4 +1,4 @@
--- Use a wildcard to find the jdtls executable
+-- Find the JDTLS executable
 local handle = io.popen 'ls /opt/homebrew/Cellar/jdtls/*/bin/jdtls 2>/dev/null | head -n 1'
 if not handle then
   error 'Could not find jdtls executable'
@@ -13,7 +13,7 @@ if jdtls_path == '' then
   error 'Could not find jdtls executable'
 end
 
--- Configure jdtls
+-- Configure JDTLS
 local config = {
   cmd = { jdtls_path },
   root_dir = require('jdtls.setup').find_root { '.git' },
