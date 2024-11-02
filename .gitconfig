@@ -17,6 +17,7 @@
     r = !git log -30 --pretty=format:'%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%Creset' --all --date=relative --graph
     sh = "!f() { git diff-tree --no-commit-id --name-only -r ${1:-HEAD}; }; f"
     st = !git status -s
+    v = "!f() { git status -s | fzf | awk '{print $2}' | xargs -I {} nvim {}; }; f"
 [core]
     editor = nvim
     autocrlf = input
