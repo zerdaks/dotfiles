@@ -39,9 +39,10 @@ function dback
 end
 
 function hf
-    set cmd (history | fzf --header "Select a command to execute it")
+    set cmd (history | fzf --header "Pick a command to run")
     if test -n "$cmd"
-        eval $cmd
+        commandline -r "$cmd"
+        commandline -f execute
     end
 end
 
