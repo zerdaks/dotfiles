@@ -17,6 +17,7 @@ alias r 'source ~/.config/fish/config.fish'
 alias rmds 'find ~/Documents/ -name ".DS_Store" | xargs rm'
 
 alias tm tmux
+alias tokei 'tokei --hidden'
 
 alias unmount 'diskutil eject'
 alias untar 'tar -xvzf'

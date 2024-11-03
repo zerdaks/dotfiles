@@ -83,6 +83,7 @@ install-utils:
 	brew install eza
 	brew install fzf
 	brew install glow
+	brew install tokei
 
 install-yabai:
 	brew install koekeishiya/formulae/skhd
