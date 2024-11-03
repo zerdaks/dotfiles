@@ -35,6 +35,9 @@ vim.opt.listchars = {
   trail = '·',
 }
 
+-- Format JSON in the current buffer
+vim.api.nvim_create_user_command('FmtJson', '%!jq .', {})
+
 -- FOLDS
 
 local autocmd = vim.api.nvim_create_autocmd
