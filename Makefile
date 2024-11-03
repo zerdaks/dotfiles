@@ -50,13 +50,12 @@ install-lua:
 	brew install lua
 	brew install luarocks
 
-install-nvim:
+install-nvim: install-telescope-dependencies
 	brew install nvim
-	# install telescope dependencies
+
+install-telescope-dependencies:
 	brew install fd
 	brew install ripgrep
-	# install language servers
-	brew install jdtls
 
 install-postgres:
 	brew install postgresql
