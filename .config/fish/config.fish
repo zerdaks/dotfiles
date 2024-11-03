@@ -9,7 +9,6 @@ alias g git
 
 alias hc 'history clear'
 alias hd 'history delete'
-alias hf 'history | fzf'
 
 alias ll 'eza -l -g --icons'
 alias lla 'll -a'
@@ -36,6 +35,13 @@ end
 
 function dback
     back $argv --dry-run
+end
+
+function hf
+    set cmd (history | fzf --header "Select a command to execute it")
+    if test -n "$cmd"
+        eval $cmd
+    end
 end
 
 function llt
