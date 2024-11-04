@@ -3,7 +3,7 @@
     br = branch
     ci = commit
     cl = clean -f
-    co = checkout .
+    co = checkout
     d = diff
     dc = diff --cached
     f = fetch --prune
