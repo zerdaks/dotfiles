@@ -1,28 +1,18 @@
-local actions = require 'telescope.actions'
-local action_state = require 'telescope.actions.state'
-
-local function single_or_multi_select(prompt_bufnr)
-  local picker = action_state.get_current_picker(prompt_bufnr)
-  local num_selections = #picker:get_multi_selection()
-  if num_selections > 1 then
-    actions.send_selected_to_qflist(prompt_bufnr)
-    vim.cmd.cfdo 'edit'
-  else
-    actions.file_edit(prompt_bufnr)
-  end
-end
-
 return {
   {
     'nvim-telescope/telescope.nvim',
     config = function()
+      local actions = require 'telescope.actions'
       require('telescope').setup {
         defaults = {
           mappings = {
             i = {
               ['<C-up>'] = actions.cycle_history_prev,
               ['<C-down>'] = actions.cycle_history_next,
-              ['<CR>'] = single_or_multi_select,
+              ['<CR>'] = function(p_bufnr)
+                actions.send_selected_to_qflist(p_bufnr)
+                vim.cmd.cfdo 'edit'
+              end,
             },
           },
         },
