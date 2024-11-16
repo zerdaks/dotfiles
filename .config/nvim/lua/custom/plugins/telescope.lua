@@ -7,9 +7,9 @@ return {
         defaults = {
           mappings = {
             i = {
-              ['<C-up>'] = actions.cycle_history_prev,
-              ['<C-down>'] = actions.cycle_history_next,
-              ['<CR>'] = function(p_bufnr)
+              ['<C-k>'] = actions.cycle_history_prev,
+              ['<C-j>'] = actions.cycle_history_next,
+              ['<C-o>'] = function(p_bufnr)
                 actions.send_selected_to_qflist(p_bufnr)
                 vim.cmd.cfdo 'edit'
               end,
