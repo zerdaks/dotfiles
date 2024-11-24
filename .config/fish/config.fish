@@ -13,6 +13,8 @@ alias hd 'history delete'
 alias ll 'eza -l -g --icons'
 alias lla 'll -a'
 
+alias m make
+
 alias r 'source ~/.config/fish/config.fish'
 alias rmds 'find ~/Documents/ -name ".DS_Store" | xargs rm'
 
