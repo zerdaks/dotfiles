@@ -15,8 +15,6 @@ yabai -m config window_gap 5
 yabai -m config mouse_modifier fn
 
 # always float these apps
-yabai -m rule --add app="^Calculator$" manage=off
-yabai -m rule --add app="^CatoClient$" manage=off
 yabai -m rule --add app="^Raycast$" manage=off
 yabai -m rule --add app="^Stocks$" manage=off
 yabai -m rule --add app="^System Settings$" manage=off
