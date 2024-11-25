@@ -98,3 +98,6 @@ end
 
 # set up Vi key bindings
 set -g fish_key_bindings fish_vi_key_bindings
+
+# use Neovim to open man pages
+set -x MANPAGER 'nvim +Man!'
