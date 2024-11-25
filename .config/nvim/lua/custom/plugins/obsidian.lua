@@ -19,7 +19,7 @@ return {
         },
       },
 
-      disable_frontmatter = true,
+      disable_frontmatter = false,
 
       templates = {
         folder = 'templates',
