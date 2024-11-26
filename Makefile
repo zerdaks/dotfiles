@@ -82,7 +82,6 @@ install-utils:
 	brew install colordiff
 	brew install eza
 	brew install fzf
-	brew install glow
 	brew install tokei
 
 install-yabai:
