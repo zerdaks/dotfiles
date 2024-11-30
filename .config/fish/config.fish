@@ -27,7 +27,7 @@ alias unzip '7z x'
 
 alias vim nvim
 
-function back
+function backup
     rsync $argv[1] $argv[2] \
         --verbose \
         --archive \
@@ -36,8 +36,14 @@ function back
         --exclude .git/
 end
 
-function dback
-    back $argv --dry-run
+function backup_prev
+    rsync $argv[1] $argv[2] \
+        --verbose \
+        --archive \
+        --delete \
+        --human-readable \
+        --dry-run \
+        --exclude .git/
 end
 
 function hf
