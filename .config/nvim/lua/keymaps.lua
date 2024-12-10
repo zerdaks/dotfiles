@@ -25,6 +25,9 @@ keymap.set('n', '<leader>cp', '<cmd>let @* = expand("%:p:~:.")<CR>')
 -- Delete current buffer
 keymap.set('n', '<leader>db', '<cmd>bd<CR>')
 
+-- Go to previously opened buffer
+keymap.set('n', '<leader>.', '<cmd>b#<CR>')
+
 -- Save view of current buffer
 keymap.set('n', '<leader>mk', '<cmd>mkview<CR>')
 
