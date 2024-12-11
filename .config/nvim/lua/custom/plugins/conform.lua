@@ -1,6 +1,6 @@
 return {
   'stevearc/conform.nvim',
-  require('conform').setup {
+  opts = {
     formatters_by_ft = {
       html = { 'prettier' },
       javascript = { 'prettier' },
