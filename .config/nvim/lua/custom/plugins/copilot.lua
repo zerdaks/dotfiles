@@ -9,11 +9,12 @@ return {
           auto_trigger = true,
           keymap = {
             accept = '<C-l>',
+            prev = '<C-k>',
+            next = '<C-j>',
           },
         },
         filetypes = {
           markdown = true,
-          yaml = true,
         },
       }
     end,
