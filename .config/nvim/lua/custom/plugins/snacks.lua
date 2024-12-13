@@ -5,7 +5,9 @@ return {
     lazy = false,
     opts = {
       bigfile = { enabled = true },
+      dashboard = { enabled = true },
       gitbrowse = { enabled = true },
+      input = { enabled = true },
       notifier = { enabled = true },
       quickfile = { enabled = true },
       statuscolumn = { enabled = true },
