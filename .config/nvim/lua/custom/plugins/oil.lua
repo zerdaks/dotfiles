@@ -1,16 +1,14 @@
 return {
   {
     'stevearc/oil.nvim',
+    opts = {
+      view_options = {
+        show_hidden = true,
+      },
+    },
     dependencies = {
       'nvim-tree/nvim-web-devicons',
     },
-    config = function()
-      require('oil').setup {
-        view_options = {
-          show_hidden = true,
-        },
-      }
-      vim.keymap.set('n', '-', '<cmd>Oil<CR>')
-    end,
+    vim.keymap.set('n', '-', '<cmd>Oil<CR>'),
   },
 }
