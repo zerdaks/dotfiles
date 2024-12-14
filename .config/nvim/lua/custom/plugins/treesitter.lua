@@ -27,10 +27,16 @@ return {
           'vimdoc',
           'yaml',
         },
-        auto_install = false, -- do not auto-install languages that are not installed
-        ignore_install = { 'csv' }, -- rainbow_csv does not work if csv is installed
-        highlight = { enable = true },
-        indent = { enable = true },
+        auto_install = false,
+        ignore_install = {
+          'csv', -- rainbow-csv does not work if csv is installed
+        },
+        highlight = {
+          enable = true,
+        },
+        indent = {
+          enable = true,
+        },
       }
     end,
   },
