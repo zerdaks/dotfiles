@@ -16,7 +16,7 @@ alias lla 'll -a'
 alias m make
 
 alias r 'source ~/.config/fish/config.fish'
-alias rmds 'find ~/Documents/ -name ".DS_Store" | xargs rm'
+alias rmds 'find . -name ".DS_Store" | xargs rm'
 
 alias tm tmux
 alias tokei 'tokei --hidden'
