@@ -9,8 +9,8 @@
     f = fetch --prune
     l = !git log --color=always --pretty=format:'%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%Creset' --all --date=relative \
         | fzf --ansi \
-        | awk '{print $2}' \
-        | xargs -I {} git sh {}
+        | awk '{print $1}' \
+        | xargs -I {} git show {}
     pl = !git pull origin $(git rev-parse --abbrev-ref HEAD)
     ps = !git push origin $(git rev-parse --abbrev-ref HEAD)
     psf = !git push --force origin $(git rev-parse --abbrev-ref HEAD)
