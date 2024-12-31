@@ -1,5 +1,5 @@
 [alias]
-    aa = add --all
+    aa = add -p
     br = branch
     ci = commit
     cl = clean -f
