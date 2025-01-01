@@ -19,6 +19,7 @@ yabai -m rule --add app="^Finder$" manage=off
 yabai -m rule --add app="^Music$" manage=off
 yabai -m rule --add app="^Raycast$" manage=off
 yabai -m rule --add app="^Signal$" manage=off
+yabai -m rule --add app="^Spotify$" manage=off
 yabai -m rule --add app="^Stocks$" manage=off
 yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Weather$" manage=off
