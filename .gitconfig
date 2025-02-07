@@ -1,6 +1,6 @@
 [alias]
-    aa = add --all
-    ap = add -p
+    aa = add --patch
+    ap = add --patch
     br = branch
     ci = commit
     cl = clean -f
