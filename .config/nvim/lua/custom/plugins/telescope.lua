@@ -13,6 +13,7 @@ return {
                 actions.send_selected_to_qflist(p_bufnr)
                 vim.cmd.cfdo 'edit'
               end,
+              ['<C-f>'] = actions.to_fuzzy_refine,
             },
           },
         },
