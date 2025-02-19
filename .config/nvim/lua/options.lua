@@ -1,11 +1,11 @@
--- Set highlight on search
-vim.o.hlsearch = true
+-- Set relative line numbers
+vim.opt.relativenumber = true
+
+-- Do not wrap long lines
+vim.opt.wrap = false
 
 -- Enable spell checking
 vim.opt.spell = true
-
--- Set relative line numbers
-vim.opt.relativenumber = true
 
 -- Open help windows to the right of the current window
 vim.cmd 'autocmd BufWinEnter * if &buftype == "help" | wincmd L | endif'
