@@ -1,5 +1,5 @@
 [alias]
-    aa = add --patch
+    aa = add --all
     ap = add --patch
     br = branch
     ci = commit
