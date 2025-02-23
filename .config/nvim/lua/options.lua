@@ -1,9 +1,6 @@
 -- Set relative line numbers
 vim.opt.relativenumber = true
 
--- Do not wrap long lines
-vim.opt.wrap = false
-
 -- Enable spell checking
 vim.opt.spell = true
 
