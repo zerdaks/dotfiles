@@ -23,6 +23,7 @@ return {
           'php',
           'ruby',
           'sql',
+          'typescript',
           'vim',
           'vimdoc',
           'yaml',
