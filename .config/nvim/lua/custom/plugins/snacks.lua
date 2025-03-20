@@ -31,5 +31,9 @@ return {
     vim.keymap.set('v', '<leader>gb', function()
       require('snacks').gitbrowse()
     end),
+
+    vim.api.nvim_create_user_command('Gbrowse', function()
+      require('snacks').gitbrowse()
+    end, {}),
   },
 }
