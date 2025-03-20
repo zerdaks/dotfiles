@@ -701,6 +701,10 @@ require('lazy').setup({
             },
           },
         },
+
+        ruby_lsp = {
+          cmd_env = { BUNDLE_GEMFILE = vim.fn.getenv 'GLOBAL_GEMFILE' },
+        },
       }
 
       -- Ensure the servers and tools above are installed
