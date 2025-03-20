@@ -5,6 +5,8 @@ return {
       html = { 'prettier' },
       javascript = { 'prettier' },
       lua = { 'stylua' },
+      typescript = { 'prettier' },
+      ruby = { 'rubocop' },
     },
   },
 }
