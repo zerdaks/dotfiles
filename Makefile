@@ -63,9 +63,11 @@ install-postgres:
 
 install-ruby:
 	brew install rbenv
+	# install the latest ruby version
 	rbenv install $$(rbenv install -l | grep -v - | tail -1) || true
+	# set the latest ruby version as global
 	rbenv global $$(rbenv install -l | grep -v - | tail -1)
-	# required for Mason
+	# required by ruby-lsp
 	(cd $(HOME) && rbenv local $$(rbenv install -l | grep -v - | tail -1))
 
 intall-stow:
