@@ -12,7 +12,6 @@ default:
 	@echo "make install-stow"
 	@echo "make install-tmux"
 	@echo "make install-utils"
-	@echo "make install-yabai"
 
 config-brew:
 	brew tap homebrew/aliases
@@ -36,7 +35,6 @@ install-fonts:
 
 install-git-utils:
 	brew install gitleaks
-	brew install tig
 	# install a commit message formatter
 	brew install npm
 	npm install -g commitizen
@@ -86,12 +84,6 @@ install-utils:
 	brew install fzf
 	brew install tokei
 
-install-yabai:
-	brew install koekeishiya/formulae/skhd
-	brew install koekeishiya/formulae/yabai
-	skhd --start-service
-	yabai --start-service
-
 .PHONY: default \
 	config-brew \
 	install-fish \
@@ -105,8 +97,7 @@ install-yabai:
 	install-ruby \
 	install-stow \
 	install-tmux \
-	install-utils \
-	install-yabai
+	install-utils
 
 .SILENT: default \
 	config-brew \
@@ -121,5 +112,4 @@ install-yabai:
 	install-ruby \
 	install-stow \
 	install-tmux \
-	install-utils \
-	install-yabai
+	install-utils
