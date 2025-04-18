@@ -1,20 +1,10 @@
 return {
-  'zbirenbaum/copilot.lua',
-  cmd = 'Copilot',
-  event = 'InsertEnter',
+  'github/copilot.vim',
   config = function()
-    require('copilot').setup {
-      suggestion = {
-        auto_trigger = true,
-        keymap = {
-          accept = '<C-l>',
-          prev = '<C-k>',
-          next = '<C-j>',
-        },
-      },
-      filetypes = {
-        markdown = true,
-      },
-    }
+    vim.api.nvim_set_keymap('i', '<C-l>', 'copilot#Accept("")', {
+      expr = true,
+      silent = true,
+      noremap = true,
+    })
   end,
 }
