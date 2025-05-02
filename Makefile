@@ -4,6 +4,7 @@ default:
 	@echo "make config-fish"
 	@echo "make install-fonts"
 	@echo "make install-git-utils"
+	@echo "make install-github-cli"
 	@echo "make install-go"
 	@echo "make install-lua"
 	@echo "make install-nvim"
@@ -38,6 +39,9 @@ install-git-utils:
 	# install a commit message formatter
 	brew install npm
 	npm install -g commitizen
+
+install-github-cli:
+	brew install gh
 
 intall-go:
 	brew install go
@@ -82,6 +86,7 @@ install-utils:
 	brew install colordiff
 	brew install eza
 	brew install fzf
+	brew install glow
 	brew install tokei
 
 .PHONY: default \
@@ -90,6 +95,7 @@ install-utils:
 	config-fish \
 	install-fonts \
 	install-git-utils \
+	install-github-cli \
 	install-go \
 	install-lua \
 	install-nvim \
@@ -105,6 +111,7 @@ install-utils:
 	config-fish \
 	install-fonts \
 	install-git-utils \
+	install-github-cli \
 	install-go \
 	install-lua \
 	install-nvim \
