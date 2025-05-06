@@ -2,6 +2,7 @@ return {
   'folke/trouble.nvim',
   opts = {},
   cmd = 'Trouble',
+  auto_preview = false,
   keys = {
     {
       '<leader>xx',
