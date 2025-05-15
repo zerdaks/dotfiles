@@ -37,16 +37,9 @@ vim.api.nvim_create_user_command('FmtJson', '%!jq .', {})
 
 -- FOLDS
 
-local autocmd = vim.api.nvim_create_autocmd
-local augroup = vim.api.nvim_create_augroup
-
-local save_fold = augroup('SaveFolds', { clear = true })
-
 -- Restore views for all file types when buffers are loaded
-autocmd('BufWinEnter', {
-  pattern = '*.*',
+vim.api.nvim_create_autocmd('BufWinEnter', {
   callback = function()
-    vim.cmd.loadview { mods = { emsg_silent = true } }
+    vim.cmd 'silent! loadview'
   end,
-  group = save_fold,
 })
