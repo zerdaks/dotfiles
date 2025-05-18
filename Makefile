@@ -26,6 +26,8 @@ install-fish:
 	fish -c "fisher install IlanCosman/tide@v5"
 	# install directory jumping
 	fish -c "fisher install jethrokuan/z"
+	# show installed plugins
+	fisher list
 
 config-fish:
 	tide configure
