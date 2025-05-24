@@ -30,7 +30,8 @@ install-fish:
 	fisher list
 
 config-fish:
-	tide configure
+	fish -c 'tide configure'
+	fish -c 'fish_config' || true
 
 install-fonts:
 	brew tap homebrew/cask-fonts
