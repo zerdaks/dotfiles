@@ -6,5 +6,6 @@ return {
       silent = true,
       noremap = true,
     })
+    vim.g.copilot_no_tab_map = true
   end,
 }
