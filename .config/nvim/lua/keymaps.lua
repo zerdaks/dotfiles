@@ -14,7 +14,12 @@ keymap.set('n', '<leader><leader>', '<cmd>bnext<CR>')
 keymap.set('n', '<leader>.', '<cmd>b#<CR>')
 
 -- Go to next diagnostic message
-keymap.set('n', '<leader>d', vim.diagnostic.goto_next)
+keymap.set('n', '<leader>d', function()
+  vim.cmd 'lua vim.diagnostic.goto_next()'
+end)
+
+-- Go to next spelling error
+keymap.set('n', '<leader>s', ']s')
 
 -- Repeat latest f, t, F or T in opposite direction
 keymap.set('n', "'", ',')
