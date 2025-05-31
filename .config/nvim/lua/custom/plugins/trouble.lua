@@ -1,8 +1,12 @@
 return {
   'folke/trouble.nvim',
-  opts = {},
+  opts = {
+    auto_preview = false,
+    focus = true,
+    warn_no_results = false,
+    open_no_results = true,
+  },
   cmd = 'Trouble',
-  auto_preview = false,
   keys = {
     {
       '<leader>xx',
