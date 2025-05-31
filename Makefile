@@ -41,7 +41,8 @@ install-git-utils:
 	brew install gitleaks
 	# install a commit message formatter
 	brew install npm
-	npm install -g commitizen
+	npm install -g czg
+	npm list -g
 
 install-github-cli:
 	brew install gh
