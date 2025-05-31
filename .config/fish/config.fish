@@ -26,6 +26,7 @@ alias untar 'tar -xvzf'
 alias unzip '7z x'
 
 alias vim nvim
+alias v nvim
 
 function back
     rsync $argv[1] $argv[2] \
