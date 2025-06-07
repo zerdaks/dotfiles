@@ -93,22 +93,6 @@ install-utils:
 	brew install glow
 	brew install tokei
 
-.PHONY: default \
-	config-brew \
-	install-fish \
-	config-fish \
-	install-fonts \
-	install-git-utils \
-	install-github-cli \
-	install-go \
-	install-lua \
-	install-nvim \
-	install-postgres \
-	install-ruby \
-	install-stow \
-	install-tmux \
-	install-utils
-
 .SILENT: default \
 	config-brew \
 	install-fish \
