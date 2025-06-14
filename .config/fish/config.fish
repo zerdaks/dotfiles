@@ -1,4 +1,7 @@
+# Suppress the default greeting
 set fish_greeting ""
+
+# Aliases
 
 alias c clear
 alias cat bat
@@ -9,6 +12,7 @@ alias g git
 
 alias hc 'history clear'
 alias hd 'history delete'
+alias hs '__fzf_history_search'
 
 alias ll 'eza -l -g --icons'
 alias lla 'll -a'
@@ -22,11 +26,20 @@ alias tm tmux
 alias tokei 'tokei --hidden'
 
 alias unmount 'diskutil eject'
-alias untar 'tar -xvzf'
+alias untar 'tar -xzvf'
 alias unzip '7z x'
 
 alias vim nvim
 alias v nvim
+
+# Functions
+
+function __fzf_history_search
+    set cmd (history | cut -f3- | fzf --height 40% --reverse --tiebreak=index | string trim)
+    if test -n "$cmd"
+        commandline --replace -- $cmd
+    end
+end
 
 function back
     rsync $argv[1] $argv[2] \
@@ -47,14 +60,6 @@ function dback
         --exclude .git/
 end
 
-function hf
-    set cmd (history | fzf --header "Pick a command to run")
-    if test -n "$cmd"
-        commandline -r "$cmd"
-        commandline -f execute
-    end
-end
-
 function llt
     set dir "."
     set level 2
@@ -73,6 +78,8 @@ function llt
 
     lla --tree --level=$level --ignore-glob=".git" $dir
 end
+
+# Environment Variables
 
 # add Homebrew to path
 set -gx PATH /opt/homebrew/bin $PATH
