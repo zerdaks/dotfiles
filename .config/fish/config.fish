@@ -3,6 +3,9 @@ set fish_greeting ""
 
 # Aliases
 
+alias back '__backup_run'
+alias dback '__backup_dry_run'
+
 alias c clear
 alias cat bat
 
@@ -16,6 +19,7 @@ alias hs '__fzf_history_search'
 
 alias ll 'eza -l -g --icons'
 alias lla 'll -a'
+alias llt '__long_list_tree'
 
 alias m make
 
@@ -41,7 +45,7 @@ function __fzf_history_search
     end
 end
 
-function back
+function __backup_run
     rsync $argv[1] $argv[2] \
         --verbose \
         --archive \
@@ -50,7 +54,7 @@ function back
         --exclude .git/
 end
 
-function dback
+function __backup_dry_run
     rsync $argv[1] $argv[2] \
         --verbose \
         --archive \
@@ -60,7 +64,7 @@ function dback
         --exclude .git/
 end
 
-function llt
+function __long_list_tree
     set dir "."
     set level 2
 
