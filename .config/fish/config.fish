@@ -109,10 +109,8 @@ set -gx NODE_PATH (brew --prefix)/lib/node_modules/
 status --is-interactive; and rbenv init - fish | source
 
 # use a local configuration file if it exists
-set LOCAL_CONFIG (dirname (status --current-filename))/config-local.fish
-if test -f $LOCAL_CONFIG
-    source $LOCAL_CONFIG
-end
+set -l local_config (dirname (status --current-filename))/config-local.fish
+test -f $local_config; and source $local_config
 
 # set up Vi key bindings
 set -g fish_key_bindings fish_vi_key_bindings
