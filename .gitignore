@@ -2,11 +2,12 @@
 
 .config/*
 
+!.config/fish/
 !.config/fish/config.fish
+!.config/fish/conf.d/
 !.config/fish/conf.d/tide.fish
+
 !.config/nvim
-!.config/skhd
-!.config/yabai
 
 .config/nvim/lazy-lock.json
 .config/nvim/spell/*
