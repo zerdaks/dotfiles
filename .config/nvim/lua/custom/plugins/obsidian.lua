@@ -26,16 +26,12 @@ return {
   opts = {
     workspaces = {
       {
-        name = 'doc-notes',
-        path = '~/Documents/repos/notes',
-      },
-      {
         name = 'work-notes',
         path = '~/Documents/repos/work-notes',
       },
       {
-        name = 'down-notes',
-        path = '~/Downloads/notes',
+        name = 'lai-integrations-wiki',
+        path = '~/Documents/repos/lai-integrations.wiki',
       },
     },
 
