@@ -29,10 +29,6 @@ return {
         name = 'work-notes',
         path = '~/Documents/repos/work-notes',
       },
-      {
-        name = 'lai-integrations-wiki',
-        path = '~/Documents/repos/lai-integrations.wiki',
-      },
     },
 
     disable_frontmatter = false,
