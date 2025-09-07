@@ -30,10 +30,6 @@ return {
         path = '~/Documents/repos/notes',
       },
       {
-        name = 'work-notes',
-        path = '~/Documents/repos/work-notes',
-      },
-      {
         name = 'down-notes',
         path = '~/Downloads/notes',
       },
