@@ -7,7 +7,7 @@ config.color_scheme = "Catppuccin Mocha (Gogh)"
 config.default_prog = { "/opt/homebrew/bin/fish", "-l" }
 
 config.font = wezterm.font("Hack Nerd Font")
-config.font_size = 11.5
+config.font_size = 12
 
 config.hide_tab_bar_if_only_one_tab = true
 
