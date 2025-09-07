@@ -13,13 +13,20 @@ keymap.set('n', '<leader><leader>', '<cmd>bnext<CR>')
 -- Go to previously opened buffer
 keymap.set('n', '<leader>.', '<cmd>b#<CR>')
 
--- Go to next diagnostic message
+-- Go to next diagnostic message, centered
 keymap.set('n', '<leader>d', function()
-  vim.cmd 'lua vim.diagnostic.goto_next()'
+  vim.diagnostic.jump { forward = true, count = 1 }
+  vim.cmd 'normal! zz'
+end)
+--
+-- Go to previous diagnostic message, centered
+keymap.set('n', '<leader>D', function()
+  vim.diagnostic.jump { forward = true, count = 1 }
+  vim.cmd 'normal! zz'
 end)
 
--- Go to next spelling error
-keymap.set('n', '<leader>s', ']s')
+-- Go to next spelling error, centered
+keymap.set('n', '<leader>s', ']szz')
 
 -- Repeat latest f, t, F or T in opposite direction
 keymap.set('n', "'", ',')
@@ -44,6 +51,12 @@ vim.keymap.set('n', '<up>', '<nop>')
 vim.keymap.set('n', '<down>', '<nop>')
 vim.keymap.set('n', '<left>', '<nop>')
 vim.keymap.set('n', '<right>', '<nop>')
+
+-- Center screen when jumping
+keymap.set('n', 'n', 'nzz')
+keymap.set('n', 'N', 'Nzz')
+keymap.set('n', '<C-d>', '<C-d>zz')
+keymap.set('n', '<C-u>', '<C-u>zz')
 
 -- VISUAL AND SELECT MODES
 
