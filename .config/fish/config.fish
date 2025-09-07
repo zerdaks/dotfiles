@@ -3,6 +3,7 @@ set fish_greeting ""
 
 # Aliases
 
+alias b brew
 alias back '__backup_run'
 alias dback '__backup_dry_run'
 
