@@ -16,7 +16,7 @@
     pl = !git pull origin $(git rev-parse --abbrev-ref HEAD)
     ps = !git push origin $(git rev-parse --abbrev-ref HEAD)
     psf = !git push --force origin $(git rev-parse --abbrev-ref HEAD)
-    r = !git log -30 --pretty=format:'%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%Creset' --all --date=relative
+    r = !git log -30 --graph --pretty=format:'%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%Creset' --all --date=relative
     sh = "!f() { git diff-tree --no-commit-id --name-status -r ${1:-HEAD}; }; f"
     st = !git status -s
     v = "!f() { files=$(git status -s); [ -n \"$files\" ] && echo \"$files\" \
