@@ -27,11 +27,7 @@ return {
     workspaces = {
       {
         name = 'my-notes',
-        path = '~/Documents/repos/notes',
-      },
-      {
-        name = 'other-notes',
-        path = '~/Downloads/notes',
+        path = '~/Documents/repos/work-notes',
       },
     },
 
