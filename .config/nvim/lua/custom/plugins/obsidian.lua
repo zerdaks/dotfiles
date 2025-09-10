@@ -26,11 +26,11 @@ return {
   opts = {
     workspaces = {
       {
-        name = 'doc-notes',
+        name = 'my-notes',
         path = '~/Documents/repos/notes',
       },
       {
-        name = 'down-notes',
+        name = 'other-notes',
         path = '~/Downloads/notes',
       },
     },
