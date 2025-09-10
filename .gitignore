@@ -4,6 +4,10 @@
 
 !.config/fish/
 !.config/fish/config.fish
+!.config/fish/config-local.fish
+
+.config/fish/secrets.fish
+
 !.config/fish/conf.d/
 !.config/fish/conf.d/tide.fish
 
