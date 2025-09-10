@@ -17,7 +17,7 @@ vim.opt.wildoptions = 'fuzzy'
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
--- Configure tabs
+-- Configure indentation
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
