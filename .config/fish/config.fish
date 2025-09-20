@@ -24,6 +24,8 @@ alias llt '__long_list_tree'
 
 alias m make
 
+alias psql 'pgcli'
+
 alias r 'source ~/.config/fish/config.fish'
 alias rmds 'find . -name ".DS_Store" | xargs rm'
 

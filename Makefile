@@ -66,6 +66,7 @@ install-telescope-dependencies:
 install-postgres:
 	brew install postgresql
 	brew services start postgresql
+	brew install pgcli
 
 install-ruby:
 	brew install rbenv
