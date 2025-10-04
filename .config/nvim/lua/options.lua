@@ -18,10 +18,14 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 
 -- Configure indentation
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
-vim.opt.softtabstop = 4
+vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
+  callback = function()
+    vim.bo.tabstop = 4
+    vim.bo.shiftwidth = 4
+    vim.bo.softtabstop = 4
+    vim.bo.expandtab = true
+  end,
+})
 
 -- Configure white space
 vim.opt.list = true
