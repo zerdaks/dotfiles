@@ -18,7 +18,8 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 
 -- Configure indentation
-vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = '*',
   callback = function()
     vim.bo.tabstop = 4
     vim.bo.shiftwidth = 4
