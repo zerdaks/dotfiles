@@ -10,14 +10,4 @@ return {
       vim.g.copilot_no_tab_map = true
     end,
   },
-
-  {
-    'CopilotC-Nvim/CopilotChat.nvim',
-    dependencies = {
-      { 'nvim-lua/plenary.nvim', branch = 'master' },
-    },
-    build = 'make tiktoken',
-    opts = {},
-    vim.keymap.set('n', '<leader>cc', '<cmd>CopilotChatCommit<CR>'),
-  },
 }
