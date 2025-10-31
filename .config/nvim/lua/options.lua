@@ -48,3 +48,6 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
     vim.cmd 'silent! loadview'
   end,
 })
+
+-- Do not open folds when moving with Shift+[ or Shift+]
+vim.opt.foldopen:remove 'block'
