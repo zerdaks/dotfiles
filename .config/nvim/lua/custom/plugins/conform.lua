@@ -7,9 +7,10 @@ return {
       html = { 'prettier' },
       javascript = { 'prettier' },
       lua = { 'stylua' },
-      typescript = { 'prettier' },
+      proto = { 'buf' },
       ruby = { 'rubocop' },
       sh = { 'shfmt' },
+      typescript = { 'prettier' },
     },
   },
 }
