@@ -10,6 +10,7 @@ return {
       proto = { 'buf' },
       ruby = { 'rubocop' },
       sh = { 'shfmt' },
+      sql = { 'sql_formatter' },
       typescript = { 'prettier' },
     },
   },
