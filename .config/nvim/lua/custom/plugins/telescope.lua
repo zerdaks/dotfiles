@@ -3,8 +3,14 @@ return {
     'nvim-telescope/telescope.nvim',
     config = function()
       local actions = require 'telescope.actions'
+
+      -- Extend default vimgrep arguments to not respect .gitignore
+      local grep_args = { unpack(require('telescope.config').values.vimgrep_arguments) }
+      table.insert(grep_args, '--no-ignore')
+
       require('telescope').setup {
         defaults = {
+          vimgrep_arguments = grep_args,
           mappings = {
             i = {
               ['<C-k>'] = actions.cycle_history_prev,
@@ -19,7 +25,14 @@ return {
         },
         pickers = {
           find_files = {
-            find_command = { 'rg', '--files', '--hidden', '--glob', '!**/.git/*' },
+            find_command = {
+              'rg',
+              '--files',
+              '--hidden',
+              '--no-ignore',
+              '--glob',
+              '!**/.git/*',
+            },
           },
         },
       }
