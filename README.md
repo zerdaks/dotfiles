@@ -10,7 +10,7 @@ This is the repository for my dotfiles. To install on macOS:
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew install git make
+brew install git make just
 git clone git@github.com:zerdaks/dotfiles.git
 cd dotfiles/
 make

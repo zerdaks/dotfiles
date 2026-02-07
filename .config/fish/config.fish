@@ -18,11 +18,13 @@ alias hc 'history clear'
 alias hd 'history delete'
 alias hs '__fzf_history_search'
 
+alias j just
+
 alias ll 'eza -l -g --icons'
 alias lla 'll -a'
 alias llt '__long_list_tree'
 
-alias m make
+alias m just
 
 alias psql 'pgcli'
 

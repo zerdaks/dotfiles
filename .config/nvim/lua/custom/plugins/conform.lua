@@ -7,6 +7,7 @@ return {
       go = { 'gofmt', 'goimports' },
       html = { 'prettier' },
       javascript = { 'prettier' },
+      json = { 'jq' },
       lua = { 'stylua' },
       proto = { 'buf' },
       ruby = { 'rubocop' },
