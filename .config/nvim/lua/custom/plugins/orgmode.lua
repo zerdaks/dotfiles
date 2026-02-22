@@ -28,6 +28,18 @@ return {
     config = function()
       require('org-roam').setup {
         directory = '~/orgfiles',
+        templates = {
+          d = {
+            description = 'default',
+            template = '%?',
+            target = '%<%Y%m%d%H%M%S>-%[slug].org',
+          },
+          w = {
+            description = 'work',
+            template = '%?',
+            target = 'work/%<%Y%m%d%H%M%S>-%[slug].org',
+          },
+        },
       }
     end,
   },
