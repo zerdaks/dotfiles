@@ -7,7 +7,7 @@ vim.opt.spell = true
 -- Open help windows to the right of the current window
 vim.cmd 'autocmd BufWinEnter * if &buftype == "help" | wincmd L | endif'
 
--- Conceal text for Obsidian
+-- Conceal text for Obsidian and Orgmode
 vim.opt.conceallevel = 1
 
 -- Use fuzzy-matching to find completion matches

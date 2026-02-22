@@ -12,6 +12,7 @@ return {
         'gitignore',
         'go',
         'html',
+        'ini',
         'java',
         'javascript',
         'json',
