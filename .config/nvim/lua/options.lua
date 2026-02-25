@@ -8,7 +8,7 @@ vim.opt.spell = true
 vim.cmd 'autocmd BufWinEnter * if &buftype == "help" | wincmd L | endif'
 
 -- Conceal text for Obsidian and Orgmode
-vim.opt.conceallevel = 1
+vim.opt.conceallevel = 2
 
 -- Use fuzzy-matching to find completion matches
 vim.opt.wildoptions = 'fuzzy'
