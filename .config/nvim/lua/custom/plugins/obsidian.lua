@@ -29,10 +29,6 @@ return {
         name = 'my-notes',
         path = '~/repos/notes',
       },
-      {
-        name = 'lb-notes',
-        path = '~/Downloads/notes',
-      },
     },
 
     disable_frontmatter = false,
