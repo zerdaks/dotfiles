@@ -1,7 +1,7 @@
 [alias]
     aa = add --all
     ap = add --patch
-    br = branch
+    br = branch -a
     ci = commit
     cl = clean -f
     co = checkout
