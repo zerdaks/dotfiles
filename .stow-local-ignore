@@ -3,5 +3,5 @@
 /.git
 /.gitignore
 
-Makefile
 README.md
+justfile
