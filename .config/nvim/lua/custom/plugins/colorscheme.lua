@@ -14,7 +14,7 @@ return {
     priority = 1000,
     opts = {},
     config = function()
-      vim.cmd.colorscheme 'solarized-osaka'
+      -- vim.cmd.colorscheme 'solarized-osaka'
     end,
   },
 
@@ -22,7 +22,7 @@ return {
     'ellisonleao/gruvbox.nvim',
     priority = 1000,
     config = function()
-      -- vim.cmd.colorscheme 'gruvbox'
+      vim.cmd.colorscheme 'gruvbox'
     end,
   },
 
