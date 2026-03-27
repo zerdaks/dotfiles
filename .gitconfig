@@ -29,8 +29,8 @@
 [init]
     defaultBranch = master
 [user]
-    name = zerdaks
-    email = 7451424+zerdaks@users.noreply.github.com
+    name = fokionzervoudakis
+    email = 97858382+fokionzervoudakis@users.noreply.github.com
 [url "https://github.com/"]
     insteadOf = git://github.com/
 [pull]
