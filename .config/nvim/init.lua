@@ -924,6 +924,11 @@ require('lazy').setup({
             return
           end
 
+          -- rainbow-csv does not work if csv is installed
+          if language == 'csv' then
+            return
+          end
+
           local installed_parsers = require('nvim-treesitter').get_installed 'parsers'
 
           if vim.tbl_contains(installed_parsers, language) then

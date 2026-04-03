@@ -77,7 +77,7 @@ git-czg-install:
 # Install Neovim and dependencies
 [group('nvim')]
 nvim-install: telescope-dependencies-install
-    @brew install nvim
+    @brew install nvim tree-sitter-cli
 
 # Install dependencies for Telescope, a Neovim plugin
 [group('nvim')]
