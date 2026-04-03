@@ -3,5 +3,7 @@
 /.git
 /.gitignore
 
+/hooks
+
 README.md
 justfile

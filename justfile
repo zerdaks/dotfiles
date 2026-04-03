@@ -58,7 +58,16 @@ go-install:
 lua-install:
     @brew install lua luarocks
 
-# Install commit message formatter
+# Configure Git and install related tools
+[group('dev')]
+git-config: git-hooks-install git-czg-install
+
+# Install Git hooks
+[group('dev')]
+git-hooks-install:
+    @git config core.hooksPath hooks
+
+# Install Git commit message formatter
 [group('dev')]
 git-czg-install:
     @brew install npm
