@@ -6,6 +6,7 @@ return {
         expr = true,
         silent = true,
         noremap = true,
+        desc = 'Accept Copilot suggestion',
       })
       vim.g.copilot_no_tab_map = true
     end,
@@ -17,8 +18,8 @@ return {
     },
     build = 'make tiktoken',
     opts = {},
-    vim.keymap.set('n', '<leader>cc', function()
-      vim.cmd 'CopilotChatToggle'
-    end, { desc = 'Toggle Copilot Chat' }),
+    keys = {
+      { '<leader>cc', '<cmd>CopilotChatToggle<CR>', desc = 'Toggle Copilot Chat' },
+    },
   },
 }

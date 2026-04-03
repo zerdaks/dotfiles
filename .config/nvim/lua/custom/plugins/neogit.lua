@@ -5,5 +5,7 @@ return {
     'nvim-telescope/telescope.nvim',
   },
   config = true,
-  vim.keymap.set('n', '<leader>gn', '<cmd>Neogit<CR>'),
+  keys = {
+    { '<leader>gn', '<cmd>Neogit<CR>', desc = 'Open Neogit' },
+  },
 }

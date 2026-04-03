@@ -13,5 +13,7 @@ return {
       opts = {},
     },
   },
-  vim.keymap.set('n', '-', '<cmd>Oil<CR>'),
+  keys = {
+    { '-', '<cmd>Oil<CR>', desc = 'Open Oil file explorer' },
+  },
 }

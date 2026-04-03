@@ -1,3 +1,6 @@
+-- termguicolors is required by bufferline and other plugins
+vim.opt.termguicolors = true
+
 -- Set relative line numbers
 vim.opt.relativenumber = true
 
@@ -8,7 +11,13 @@ vim.opt.cmdheight = 2
 vim.opt.spell = true
 
 -- Open help windows to the right of the current window
-vim.cmd 'autocmd BufWinEnter * if &buftype == "help" | wincmd L | endif'
+vim.api.nvim_create_autocmd('BufWinEnter', {
+  callback = function()
+    if vim.bo.buftype == 'help' then
+      vim.cmd 'wincmd L'
+    end
+  end,
+})
 
 -- Conceal text for Obsidian and Orgmode
 vim.opt.conceallevel = 2
@@ -16,20 +25,11 @@ vim.opt.conceallevel = 2
 -- Use fuzzy-matching to find completion matches
 vim.opt.wildoptions = 'fuzzy'
 
--- Open splits below and to the right
-vim.opt.splitbelow = true
-vim.opt.splitright = true
-
 -- Configure indentation
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = '*',
-  callback = function()
-    vim.bo.tabstop = 4
-    vim.bo.shiftwidth = 4
-    vim.bo.softtabstop = 4
-    vim.bo.expandtab = true
-  end,
-})
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
+vim.opt.expandtab = true
 
 -- Configure white space
 vim.opt.list = true
@@ -39,9 +39,6 @@ vim.opt.listchars = {
   tab = '»·',
   trail = '·',
 }
-
--- Format JSON in the current buffer
-vim.api.nvim_create_user_command('FmtJson', '%!jq .', {})
 
 -- FOLDS
 
