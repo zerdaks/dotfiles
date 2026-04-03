@@ -1,6 +1,9 @@
 -- Set relative line numbers
 vim.opt.relativenumber = true
 
+-- Set the command line height
+vim.opt.cmdheight = 2
+
 -- Enable spell checking
 vim.opt.spell = true
 
