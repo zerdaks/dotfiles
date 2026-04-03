@@ -88,3 +88,8 @@ telescope-dependencies-install:
 [group('utils')]
 util-install:
     @brew install bat colordiff eza fzf glow tokei
+
+# Install Copilot CLI
+[group('dev')]
+copilot-cli-install:
+    @brew install copilot-cli

@@ -9,6 +9,7 @@ alias dback '__backup_dry_run'
 
 alias c clear
 alias cat bat
+alias copilot 'copilot --yolo'
 
 alias diff colordiff
 
