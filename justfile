@@ -56,7 +56,7 @@ go-install:
 # Install Lua and its package manager
 [group('dev')]
 lua-install:
-    @brew install lua luarocks
+    @brew install lua luarocks lua-language-server
 
 # Configure Git and install related tools
 [group('dev')]
