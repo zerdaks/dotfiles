@@ -12,6 +12,7 @@ fish:
     @fish -c "fisher list" # show installed plugins
     @fish -c 'tide configure'
     @fish -c 'fish_config' || true
+    @curl -fsSL https://fnm.vercel.app/install | bash # install Node version manager
 
 # Install stow
 stow:
