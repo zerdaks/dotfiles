@@ -8,6 +8,8 @@
 !.config/fish/conf.d/
 !.config/fish/conf.d/tide.fish
 
+!.config/lazygit/
+
 !.config/nvim
 
 .config/nvim/lazy-lock.json

@@ -14,6 +14,7 @@ alias copilot 'copilot --yolo'
 alias diff colordiff
 
 alias g git
+alias lg lazygit
 
 alias hc 'history clear'
 alias hd 'history delete'
@@ -90,6 +91,9 @@ function __long_list_tree
 end
 
 # Environment Variables
+
+# set XDG config home so XDG-aware tools (e.g. lazygit) use ~/.config on macOS
+set -gx XDG_CONFIG_HOME $HOME/.config
 
 # add Homebrew to path
 set -gx PATH /opt/homebrew/bin $PATH
