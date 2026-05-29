@@ -130,3 +130,6 @@ set -x MANPAGER 'nvim +Man!'
 
 # configure Node version manager
 fnm env --use-on-cd | source
+
+# opencode
+fish_add_path /Users/fokion.zervoudakis/.opencode/bin
