@@ -43,3 +43,6 @@ end
 function __fzf_secrets
     kubectl get secrets | fzf --header "Select a secret to view" | awk '{print $1}'
 end
+
+# Other aliases
+alias claude="claude --dangerously-skip-permissions"
