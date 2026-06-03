@@ -14,7 +14,7 @@ alias copilot 'copilot --yolo'
 alias diff colordiff
 
 alias g git
-alias lg lazygit
+alias gl lazygit
 
 alias hc 'history clear'
 alias hd 'history delete'
