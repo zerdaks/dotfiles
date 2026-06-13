@@ -62,4 +62,4 @@ Stage all changes and commit with a message that matches this repo's existing st
    ```bash
    git commit -m "<generated message>"
    ```
-   Show the resulting commit hash and summary line.
+   Echo the raw output from `git commit` verbatim — do not paraphrase or rewrite.
