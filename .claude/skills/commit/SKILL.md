@@ -56,18 +56,10 @@ Stage all changes and commit with a message that matches this repo's existing st
    - Follows any prefix convention present in the log
    - Describes what changed and why, not how
 
-7. **Ask for confirmation**
-
-   Use **AskUserQuestion** with a single question:
-   - Question: "Commit with this message?"
-   - Show the generated message clearly in the option label or description
-   - Option 1: `Commit` — description shows the full generated message
-   - Other: user types their own message
-
-8. **Commit**
+7. **Commit**
 
    Run:
    ```bash
-   git commit -m "<confirmed or user-provided message>"
+   git commit -m "<generated message>"
    ```
    Show the resulting commit hash and summary line.
