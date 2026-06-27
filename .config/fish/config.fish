@@ -1,0 +1,128 @@
+# Suppress the default greeting
+set fish_greeting ""
+
+# Aliases
+
+alias b brew
+alias back __backup_run
+alias dback __backup_dry_run
+
+alias c clear
+alias cat bat
+alias claude 'claude --dangerously-skip-permissions'
+
+alias diff colordiff
+
+alias g git
+alias gl lazygit
+
+alias hc 'history clear'
+alias hd 'history delete'
+alias hs __fzf_history_search
+
+alias j just
+
+alias ll 'eza -l -g --icons'
+alias lla 'll -a'
+alias llt __long_list_tree
+
+alias m just
+
+alias psql psql-18
+
+alias r 'source ~/.config/fish/config.fish'
+alias rmds 'find . -name ".DS_Store" | xargs rm'
+
+alias tm tmux
+alias tokei 'tokei --hidden'
+
+alias unmount 'diskutil eject'
+alias untar 'tar -xzvf'
+alias unzip '7z x'
+
+alias vim nvim
+alias v nvim
+
+# Functions
+
+function __fzf_history_search
+    set cmd (history | cut -f3- | fzf --height 40% --reverse --tiebreak=index | string trim)
+    if test -n "$cmd"
+        commandline --replace -- $cmd
+    end
+end
+
+function __backup_run
+    rsync $argv[1] $argv[2] \
+        --verbose \
+        --archive \
+        --delete \
+        --human-readable \
+        --exclude .git/
+end
+
+function __backup_dry_run
+    rsync $argv[1] $argv[2] \
+        --verbose \
+        --archive \
+        --delete \
+        --human-readable \
+        --dry-run \
+        --exclude .git/
+end
+
+function __long_list_tree
+    set dir "."
+    set level 2
+
+    if test (count $argv) -gt 0
+        if string match -r '^[0-9]+$' $argv[1]
+            set level $argv[1]
+        else
+            set dir $argv[1]
+        end
+
+        if test (count $argv) -gt 1
+            set level $argv[2]
+        end
+    end
+
+    lla --tree --level=$level --ignore-glob=".git" $dir
+end
+
+# Environment Variables
+
+# set XDG config home so XDG-aware tools (e.g. lazygit) use ~/.config on macOS
+set -gx XDG_CONFIG_HOME $HOME/.config
+
+# add Homebrew to path
+set -gx PATH /opt/homebrew/bin $PATH
+set -gx PATH /opt/homebrew/sbin $PATH
+
+# add Go to path
+set -gx GOPATH $HOME/go
+set -gx PATH $GOPATH/bin $PATH
+
+# add Java to path
+set -gx PATH (brew --prefix)/opt/openjdk/bin $PATH
+
+# add Lua package manager to path
+set -gx PATH $HOME/.luarocks/bin $PATH
+
+# add GNU Make to path
+set -gx PATH (brew --prefix)/opt/make/libexec/gnubin $PATH
+
+# configure Node.js
+set -gx NODE_PATH (brew --prefix)/lib/node_modules/
+
+# set custom colors for jq
+set -gx JQ_COLORS '36;1:35;1:33;1:34;1:38;1:32;1:90;1:97;1:49'
+
+# configure Ruby version manager
+status --is-interactive; and rbenv init - fish | source
+
+# set up Vi key bindings
+set -g fish_key_bindings fish_vi_key_bindings
+
+# configure Node version manager
+fnm env --use-on-cd | source

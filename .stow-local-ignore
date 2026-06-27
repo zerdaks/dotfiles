@@ -1,0 +1,10 @@
+.claude/skills/improve
+
+/.git
+/.gitignore
+
+/hooks
+
+CLAUDE.md
+README.md
+justfile

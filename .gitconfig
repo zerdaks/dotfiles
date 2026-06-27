@@ -1,0 +1,37 @@
+[alias]
+    aa = add --all
+    ap = add --patch
+    br = branch -a
+    ci = commit
+    cl = clean -f
+    co = checkout
+    cz = czg
+    d = diff
+    dc = diff --cached
+    f = fetch --prune
+    l = !git log --color=always --pretty=format:'%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%Creset' --all --date=relative \
+        | fzf --ansi \
+        | awk '{print $1}' \
+        | xargs -I {} git show {}
+    pl = !git pull origin $(git rev-parse --abbrev-ref HEAD)
+    ps = !git push origin $(git rev-parse --abbrev-ref HEAD)
+    psf = !git push --force origin $(git rev-parse --abbrev-ref HEAD)
+    r = !git log -30 --graph --pretty=format:'%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%Creset' --all --date=relative
+    sh = "!f() { git diff-tree --no-commit-id --name-status -r ${1:-HEAD}; }; f"
+    st = !git status -s
+    v = "!f() { files=$(git status -s); [ -n \"$files\" ] && echo \"$files\" \
+        | fzf --multi --header 'Pick files to open in nvim' \
+        | awk '{print $2}' \
+        | xargs nvim || true ; }; f"
+[core]
+    editor = nvim
+    autocrlf = input
+[init]
+    defaultBranch = master
+[user]
+    name = zerdaks
+    email = 7451424+zerdaks@users.noreply.github.com
+[url "https://github.com/"]
+    insteadOf = git://github.com/
+[pull]
+    rebase = false
