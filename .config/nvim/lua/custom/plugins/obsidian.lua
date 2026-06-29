@@ -11,5 +11,8 @@ return {
         path = '~/repos/notes',
       },
     },
+    frontmatter = {
+      enabled = false,
+    },
   },
 }
