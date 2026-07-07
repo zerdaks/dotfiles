@@ -16,8 +16,11 @@ alias diff colordiff
 alias g git
 alias gl lazygit
 
-alias hc 'history clear'
-alias hd 'history delete'
+alias h history
+# builtin bypasses the history function's confirmation prompt
+alias hc 'builtin history clear'
+# --exact requires --case-sensitive in fish; targets only the most recent entry
+alias hd 'history delete --exact --case-sensitive -- (history --max 1)'
 alias hs __fzf_history_search
 
 alias j just

@@ -10,6 +10,9 @@
 
 !.config/lazygit/
 
+!.config/bat/
+!.config/bat/config
+
 !.config/nvim
 
 .config/nvim/lazy-lock.json
