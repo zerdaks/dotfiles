@@ -16,7 +16,7 @@ Dotfiles are personal and load-bearing — a "helpful" rewrite that changes beha
 These are the file types you'll review and how to reason about each:
 
 - **fish** (`.config/fish/config.fish`, `.config/fish/conf.d/*.fish`) — shell config and abbreviations/aliases.
-- **Neovim Lua** (`.config/nvim/**/*.lua`) — editor config and lazy.nvim plugin specs. `stylua.toml` defines the format (2-space, single quotes, no call parens, 160 col).
+- **Neovim Lua** (`.config/nvim/**/*.lua`) — editor config and lazy.nvim plugin specs. `stylua.toml` defines the format (2-space, single quotes, no call parens, 160 col). `init.lua` is an unmodified Kickstart.nvim baseline (open-source vendor code); the user's real config lives in `lua/keymaps.lua`, `lua/options.lua`, and `lua/custom/plugins/*.lua`, which load after Kickstart and intentionally override it. Treat `init.lua` as read-only and do not report conflicts between it and the custom files (see Notes).
 - **tmux** (`.tmux.conf`), **wezterm** (`.wezterm.lua`), **git** (`.gitconfig`), **just** (`justfile`), plus small dotfiles (`.irbrc`, `.luarc.json`).
 
 ## Workflow
@@ -38,7 +38,7 @@ Scan every config file. Sort findings into these buckets, because they carry ver
 
 - **Bugs / correctness** — things that are silently broken or wrong: bad paths, misspelled option names, make-isms in the justfile (`$(HOME)` instead of `$HOME`), keymaps that shadow each other, options that no longer exist. These are the most valuable finds.
 - **Deprecated / outdated idioms** — APIs the tools have moved past: e.g. Neovim's `vim.lsp.buf_get_clients` → `vim.lsp.get_clients`, `vim.tbl_islist` → `vim.islist`, `vim.highlight` → `vim.hl`; fish `set -x` where a scope flag is intended; tmux options renamed across versions. Explain what changed and why the new form is preferred.
-- **Dead / redundant** — commented-out cruft, duplicated settings, plugins configured but never loaded, conflicting keymaps, redundant PATH edits.
+- **Dead / redundant** — commented-out cruft, duplicated settings, plugins configured but never loaded, conflicting keymaps, redundant PATH edits. Exception: a keymap, option, or plugin opt set in a custom file (`lua/keymaps.lua`, `lua/options.lua`, `lua/custom/plugins/*.lua`) that also appears in `init.lua` is a deliberate override of the Kickstart baseline, not a conflict or duplicate. Don't flag it. Only report conflicts *among the custom files themselves*.
 - **Formatting** — what `fish_indent` / `stylua` would change. Group these together; they're low-stakes and bulk-applicable.
 
 For each finding, give `file:line`, what it is, and the specific fix. Keep it scannable.
@@ -62,4 +62,5 @@ Report exactly what changed (file + one-line summary each) and the verification 
 ## Notes
 
 - Don't touch `.claude/skills/**` content unless asked — those are skills, not config to lint.
+- `.config/nvim/init.lua` is vendored Kickstart.nvim and is meant to stay close to upstream. Don't lint it, reformat it, or flag its idioms as outdated, and never report it as conflicting with or duplicated by the custom files — those files exist to override it. Findings inside the nvim config should target the custom files (`lua/keymaps.lua`, `lua/options.lua`, `lua/custom/plugins/*.lua`) instead.
 - If the repo is clean and you find nothing worth changing, say that plainly. A short "looks good, here are two optional nits" is a fine outcome — don't manufacture findings to look busy.
