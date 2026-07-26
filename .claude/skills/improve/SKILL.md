@@ -17,16 +17,17 @@ These are the file types you'll review and how to reason about each:
 
 - **fish** (`.config/fish/config.fish`, `.config/fish/conf.d/*.fish`) — shell config and abbreviations/aliases.
 - **Neovim Lua** (`.config/nvim/**/*.lua`) — editor config and lazy.nvim plugin specs. `stylua.toml` defines the format (2-space, single quotes, no call parens, 160 col). `init.lua` is an unmodified Kickstart.nvim baseline (open-source vendor code); the user's real config lives in `lua/keymaps.lua`, `lua/options.lua`, and `lua/custom/plugins/*.lua`, which load after Kickstart and intentionally override it. Treat `init.lua` as read-only and do not report conflicts between it and the custom files (see Notes).
-- **tmux** (`.tmux.conf`), **wezterm** (`.wezterm.lua`), **git** (`.gitconfig`), **just** (`justfile`), plus small dotfiles (`.irbrc`, `.luarc.json`).
+- **tmux** (`.tmux.conf`), **wezterm** (`.wezterm.lua`), **git** (`.gitconfig`, `.gitignore`), **just** (`justfile`), **bat** (`.config/bat/config`), **lazygit** (`.config/lazygit/config.yml`), plus small dotfiles (`.irbrc`, `.luarc.json`).
+- **git hooks** (`hooks/pre-push`) — POSIX sh, activated by `just git` setting `core.hooksPath`. The only executable file in the repo: a bug here blocks pushes, and any tool it invokes must have an install recipe in the justfile.
 
 ## Workflow
 
 ### 1. Detect tooling first
 
-Some checks rely on external tools that may not be installed. Probe before relying on them, and fall back to manual reading when missing — never skip a file just because its linter isn't present.
+Some checks rely on external tools that may not be installed. Probe before relying on them, and fall back to manual reading when missing — never skip a file just because its linter isn't present. Run the tools rather than using `command -v` — a shim whose interpreter is gone still resolves as present.
 
 ```
-command -v fish_indent stylua shellcheck luacheck gitleaks
+fish_indent --version; stylua --version
 ```
 
 - `fish_indent` is reliably available — use it for fish formatting and `fish -n <file>` for syntax.
@@ -53,7 +54,7 @@ Respect the answer precisely — apply only what's approved. This is the whole p
 
 After approval, make surgical edits — touch only the approved lines, match surrounding style. Then verify what you changed:
 
-- fish files: `fish -n <file>` (syntax) and `fish_indent <file>` (clean format).
+- fish files: `fish -n <file>` (syntax) and `fish_indent <file> | diff -q - <file>` (formatting; no output means clean). `fish_indent` alone only prints, so it always looks like it passed.
 - Lua files: `stylua --check <file>` if available.
 - Re-read each edit to confirm it's what you intended.
 

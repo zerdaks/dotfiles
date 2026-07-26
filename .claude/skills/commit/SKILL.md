@@ -28,6 +28,8 @@ Stage all changes and commit with a concise message in the Commitizen (Conventio
    git add -A
    ```
 
+   If the user asks for staged changes only, skip this step and commit the index as it stands. A curated index is a deliberate choice about what belongs in this commit; `git add -A` would discard that intent.
+
 4. **Read the diff**
 
    ```bash
@@ -47,6 +49,8 @@ Stage all changes and commit with a concise message in the Commitizen (Conventio
 
    Keep it concise - aim for a subject under ~50 characters that captures the *what* and *why*, not the *how*. Most commits are a single line. Only add a body (blank line, then prose) when the reasoning genuinely won't fit in the subject; skip it otherwise.
 
+   Don't append `Co-Authored-By` or any other trailer. This repo's history has none, and a solo dotfiles repo gains nothing from co-authorship metadata.
+
    To choose a scope and confirm the convention in use, glance at recent history:
    ```bash
    git log --oneline -10
@@ -55,7 +59,8 @@ Stage all changes and commit with a concise message in the Commitizen (Conventio
 6. **Commit**
 
    ```bash
-   git commit -m "<message>"
+   git commit -m "<subject>"                  # single-line commit, the common case
+   git commit -m "<subject>" -m "<body>"      # git joins these with a blank line
    ```
    Echo the raw output from `git commit` verbatim - show the exact hash and message, don't paraphrase or rewrite it.
 
@@ -71,4 +76,4 @@ Input: Reformatted several config files, no behavior change
 Output: `style: reformat config files`
 
 Input: Multiple unrelated tweaks across fish and the justfile
-Output: `chore: fix fish/justfile bugs`
+Output: `chore: tidy fish and justfile config`
