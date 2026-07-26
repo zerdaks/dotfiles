@@ -42,11 +42,12 @@ go:
 
 # Install Lua and its package manager
 lua:
-    @brew install lua luarocks lua-language-server
+    @brew install lua luarocks lua-language-server stylua
 
 # Configure Git and install related tools
 [group('git')]
 git: commitizen
+    @brew install gitleaks # required by hooks/pre-push
     @git config core.hooksPath hooks
 
 # Install Git commit message formatter
