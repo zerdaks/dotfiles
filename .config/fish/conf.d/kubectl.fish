@@ -8,7 +8,7 @@ alias ctldescribe 'kubectl describe pod (__fzf_pods)'
 alias ctllogs __ctl_logs
 alias ctlevents 'kubectl get events --field-selector involvedObject.name=(__fzf_pod)'
 alias ctlnamespace 'kubectl config view --minify -o jsonpath="{.contexts[0].context.namespace}"'
-alias ctljobs 'kubectl exec -it (__fzf_jobs) -- /bin/sh'
+alias ctljobs 'kubectl exec -it job/(__fzf_jobs) -- /bin/sh'
 alias ctlpods 'kubectl exec -it (__fzf_pods) -- /bin/sh'
 alias ctlsecrets 'kubectl get secret (__fzf_secrets) -o json | jq -r ".data | to_entries[] | \"\(.key): \(.value | @base64d)\""'
 
