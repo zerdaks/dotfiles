@@ -102,21 +102,24 @@ set -gx XDG_CONFIG_HOME $HOME/.config
 set -gx PATH /opt/homebrew/bin $PATH
 set -gx PATH /opt/homebrew/sbin $PATH
 
+# cache brew prefix to avoid spawning brew multiple times below
+set brew_prefix (brew --prefix)
+
 # add Go to path
 set -gx GOPATH $HOME/go
 set -gx PATH $GOPATH/bin $PATH
 
 # add Java to path
-set -gx PATH (brew --prefix)/opt/openjdk/bin $PATH
+set -gx PATH $brew_prefix/opt/openjdk/bin $PATH
 
 # add Lua package manager to path
 set -gx PATH $HOME/.luarocks/bin $PATH
 
 # add GNU Make to path
-set -gx PATH (brew --prefix)/opt/make/libexec/gnubin $PATH
+set -gx PATH $brew_prefix/opt/make/libexec/gnubin $PATH
 
 # configure Node.js
-set -gx NODE_PATH (brew --prefix)/lib/node_modules/
+set -gx NODE_PATH $brew_prefix/lib/node_modules/
 
 # set custom colors for jq
 set -gx JQ_COLORS '36;1:35;1:33;1:34;1:38;1:32;1:90;1:97;1:49'
