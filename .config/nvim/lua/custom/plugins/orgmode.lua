@@ -41,9 +41,9 @@ return {
           },
         },
       }
+      vim.keymap.set('n', '<leader>fl', function()
+        require('orgmode').action 'org_mappings.open_at_point'
+      end, { desc = 'Org: Open URL at point' })
     end,
-    vim.keymap.set('n', '<leader>fl', function()
-      require('orgmode').action 'org_mappings.open_at_point'
-    end, { desc = 'Org: Open URL at point' }),
   },
 }
