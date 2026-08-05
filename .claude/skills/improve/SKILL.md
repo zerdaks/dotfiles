@@ -1,6 +1,6 @@
 ---
 name: improve
-description: Review this dotfiles repo for improvements — formatting, deprecated/outdated config idioms, dead or redundant settings, and outright bugs — then apply the fixes you approve. Use this skill whenever the user wants to clean up, tidy, modernize, lint, audit, polish, or "improve the code" in their dotfiles (fish, Neovim Lua, tmux, wezterm, git, justfile), even if they don't name a specific file. Trigger on phrases like "improve my dotfiles", "clean up the configs", "any improvements here?", or "review this repo".
+description: Audit this dotfiles repo for what is broken, stale, or dead - outright bugs, deprecated config idioms, redundant settings, formatting drift, and tools the config references but nothing installs - then apply the fixes you approve. Use this skill whenever the user wants to lint, audit, tidy, polish, or fix their dotfiles (fish, Neovim Lua, tmux, wezterm, git, justfile), even if they don't name a specific file. Trigger on phrases like "improve my dotfiles", "clean up the configs", "is anything broken here?", or "anything stale in this repo?". This is the correctness pass; when the question is whether a plugin or tool should be added, removed, or replaced, use `propose` instead.
 ---
 
 # Improve
@@ -40,9 +40,30 @@ Scan every config file. Sort findings into these buckets, because they carry ver
 - **Bugs / correctness** — things that are silently broken or wrong: bad paths, misspelled option names, make-isms in the justfile (`$(HOME)` instead of `$HOME`), keymaps that shadow each other, options that no longer exist. These are the most valuable finds.
 - **Deprecated / outdated idioms** — APIs the tools have moved past: e.g. Neovim's `vim.lsp.buf_get_clients` → `vim.lsp.get_clients`, `vim.tbl_islist` → `vim.islist`, `vim.highlight` → `vim.hl`; fish `set -x` where a scope flag is intended; tmux options renamed across versions. Explain what changed and why the new form is preferred.
 - **Dead / redundant** — commented-out cruft, duplicated settings, plugins configured but never loaded, conflicting keymaps, redundant PATH edits. Exception: a keymap, option, or plugin opt set in a custom file (`lua/keymaps.lua`, `lua/options.lua`, `lua/custom/plugins/*.lua`) that also appears in `init.lua` is a deliberate override of the Kickstart baseline, not a conflict or duplicate. Don't flag it. Only report conflicts *among the custom files themselves*.
+- **Referenced but never installed** — config that names an external binary nothing in this repo installs. See below; this is the bucket most likely to hold something real, because it is the one that survives every other kind of review.
 - **Formatting** — what `fish_indent` / `stylua` would change. Group these together; they're low-stakes and bulk-applicable.
 
 For each finding, give `file:line`, what it is, and the specific fix. Keep it scannable.
+
+### 2a. Check that referenced tools actually exist
+
+Config that names a binary is the one thing you cannot verify by reading. `formatters_by_ft = { sh = { 'shfmt' } }` is valid Lua, correctly formatted, using a current API - and completely inert if `shfmt` isn't installed. Nothing in the file is wrong, so every other bucket walks straight past it. That's why this failure mode accumulates silently, and why it's worth checking directly on every run.
+
+Ask two separate questions, because they fail differently:
+
+- **Is it on this machine now?** If not, that feature is dead *today* and the user probably doesn't know. Test with `command -v <tool>`.
+- **Would a fresh machine get it?** A tool can be on `$PATH` because it was installed by hand years ago. The repo is only self-installing if something here brings it in. Two places do that: `justfile` recipes (`brew install ...`) and Kickstart's `mason-tool-installer` `ensure_installed` list in `init.lua`. Note that Kickstart ships that list empty, so unless it was filled in, mason installs nothing beyond the LSP servers.
+
+A tool can fail one check or both. Missing from `$PATH` *and* uninstallable is broken now; present but uninstallable is a bootstrap trap that only bites on a new machine. Say which, since the urgency differs.
+
+Where to look for referenced tools: `conform.nvim`'s `formatters_by_ft`, plugin specs that shell out to a binary, fish abbreviations and functions wrapping a CLI, `tmux`/`wezterm` commands, git aliases, and `hooks/pre-push`. Sweeping the whole set at once is cheap:
+
+```sh
+for t in <tools you found>; do command -v "$t" >/dev/null || echo "MISSING: $t"; done
+grep -n "$t" justfile   # and check init.lua's ensure_installed
+```
+
+The fix is usually a one-line `justfile` addition, so group these together and name the recipe each belongs in.
 
 ### 3. Present, then wait
 
