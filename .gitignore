@@ -3,7 +3,6 @@
 .config/*
 
 !.config/fish/
-!.config/fish/config-local.fish
 !.config/fish/conf.d/
 
 !.config/lazygit/
