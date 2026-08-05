@@ -48,6 +48,7 @@ lua:
 [group('git')]
 git: commitizen
     @brew install gitleaks # required by hooks/pre-push
+    @brew install lazygit # required by lazygit.nvim and .config/lazygit
     @git config core.hooksPath hooks
 
 # Install Git commit message formatter
@@ -63,13 +64,18 @@ copilot:
 
 # Install Neovim and dependencies
 [group('nvim')]
-nvim: telescope
+nvim: telescope formatters
     @brew install nvim tree-sitter-cli
 
 # Install dependencies for Telescope, a Neovim plugin
 [group('nvim')]
 telescope:
     @brew install fd ripgrep
+
+# Install formatters used by conform.nvim, a Neovim plugin
+[group('nvim')]
+formatters:
+    @brew install buf prettier shfmt sql-formatter # the rest come from the lua and go recipes
 
 # Install various utilities
 util:
