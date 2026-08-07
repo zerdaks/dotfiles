@@ -22,7 +22,8 @@ just --list
 vim
 :Lazy # followed by shift-u to update all
 :Mason # followed by shift-u to update all
-:Copilot auth
+:MasonInstall copilot-language-server
+:LspCopilotSignIn
 ```
 
 ## Configure tmux

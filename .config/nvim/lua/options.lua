@@ -51,3 +51,22 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
 
 -- Do not open folds when moving with Shift+[ or Shift+]
 vim.opt.foldopen:remove 'block'
+
+-- COPILOT
+
+-- Activate the copilot-language-server config shipped by nvim-lspconfig.
+-- Sign in with :LspCopilotSignIn, see `:help lsp-copilot`
+vim.lsp.enable 'copilot'
+
+-- Show Copilot suggestions as ghost text in buffers where the server attaches
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(event)
+    local client = vim.lsp.get_client_by_id(event.data.client_id)
+    if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlineCompletion, event.buf) then
+      vim.lsp.inline_completion.enable(true, { bufnr = event.buf })
+    end
+  end,
+})
+
+-- Accept the current suggestion
+vim.keymap.set('i', '<C-l>', vim.lsp.inline_completion.get, { desc = 'Accept inline completion' })
