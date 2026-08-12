@@ -35,10 +35,9 @@ postgres:
     @brew services start postgresql
     @brew install pgcli
 
-# Install Go and its language server
+# Install Go
 go:
     @brew install go
-    @go install golang.org/x/tools/gopls@latest
 
 # Install Lua and its package manager
 lua:
