@@ -78,4 +78,4 @@ formatters:
 
 # Install various utilities
 util:
-    @brew install bat colordiff eza fzf tokei
+    @brew install bat colordiff eza fzf jq tokei
