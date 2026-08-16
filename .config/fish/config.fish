@@ -31,8 +31,6 @@ alias llt __long_list_tree
 
 alias m just
 
-alias psql psql-18
-
 alias r 'source ~/.config/fish/config.fish'
 alias rmds 'find . -name ".DS_Store" | xargs rm'
 
@@ -111,6 +109,9 @@ set -gx PATH $GOPATH/bin $PATH
 
 # add Java to path
 set -gx PATH $brew_prefix/opt/openjdk/bin $PATH
+
+# add PostgreSQL client tools to path (keg-only, so not linked by default)
+set -gx PATH $brew_prefix/opt/postgresql@18/bin $PATH
 
 # add Lua package manager to path
 set -gx PATH $HOME/.luarocks/bin $PATH

@@ -31,8 +31,8 @@ fonts:
 
 # Install PostgreSQL and pgcli
 postgres:
-    @brew install postgresql
-    @brew services start postgresql
+    @brew install postgresql@18
+    @brew services start postgresql@18
     @brew install pgcli
 
 # Install Go
