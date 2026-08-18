@@ -1,6 +1,6 @@
 ---
 name: improve
-description: Audit this dotfiles repo for what is broken, stale, or dead - outright bugs, deprecated config idioms, redundant settings, formatting drift, and tools the config references but nothing installs - then apply the fixes you approve. Use this skill whenever the user wants to lint, audit, tidy, polish, or fix their dotfiles (fish, Neovim Lua, tmux, wezterm, git, justfile), even if they don't name a specific file. Trigger on phrases like "improve my dotfiles", "clean up the configs", "is anything broken here?", or "anything stale in this repo?". This is the correctness pass; when the question is whether a plugin or tool should be added, removed, or replaced, use `propose` instead.
+description: Audit this dotfiles repo for what is broken, stale, or dead - outright bugs, deprecated config idioms, redundant settings, formatting drift, and tools the config references but nothing installs - then apply the fixes you approve. Use this skill whenever the user wants to lint, audit, tidy, polish, or fix their dotfiles (zsh, Neovim Lua, tmux, wezterm, git, justfile), even if they don't name a specific file. Trigger on phrases like "improve my dotfiles", "clean up the configs", "is anything broken here?", or "anything stale in this repo?". This is the correctness pass; when the question is whether a plugin or tool should be added, removed, or replaced, use `propose` instead.
 ---
 
 # Improve
@@ -15,7 +15,7 @@ Dotfiles are personal and load-bearing — a "helpful" rewrite that changes beha
 
 These are the file types you'll review and how to reason about each:
 
-- **fish** (`.config/fish/config.fish`, `.config/fish/conf.d/*.fish`) — shell config and abbreviations/aliases.
+- **zsh** (`.zshrc`, `.zprofile`, `.config/zsh/*.zsh`) — shell config and aliases. `.zprofile` is login-only (environment and PATH); `.zshrc` is interactive (aliases, functions, tool init).
 - **Neovim Lua** (`.config/nvim/**/*.lua`) — editor config and lazy.nvim plugin specs. `stylua.toml` defines the format (2-space, single quotes, no call parens, 160 col). `init.lua` is an unmodified Kickstart.nvim baseline (open-source vendor code); the user's real config lives in `lua/keymaps.lua`, `lua/options.lua`, and `lua/custom/plugins/*.lua`, which load after Kickstart and intentionally override it. Treat `init.lua` as read-only and do not report conflicts between it and the custom files (see Notes).
 - **tmux** (`.tmux.conf`), **wezterm** (`.wezterm.lua`), **git** (`.gitconfig`, `.gitignore`), **just** (`justfile`), **bat** (`.config/bat/config`), **lazygit** (`.config/lazygit/config.yml`), plus small dotfiles (`.irbrc`, `.luarc.json`).
 - **git hooks** (`hooks/pre-push`) — POSIX sh, activated by `just git` setting `core.hooksPath`. The only executable file in the repo: a bug here blocks pushes, and any tool it invokes must have an install recipe in the justfile.
@@ -27,10 +27,10 @@ These are the file types you'll review and how to reason about each:
 Some checks rely on external tools that may not be installed. Probe before relying on them, and fall back to manual reading when missing — never skip a file just because its linter isn't present. Run the tools rather than using `command -v` — a shim whose interpreter is gone still resolves as present.
 
 ```
-fish_indent --version; stylua --version
+stylua --version
 ```
 
-- `fish_indent` is reliably available — use it for fish formatting and `fish -n <file>` for syntax.
+- `zsh -n <file>` checks shell syntax and is always available. There is no zsh formatter: `shfmt` does not parse zsh, so don't reach for it — review shell formatting by eye.
 - `stylua` may be missing. If present, use `stylua --check` against `.config/nvim/stylua.toml`. If absent, check formatting by eye against the stylua.toml rules; don't install it unprompted.
 
 ### 2. Review, grouped by what matters
@@ -38,10 +38,10 @@ fish_indent --version; stylua --version
 Scan every config file. Sort findings into these buckets, because they carry very different stakes:
 
 - **Bugs / correctness** — things that are silently broken or wrong: bad paths, misspelled option names, make-isms in the justfile (`$(HOME)` instead of `$HOME`), keymaps that shadow each other, options that no longer exist. These are the most valuable finds.
-- **Deprecated / outdated idioms** — APIs the tools have moved past: e.g. Neovim's `vim.lsp.buf_get_clients` → `vim.lsp.get_clients`, `vim.tbl_islist` → `vim.islist`, `vim.highlight` → `vim.hl`; fish `set -x` where a scope flag is intended; tmux options renamed across versions. Explain what changed and why the new form is preferred.
+- **Deprecated / outdated idioms** — APIs the tools have moved past: e.g. Neovim's `vim.lsp.buf_get_clients` → `vim.lsp.get_clients`, `vim.tbl_islist` → `vim.islist`, `vim.highlight` → `vim.hl`; zsh `export` in `.zshrc` where `.zprofile` is the right file; tmux options renamed across versions. Explain what changed and why the new form is preferred.
 - **Dead / redundant** — commented-out cruft, duplicated settings, plugins configured but never loaded, conflicting keymaps, redundant PATH edits. Exception: a keymap, option, or plugin opt set in a custom file (`lua/keymaps.lua`, `lua/options.lua`, `lua/custom/plugins/*.lua`) that also appears in `init.lua` is a deliberate override of the Kickstart baseline, not a conflict or duplicate. Don't flag it. Only report conflicts *among the custom files themselves*.
 - **Referenced but never installed** — config that names an external binary nothing in this repo installs. See below; this is the bucket most likely to hold something real, because it is the one that survives every other kind of review.
-- **Formatting** — what `fish_indent` / `stylua` would change. Group these together; they're low-stakes and bulk-applicable.
+- **Formatting** — what `stylua` would change. Group these together; they're low-stakes and bulk-applicable.
 
 For each finding, give `file:line`, what it is, and the specific fix. Keep it scannable.
 
@@ -56,7 +56,7 @@ Ask two separate questions, because they fail differently:
 
 A tool can fail one check or both. Missing from `$PATH` *and* uninstallable is broken now; present but uninstallable is a bootstrap trap that only bites on a new machine. Say which, since the urgency differs.
 
-Where to look for referenced tools: `conform.nvim`'s `formatters_by_ft`, plugin specs that shell out to a binary, fish abbreviations and functions wrapping a CLI, `tmux`/`wezterm` commands, git aliases, and `hooks/pre-push`. Sweeping the whole set at once is cheap:
+Where to look for referenced tools: `conform.nvim`'s `formatters_by_ft`, plugin specs that shell out to a binary, zsh aliases and functions wrapping a CLI, `tmux`/`wezterm` commands, git aliases, and `hooks/pre-push`. Sweeping the whole set at once is cheap:
 
 ```sh
 for t in <tools you found>; do command -v "$t" >/dev/null || echo "MISSING: $t"; done
@@ -75,7 +75,7 @@ Respect the answer precisely — apply only what's approved. This is the whole p
 
 After approval, make surgical edits — touch only the approved lines, match surrounding style. Then verify what you changed:
 
-- fish files: `fish -n <file>` (syntax) and `fish_indent <file> | diff -q - <file>` (formatting; no output means clean). `fish_indent` alone only prints, so it always looks like it passed.
+- zsh files: `zsh -n <file>` (syntax; no output means clean). There is no formatting check to run — compare against the surrounding style by eye.
 - Lua files: `stylua --check <file>` if available.
 - Re-read each edit to confirm it's what you intended.
 

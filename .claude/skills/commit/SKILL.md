@@ -71,7 +71,7 @@ Commit the working tree using the Commitizen (Conventional Commits) format, spli
    Format: `type(scope): subject`
 
    - **type** (required): one of `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`.
-   - **scope** (optional): a lowercase noun for the area touched, e.g. `(fish)`, `(nvim)`, `(claude)`. Drop it if the change is broad or no clear scope fits - a missing scope is better than a vague one.
+   - **scope** (optional): a lowercase noun for the area touched, e.g. `(zsh)`, `(nvim)`, `(claude)`. Drop it if the change is broad or no clear scope fits - a missing scope is better than a vague one.
    - **subject** (required): imperative mood ("add", not "added"/"adds"), lowercase first word, no trailing period.
 
    Use only ASCII characters in the message - no smart quotes, em dashes, or emoji. Stick to plain `'`, `"`, `-`, and standard ASCII punctuation.
@@ -102,7 +102,7 @@ Commit the working tree using the Commitizen (Conventional Commits) format, spli
 **Examples**
 
 Input: Pointed the psql alias at psql 18 instead of 17
-Output: `fix(fish): point psql alias to psql-18`
+Output: `fix(zsh): point psql alias to psql-18`
 
 Input: Added a new Neovim plugin for a colorscheme
 Output: `feat(nvim): add colorscheme plugin`
@@ -110,8 +110,8 @@ Output: `feat(nvim): add colorscheme plugin`
 Input: Reformatted several config files, no behavior change
 Output: `style: reformat config files`
 
-Input: A wrong flag in a fish alias, plus an unrelated missing dependency in the justfile
-Output: two commits - `fix(fish): pass --json to the gh alias` and `fix(just): declare stylua dep`
+Input: A wrong flag in a zsh alias, plus an unrelated missing dependency in the justfile
+Output: two commits - `fix(zsh): pass --json to the gh alias` and `fix(just): declare stylua dep`
 
 Nothing ties these together except the clock. Either could be wrong on its own and need reverting without disturbing the other.
 

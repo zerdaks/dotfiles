@@ -11,9 +11,9 @@ This is the sibling of `/improve`, aimed one level up. `improve` asks "is this c
 
 ## Hard rule: propose, don't execute
 
-This skill is read-only on the working tree. Do **not** create, edit, or delete config files, do **not** run `just` recipes (every one of them installs software via `brew`, `npm`, or `fisher`), do **not** run `stow`, and do **not** touch `.config/nvim/lazy-lock.json` or run any `:Lazy` command that would install, update, or remove a plugin. Surveying with read-only commands (`ls`, `grep`, `cat`, `git log`, `just --list`, `nvim --headless` startup profiling, web research) is expected and encouraged - you need to understand the setup to propose well. But the run ends with a written proposal, not a change.
+This skill is read-only on the working tree. Do **not** create, edit, or delete config files, do **not** run `just` recipes (every one of them installs software via `brew` or `npm`), do **not** run `stow`, and do **not** touch `.config/nvim/lazy-lock.json` or run any `:Lazy` command that would install, update, or remove a plugin. Surveying with read-only commands (`ls`, `grep`, `cat`, `git log`, `just --list`, `nvim --headless` startup profiling, web research) is expected and encouraged - you need to understand the setup to propose well. But the run ends with a written proposal, not a change.
 
-If you catch yourself editing a `.lua` or `.fish` file, stop - that's out of scope for this skill. If the user likes the proposal, *they* will green-light building it.
+If you catch yourself editing a `.lua` or `.zsh` file, stop - that's out of scope for this skill. If the user likes the proposal, *they* will green-light building it.
 
 ## What "high-value" means here
 
@@ -24,7 +24,7 @@ Good candidates, roughly in order of how often they pay off:
 - **Redundancy worth collapsing** - two plugins or tools doing one job. This is usually the highest-value find, because removal is pure profit: less to maintain, fewer keymaps competing, faster startup, one thing to learn instead of two. Look hard at the whole set, not at each file in isolation - redundancy is invisible when you read one plugin spec at a time.
 - **Something superseded** - a plugin that is archived or effectively unmaintained, whose job Neovim core now does natively, or that a clearly better-maintained option has replaced. Check the *evidence*, not the vibe: last commit date, an archive notice, an upstream deprecation, a `:h` entry that now covers it.
 - **A real gap** - a capability the setup lacks that the user's *own existing choices* imply they'd want. The justification has to come from this repo, not from a "top 10 plugins" list. If you can't point at something already here that makes the gap felt, it's not a gap, it's a suggestion.
-- **Non-nvim stack choices** - fish plugins and abbreviations, overlap between tmux and wezterm, the CLI utilities installed by `just util`, git aliases and hooks. These get less attention than the nvim config and drift just as much.
+- **Non-nvim stack choices** - zsh plugins and aliases, overlap between tmux and wezterm, the CLI utilities installed by `just util`, git aliases and hooks. These get less attention than the nvim config and drift just as much.
 
 Lower value, usually skip: cosmetic swaps, "this plugin is popular" with no argument for why it fits *this* setup, anything requiring the user to relearn their workflow for a marginal gain, and migrating to a config distro or framework. The repo's `CLAUDE.md` is explicit - minimum change that solves a real problem, nothing speculative. A good proposal honors that: it should be something the user would call *worth doing*, not just *doable*.
 
@@ -40,7 +40,7 @@ Read `CLAUDE.md` first - it sets the house style and constraints. Then map the s
 ls .config/nvim/lua/custom/plugins/          # the plugins the user deliberately chose
 cat .config/nvim/lazy-lock.json              # everything installed, including transitive deps
 grep -rn 'vim.keymap.set' .config/nvim/lua/  # the keymaps in play - the collision surface
-grep -rn 'abbr \|alias ' .config/fish/       # shell shortcuts, i.e. what the user types most
+grep -rn 'alias ' .zshrc .config/zsh/        # shell shortcuts, i.e. what the user types most
 just --list                                  # the install surface (see below)
 git log --oneline -20                        # what the user has been changing lately
 ```
@@ -87,7 +87,7 @@ This is the deliverable. Keep it concrete and grounded in the actual files - ref
 
 - **What** - the change, in one or two sentences. Add, remove, replace, or consolidate what, exactly?
 - **Why** - the value, and the evidence behind it. What does the user get, and what specifically did you verify (archived repo, core coverage, the two plugins that overlap)?
-- **How it fits** - which files change (`lua/custom/plugins/<name>.lua`, `config.fish`, the `justfile`), which existing settings and keymaps it touches, and what it interacts with. Enough that the reader can picture the shape without you writing it.
+- **How it fits** - which files change (`lua/custom/plugins/<name>.lua`, `.zshrc`, the `justfile`), which existing settings and keymaps it touches, and what it interacts with. Enough that the reader can picture the shape without you writing it.
 - **Sketch** - the shape, not the finished config: the plugin spec skeleton, the keymaps that would change, or the abbreviation. Illustrative snippets are fine; a complete drop-in file is not. **Keep any command you recommend as narrow as the change.** The user will paste what you write, so a command wider than the proposal is a hazard rather than a convenience: `:Lazy sync` updates every plugin and churns the whole lockfile when `:Lazy update <plugin>` was the actual need, and `brew upgrade` is not `brew upgrade <formula>`. Reach for the narrowest form that does the job, and if a wide command genuinely is required, say what else it will touch. Where you can, include the command that *verifies* the change landed - it's the difference between the user hoping it worked and knowing.
 - **Cost & risk** - rough size (small/medium/large), what the user has to relearn, what could break, whether it needs a `just` recipe or a new binary, whether `lazy-lock.json` churns. Call out anything that would make it *not* worth it. Be straight here; a proposal that only lists upside isn't a proposal, it's a pitch.
 - **Open questions** - the decisions the user needs to make for this to proceed.
