@@ -3,16 +3,10 @@ brew:
     @brew tap homebrew/aliases
     @brew alias clean='cleanup && brew doctor'
 
-# Install fish shell and plugins
-fish:
-    @brew install fish
-    @fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher" # install a plugin manager
-    @fish -c "fisher install IlanCosman/tide@v5" # install a fish prompt
-    @fish -c "fisher install jethrokuan/z" # install directory jumping
-    @fish -c "fisher list" # show installed plugins
-    @fish -c 'tide configure'
-    @fish -c 'fish_config' || true
-    @curl -fsSL https://fnm.vercel.app/install | bash # install Node version manager
+# Install zsh prompt, plugins, and version managers
+zsh:
+    @brew install starship zoxide zsh-autosuggestions zsh-syntax-highlighting
+    @brew install fnm rbenv # Node and Ruby version managers, initialized in .zshrc
 
 # Install stow
 # Use --no-folding so Stow links contents, not parent directories.

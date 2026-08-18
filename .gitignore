@@ -2,8 +2,9 @@
 
 .config/*
 
-!.config/fish/
-!.config/fish/conf.d/
+!.config/zsh/
+
+!.config/starship.toml
 
 !.config/lazygit/
 

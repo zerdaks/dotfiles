@@ -13,7 +13,11 @@ This is the repository for my dotfiles. To install on macOS:
 brew install git just
 git clone git@github.com:zerdaks/dotfiles.git
 cd dotfiles/
-just --list
+rm -f ~/.zprofile # stow will not overwrite a regular file
+just stow
+just zsh
+exec zsh
+just --list # remaining recipes
 ```
 
 ## Configure Neovim

@@ -4,7 +4,6 @@ return {
     formatters_by_ft = {
       bash = { 'shfmt' },
       css = { 'prettier' },
-      fish = { 'fish_indent' },
       go = { 'gofmt', 'goimports' },
       html = { 'prettier' },
       javascript = { 'prettier' },
