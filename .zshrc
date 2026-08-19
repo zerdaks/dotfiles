@@ -30,8 +30,8 @@ export KEYTIMEOUT=1
 # Aliases
 
 alias b=brew
-alias back=__backup_run
-alias dback=__backup_dry_run
+alias back=backup_run
+alias dback=backup_dry_run
 
 alias c=clear
 alias cat=bat
@@ -44,13 +44,13 @@ alias gl=lazygit
 
 # zsh's history shows only the last 16 entries; start from event 1 for all of them
 alias h='history 1'
-alias hs=__fzf_history_search
+alias hs=fzf_history_search
 
 alias j=just
 
 alias ll='eza -l -g --icons'
 alias lla='ll -a'
-alias llt=__long_list_tree
+alias llt=long_list_tree
 
 alias m=just
 
@@ -74,32 +74,37 @@ alias v=nvim
 # the entry in the in-memory list. Both helpers below exec a fresh shell so the
 # entry is gone from the file and from the current session's recall.
 
-__history_clear() {
+history_clear() {
     : >| "$HISTFILE"
     exec zsh
 }
-alias hc=__history_clear
+alias hc=history_clear
 
-__history_delete() {
+history_delete() {
     fc -W
     # zsh records the invocation before running it, so drop that entry first
     [[ $(tail -n 1 "$HISTFILE") == hd ]] && sed -i '' -e '$d' "$HISTFILE"
     sed -i '' -e '$d' "$HISTFILE"
     exec zsh
 }
-alias hd=__history_delete
+alias hd=history_delete
 
 # fish's `commandline --replace` has no equivalent outside a ZLE widget, and an
 # alias cannot invoke one. print -z pushes the result onto the editor buffer
 # stack instead, so it lands on the next prompt ready to edit.
-__fzf_history_search() {
+#
+# Named without a leading underscore: zsh's completion system treats
+# underscore-prefixed commands as completion-system functions, which breaks
+# argument completion (tab-completing a path shows compadd's own flags
+# instead of files).
+fzf_history_search() {
     local cmd
     cmd=$(fc -rln 1 | fzf --height 40% --reverse --tiebreak=index)
     [[ -n $cmd ]] && print -z -- "$cmd"
 }
 
 # takes source and destination; trailing arguments are passed through to rsync
-__backup_run() {
+backup_run() {
     rsync "$@" \
         --verbose \
         --archive \
@@ -108,13 +113,13 @@ __backup_run() {
         --exclude .git/
 }
 
-__backup_dry_run() {
-    __backup_run "$@" --dry-run
+backup_dry_run() {
+    backup_run "$@" --dry-run
 }
 
 # Calls eza directly rather than the lla alias: zsh expands aliases when a
 # function is parsed, which would make this depend on definition order.
-__long_list_tree() {
+long_list_tree() {
     local dir="." level=2
 
     if (( $# > 0 )); then
