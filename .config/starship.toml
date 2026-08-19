@@ -52,7 +52,7 @@ style = "red"
 symbol = ""
 
 [nodejs]
-symbol = "🐢 "
+symbol = ""
 
 [aws]
 style = "peach"
