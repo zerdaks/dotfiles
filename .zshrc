@@ -158,3 +158,9 @@ eval "$(fnm env --use-on-cd --shell zsh)"
 eval "$(zoxide init zsh)" # provides z and zi
 eval "$(starship init zsh)"
 source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+# Machine-local overrides
+#
+# Sourced last so it can override anything above. Kept out of version control
+# (see .gitignore) for per-machine secrets and settings.
+[[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"

@@ -14,3 +14,5 @@
 
 .config/nvim/lazy-lock.json
 .config/nvim/spell/*
+
+.zshrc.local
