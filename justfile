@@ -12,7 +12,7 @@ zsh:
 # Use --no-folding so Stow links contents, not parent directories.
 stow:
     @brew install stow
-    @stow --no-folding .
+    @stow -R --no-folding .
 
 # Install tmux and plugin manager
 tmux:
