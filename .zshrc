@@ -27,6 +27,14 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' # case-insensitive
 bindkey -v
 export KEYTIMEOUT=1
 
+# bindkey -v binds backspace and friends to vi-* widgets that refuse to delete
+# past the point insert mode was last entered, so they do nothing on recalled
+# history or text typed before the last Esc. The plain widgets have no such
+# restriction.
+bindkey -M viins '^?' backward-delete-char
+bindkey -M viins '^W' backward-kill-word
+bindkey -M viins '^U' backward-kill-line
+
 # Aliases
 
 alias b=brew
