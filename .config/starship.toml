@@ -7,6 +7,8 @@ format = """
 $os\
 $directory\
 $git_branch\
+$git_commit\
+$git_state\
 $git_status\
 $golang\
 $nodejs\
@@ -43,8 +45,37 @@ truncate_to_repo = false
 symbol = " "
 style = "mauve"
 
+# only renders on a detached HEAD, so it doubles as the "you are not on a
+# branch" warning; tag_disabled = false names the tag when one points here
+[git_commit]
+style = "maroon"
+tag_disabled = false
+tag_symbol = "  "
+
+# mid-rebase / merge / bisect, with the n/m progress starship tracks for us
+[git_state]
+style = "peach"
+
+# one color per class of change, the way tide splits its git segment, instead
+# of a single red blob. ${count} is per-state, so the numbers are the point:
+#   =2 conflicted  +3 staged  »1 renamed  !4 modified  ✘1 deleted  ?2 untracked
+#   $1 stashed     ⇡2 ahead  ⇣1 behind  ⇡2⇣1 diverged
+# markers are starship's defaults; only diverged deviates, trading the bare ⇕
+# for the counts, since counts are the whole point of this segment.
+# the enclosing style only paints the brackets; each item carries its own.
 [git_status]
-style = "red"
+style = "overlay1"
+format = "([\\[$conflicted$staged$renamed$modified$deleted$untracked$stashed$ahead_behind\\]]($style) )"
+conflicted = "[=${count}](red)"
+staged = "[+${count}](green)"
+renamed = "[»${count}](green)"
+modified = "[!${count}](yellow)"
+deleted = "[✘${count}](maroon)"
+untracked = "[?${count}](blue)"
+stashed = "[\\$${count}](teal)"
+ahead = "[⇡${count}](sky)"
+behind = "[⇣${count}](sky)"
+diverged = "[⇡${ahead_count}⇣${behind_count}](mauve)"
 
 # starship's defaults are already mascots (go a gopher, rust a crab, python a
 # snake, java coffee, lua a moon); only these two needed rescuing
