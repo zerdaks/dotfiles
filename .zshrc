@@ -35,6 +35,13 @@ bindkey -M viins '^?' backward-delete-char
 bindkey -M viins '^W' backward-kill-word
 bindkey -M viins '^U' backward-kill-line
 
+# fish shapes the cursor per vi mode out of the box (fish_vi_cursor); zsh does
+# not. Block is normal, beam is insert. Must precede starship's init, which
+# wraps a pre-existing zle-keymap-select rather than replacing it.
+vi_cursor() { [[ $KEYMAP == vicmd ]] && print -n '\e[2 q' || print -n '\e[6 q' }
+zle -N zle-keymap-select vi_cursor
+zle -N zle-line-init vi_cursor
+
 # Aliases
 
 alias b=brew

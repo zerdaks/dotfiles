@@ -31,10 +31,13 @@ style = "text"
 [os.symbols]
 Macos = " "
 
+# fish's fish_mode_prompt tags the line with the vi mode; starship's zsh
+# integration only forwards $KEYMAP, so insert and normal are all it can tell
+# apart - visual and replace would need zle widget wrapping in .zshrc.
 [character]
-success_symbol = "[❯](green)"
-error_symbol = "[❯](red)"
-vicmd_symbol = "[❮](mauve)"
+success_symbol = "[\\[I\\] ❯](green)"
+error_symbol = "[\\[I\\] ❯](red)"
+vicmd_symbol = "[\\[N\\] ❯](mauve)"
 
 [directory]
 style = "blue bold"
