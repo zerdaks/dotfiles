@@ -73,3 +73,4 @@ formatters:
 # Install various utilities
 util:
     @brew install bat colordiff eza fzf jq tokei
+    @brew install sevenzip # provides 7z, used by the unzip alias in .zshrc
