@@ -71,7 +71,7 @@ alias m=just
 
 # exec rather than source: re-sourcing double-loads zsh-syntax-highlighting
 alias r='exec zsh'
-alias rmds='find . -name ".DS_Store" | xargs rm'
+alias rmds='find . -name .DS_Store -delete'
 
 alias tm=tmux
 alias tokei='tokei --hidden'
