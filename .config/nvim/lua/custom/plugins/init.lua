@@ -18,7 +18,6 @@ require 'custom.plugins.telescope'
 require 'custom.plugins.trouble'
 
 require 'custom.plugins.lazygit'
-require 'custom.plugins.neogit'
 
 require 'custom.plugins.jdtls'
 require 'custom.plugins.vimtex'
