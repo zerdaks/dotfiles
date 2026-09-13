@@ -10,6 +10,9 @@ typeset -U path PATH
 # set XDG config home so XDG-aware tools (e.g. lazygit) use ~/.config on macOS
 export XDG_CONFIG_HOME="$HOME/.config"
 
+# use nvim wherever a program opens an editor
+export EDITOR=nvim VISUAL=nvim
+
 export GOPATH="$HOME/go"
 
 path=(
