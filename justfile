@@ -64,7 +64,7 @@ git:
 nvim:
     brew install neovim tree-sitter-cli
     brew install make # telescope-fzf-native and LuaSnip are compiled by nvim's PackChanged hook
-    brew install fd ripgrep # required by Telescope
+    brew install ripgrep # Telescope file search and live grep
     brew install buf prettier shfmt sql-formatter # conform.nvim; the rest come from the go and lua recipes
 
 # Install Go and its formatter
