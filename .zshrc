@@ -65,9 +65,10 @@ alias hs=fzf_history_search
 
 alias j=just
 
-alias ll='eza -l -g --icons'
+alias ls='eza --icons'
+alias ll='eza -lh --icons --git'
 alias lla='ll -a'
-alias llt=long_list_tree
+alias llt='eza --tree --icons -a --ignore-glob=.git --level=2'
 
 alias m=just
 
@@ -138,24 +139,6 @@ backup_run() {
 
 backup_dry_run() {
     backup_run "$@" --dry-run
-}
-
-# Calls eza directly rather than the lla alias: zsh expands aliases when a
-# function is parsed, which would make this depend on definition order.
-long_list_tree() {
-    local dir="." level=2
-
-    if (( $# > 0 )); then
-        if [[ $1 == <-> ]]; then
-            level=$1
-        else
-            dir=$1
-        fi
-
-        (( $# > 1 )) && level=$2
-    fi
-
-    eza -l -g --icons -a --tree --level="$level" --ignore-glob=".git" "$dir"
 }
 
 # Per-tool configuration
