@@ -170,7 +170,6 @@ unset __zsh_conf
 # preceding integrations install.
 source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source <(fzf --zsh)
-eval "$(rbenv init - zsh)"
 eval "$(fnm env --use-on-cd --shell zsh)"
 eval "$(zoxide init zsh)" # provides z and zi
 eval "$(starship init zsh)"

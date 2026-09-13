@@ -8,7 +8,6 @@ require('conform').setup {
     json = { 'jq' },
     lua = { 'stylua' },
     proto = { 'buf' },
-    ruby = { 'rubocop' },
     sh = { 'shfmt' },
     sql = { 'sql_formatter' },
     typescript = { 'prettier' },

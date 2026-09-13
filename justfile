@@ -8,7 +8,7 @@ default:
     just --list
 
 # Run every recipe; note that postgres starts a background service
-all: stow zsh brew git nvim tmux fonts util go lua java ruby postgres copilot
+all: stow zsh brew git nvim tmux fonts util go lua java postgres copilot
 
 # Install stow and link the dotfiles into $HOME
 [group('setup')]
@@ -26,7 +26,7 @@ brew:
 zsh:
     brew install starship zoxide zsh-autosuggestions zsh-syntax-highlighting
     brew install fzf # .zshrc sources `fzf --zsh` at startup, so it must land here
-    brew install fnm rbenv # Node and Ruby version managers, initialized in .zshrc
+    brew install fnm # Node version manager, initialized in .zshrc
 
 # Install tmux and plugin manager
 [group('shell')]
@@ -65,7 +65,7 @@ nvim:
     brew install neovim tree-sitter-cli
     brew install make # telescope-fzf-native and LuaSnip are compiled by nvim's PackChanged hook
     brew install fd ripgrep # required by Telescope
-    brew install buf prettier shfmt sql-formatter # conform.nvim; the rest come from the go, lua and ruby recipes
+    brew install buf prettier shfmt sql-formatter # conform.nvim; the rest come from the go and lua recipes
 
 # Install Go and its formatter
 [group('lang')]
@@ -81,13 +81,6 @@ lua:
 [group('lang')]
 java:
     brew install openjdk # keg-only, so .zprofile puts it on PATH
-
-# Install Ruby and its formatter
-[group('lang')]
-ruby:
-    rbenv install --skip-existing 3.4.2 # rbenv comes from the zsh recipe
-    rbenv global 3.4.2
-    gem install rubocop # used by conform.nvim
 
 # Install PostgreSQL and pgcli
 [group('data')]
