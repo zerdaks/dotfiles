@@ -65,7 +65,7 @@ alias hs=fzf_history_search
 
 alias j=just
 
-alias ls='eza --icons'
+alias ls='eza --icons=auto'
 alias ll='eza -lh --icons --git'
 alias lla='ll -a'
 alias llt='eza --tree --icons -a --ignore-glob=.git --level=2'
