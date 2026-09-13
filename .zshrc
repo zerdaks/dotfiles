@@ -116,7 +116,7 @@ alias hd=history_delete
 # instead of files).
 fzf_history_search() {
     local cmd
-    cmd=$(fc -rln 1 | fzf --height 40% --reverse --tiebreak=index)
+    cmd=$(fc -rln 1 | fzf --height 40% --reverse --scheme=history)
     [[ -n $cmd ]] && print -z -- "$cmd"
 }
 
