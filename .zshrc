@@ -54,7 +54,7 @@ alias c=clear
 alias cat=bat
 alias claude='claude --dangerously-skip-permissions'
 
-alias diff=colordiff
+alias diff='diff --color'
 
 alias g=git
 alias gl=lazygit

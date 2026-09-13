@@ -42,7 +42,7 @@ fonts:
 # Install various utilities
 [group('shell')]
 util:
-    brew install bat colordiff eza jq tokei
+    brew install bat eza jq tokei
     brew install sevenzip # provides 7zz, used by the unzip alias in .zshrc
 
 # Install Copilot CLI

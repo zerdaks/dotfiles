@@ -91,7 +91,7 @@ Report exactly what changed (file + one-line summary each) and the verification 
 
   ```sh
   gh api repos/nvim-lua/kickstart.nvim/contents/init.lua --jq .content | base64 -d > /tmp/up.lua
-  /usr/bin/diff /tmp/up.lua .config/nvim/init.lua    # /usr/bin/ because `diff` is aliased to colordiff
+  diff /tmp/up.lua .config/nvim/init.lua
   ```
 
   A handful of differing lines is the intended state; a large diff means personal config has crept back in, and *that* is the finding. What survives there today is the `require 'keymaps'` / `require 'options'` pair at the end and two entries in the `servers` table.
