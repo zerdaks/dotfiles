@@ -20,8 +20,17 @@ setopt HIST_REDUCE_BLANKS
 # Homebrew's site-functions supplies brew, git, just, eza, fnm, gh and others.
 fpath=("$HOMEBREW_PREFIX/share/zsh/site-functions" $fpath)
 autoload -Uz compinit && compinit -C
+# Homebrew's git completion only matches from the start of a filename, so
+# "g add pro<Tab>" never finds .zprofile. Load zsh's built-in one instead.
+if [[ -r /usr/share/zsh/$ZSH_VERSION/functions/_git ]]; then
+  unfunction _git
+  autoload -Uz /usr/share/zsh/$ZSH_VERSION/functions/_git
+fi
 zstyle ':completion:*' menu select
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' # case-insensitive
+# Case-insensitive prefix, then substring (fish-style).
+zstyle ':completion:*' matcher-list \
+  'm:{a-z}={A-Za-z}' \
+  'm:{a-z}={A-Za-z} l:|=* r:|=*'
 
 # Vi key bindings
 bindkey -v
