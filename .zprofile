@@ -15,6 +15,9 @@ export EDITOR=nvim VISUAL=nvim
 
 export GOPATH="$HOME/go"
 
+# point JAVA_HOME-aware tools (Gradle, Maven) at Homebrew's keg-only JDK
+export JAVA_HOME="$HOMEBREW_PREFIX/opt/openjdk/libexec/openjdk.jdk/Contents/Home"
+
 path=(
     "$HOMEBREW_PREFIX/opt/make/libexec/gnubin"   # GNU Make
     "$HOMEBREW_PREFIX/opt/postgresql@18/bin"     # keg-only, so not linked by default
