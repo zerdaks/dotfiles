@@ -52,6 +52,18 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
 -- Do not open folds when moving with Shift+[ or Shift+]
 vim.opt.foldopen:remove 'block'
 
+-- CSV
+
+-- The built-in csv syntax colours each column; the treesitter parser Kickstart
+-- attaches only colours the delimiters, and disables syntax while it runs.
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'csv', 'tsv' },
+  callback = function(args)
+    vim.treesitter.stop(args.buf)
+    vim.bo[args.buf].syntax = args.match
+  end,
+})
+
 -- COPILOT
 
 -- Activate the copilot-language-server config shipped by nvim-lspconfig.
