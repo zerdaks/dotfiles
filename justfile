@@ -28,11 +28,10 @@ zsh:
     brew install fzf # .zshrc sources `fzf --zsh` at startup, so it must land here
     brew install fnm # Node version manager, initialized in .zshrc
 
-# Install tmux and plugin manager
+# Install tmux
 [group('shell')]
 tmux:
     brew install tmux
-    [ -d "$HOME/.tmux/plugins/tpm" ] || git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 
 # Install fonts
 [group('shell')]
