@@ -70,7 +70,6 @@ alias gl=lazygit
 
 # zsh's history shows only the last 16 entries; start from event 1 for all of them
 alias h='history 1'
-alias hs=fzf_history_search
 
 alias j=just
 
@@ -116,20 +115,6 @@ history_delete() {
 }
 alias hd=history_delete
 
-# fish's `commandline --replace` has no equivalent outside a ZLE widget, and an
-# alias cannot invoke one. print -z pushes the result onto the editor buffer
-# stack instead, so it lands on the next prompt ready to edit.
-#
-# Named without a leading underscore: zsh's completion system treats
-# underscore-prefixed commands as completion-system functions, which breaks
-# argument completion (tab-completing a path shows compadd's own flags
-# instead of files).
-fzf_history_search() {
-    local cmd
-    cmd=$(fc -rln 1 | fzf --height 40% --reverse --scheme=history)
-    [[ -n $cmd ]] && print -z -- "$cmd"
-}
-
 # takes source and destination; trailing arguments are passed through to rsync.
 # The source is normalized to always end in / so a bare directory (e.g. `back
 # ~/dotfiles .`) merges its contents into the destination, same as `.` does,
@@ -161,6 +146,7 @@ unset __zsh_conf
 # zsh-syntax-highlighting must be sourced last; it wraps the widgets the
 # preceding integrations install.
 source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+export FZF_CTRL_R_OPTS='--reverse' # Ctrl-R history search with the prompt on top
 source <(fzf --zsh)
 eval "$(fnm env --use-on-cd --shell zsh)"
 eval "$(zoxide init zsh)" # provides z and zi
