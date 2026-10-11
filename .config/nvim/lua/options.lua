@@ -1,4 +1,4 @@
--- termguicolors is required by bufferline and other plugins
+-- termguicolors is required by several plugins
 vim.opt.termguicolors = true
 
 -- Set relative line numbers

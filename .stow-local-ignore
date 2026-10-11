@@ -1,3 +1,4 @@
+# commit is absent on purpose: it is linked into ~/.claude to work in every repo
 .claude/skills/improve
 .claude/skills/propose
 
@@ -5,6 +6,7 @@
 /.gitignore
 
 /hooks
+/docs
 
 README.md
 justfile

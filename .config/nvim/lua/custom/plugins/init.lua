@@ -9,7 +9,7 @@
 require 'custom.plugins.colorscheme'
 
 require 'custom.plugins.autopairs'
-require 'custom.plugins.bufferline'
+require 'custom.plugins.tabline'
 require 'custom.plugins.conform'
 require 'custom.plugins.leap'
 require 'custom.plugins.oil'

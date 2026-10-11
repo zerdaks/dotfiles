@@ -1,97 +1,170 @@
 ---
 name: propose
-description: Survey this dotfiles repo and write up one high-value proposal to change the *stack itself* - a plugin or tool to add, remove, replace, or consolidate. Use whenever the user asks "what should I add", "should I swap X for Y", "are any of my plugins obsolete", "what am I missing", "propose an improvement to my setup", "is this still the right tool", or invokes /propose, without naming a specific change. The skill chooses what to propose and writes a concrete, reviewable proposal - it does NOT apply it. No files change.
+description: Survey this dotfiles repo and pitch one high-value change to the *stack itself* - a plugin or tool to add, remove, replace, or consolidate. Use whenever the user asks "what should I add", "should I swap X for Y", "are any of my plugins obsolete", "what am I missing", "propose an improvement to my setup", "is this still the right tool", or invokes /propose, without naming a specific change. The skill checks docs/proposals.md so it never repeats an earlier idea, gives a short overview and asks the user to accept or reject it, writes a plan only if they accept, and applies it only once they approve the plan.
 ---
 
 # Propose
 
-Pick the single most valuable change to *what this setup is made of*, and write it up as a concrete, reviewable proposal. One run produces one focused proposal - a clear pitch the user can accept, reject, or refine. **You do not apply it.** No files change. The deliverable is the proposal itself.
+Pick the single most valuable change to *what this setup is made of* and pitch it in a few lines. The user decides at each step, and nothing is changed until they say so:
 
-This is the sibling of `/improve`, aimed one level up. `improve` asks "is this config **correct**?" - it reads the files offline, finds bugs, dead settings, deprecated idioms, and formatting drift, and applies the fixes the user approves. `propose` asks "is this config still the **right choice**?" - whether a plugin has been superseded, whether two tools are doing one job, whether something the user reaches for daily is missing. Those are different questions with different evidence: `improve` finds its answers inside the repo, `propose` usually cannot. The value here is *judgment plus restraint*: surveying what the setup is today, spotting the one change a thoughtful user would make next, and describing it well enough to decide on - without jumping to make it.
+1. **Pitch** - a short overview. The user accepts or rejects it.
+2. **Plan** - only if accepted: how it would be applied. The user approves it, asks for changes, or stops.
+3. **Build** - only once the plan is approved.
 
-## Hard rule: propose, don't execute
+This is the sibling of `/improve`, aimed one level up. `improve` asks "is this config **correct**?" and finds its answers inside the repo. `propose` asks "is this config still the **right choice**?" - whether a plugin has been superseded, whether two tools are doing one job, whether something the user reaches for daily is missing - and usually has to look outside the repo to answer. The value is in *judgment plus restraint*: spotting the one change a thoughtful user would make next, and letting them decide cheaply before anyone spends effort on it. That's why the pitch is short - a rejected idea should cost the user ten seconds of reading, not a page.
 
-This skill is read-only on the working tree. Do **not** create, edit, or delete config files, do **not** run `just` recipes (every one of them installs software via `brew` or `npm`), do **not** run `stow`, do **not** touch the `vim.pack` lockfile at `~/.config/nvim/nvim-pack-lock.json`, and do **not** call `vim.pack.add`, `vim.pack.update` or `vim.pack.del`, which install, update, or remove plugins. Surveying with read-only commands (`ls`, `grep`, `cat`, `git log`, `just --list`, `nvim --headless` startup profiling, web research) is expected and encouraged - you need to understand the setup to propose well. But the run ends with a written proposal, not a change.
+## Hard rule: nothing changes until the plan is approved
 
-If you catch yourself editing a `.lua` or `.zsh` file, stop - that's out of scope for this skill. If the user likes the proposal, *they* will green-light building it.
+Until the user approves a plan (step 6), the only file you touch is `docs/proposals.md`. No config files, no lockfiles, no installed software. Surveying with read-only commands (`git ls-files`, `ls`, `grep`, `git log`, `just --list`, a headless editor start, `gh api`, web research) is expected - you need to understand the setup to propose well. Before you run any `just` recipe, read what it does in the `justfile`: anything that installs or removes software, links files into `$HOME`, starts a service, or commits is off limits. The same goes for a plugin manager's install, update, and delete calls. Don't rely on a list of recipe or command names - this file can't know about a mutating one added after it was written.
+
+If you catch yourself editing a config file before the user has approved a plan, stop.
+
+## Plain ASCII only
+
+Everything this skill outputs - the pitch, the plan, your replies, and the lines in `docs/proposals.md` - is plain ASCII: `-` or `--` instead of em/en dashes, `...` instead of an ellipsis, straight quotes, `->` instead of arrows, `|` as a separator, and no emoji. The user reads these in a terminal and in plain-text files, where typographic characters get in the way. Before you send anything, check it for characters outside ASCII and replace them.
 
 ## What "high-value" means here
 
-A dotfiles repo is not a codebase that grows features; it is a set of *choices* that silently rots as the ecosystem moves. Plugins get archived. Their best ideas get absorbed into core. Two tools that were complementary in 2023 became redundant in 2025. So you're optimizing for the change that most improves the setup per unit of disruption to the user's habits.
+A dotfiles repo is not a codebase that grows features; it is a set of *choices* that silently rots as the ecosystem moves. Plugins get archived. Their best ideas get absorbed into core. Two tools that were complementary a few years ago are redundant now. So you're optimizing for the change that most improves the setup per unit of disruption to the user's habits. What the setup *is* today comes from the tree, not from this file - step 1 derives it. Good candidates, roughly in order of how often they pay off:
 
-Good candidates, roughly in order of how often they pay off:
+- **Redundancy worth collapsing** - two plugins or tools doing one job. Usually the highest-value find, because removal is pure profit: less to maintain, fewer keymaps competing, one thing to learn instead of two. Look at the whole set, not each file in isolation - redundancy is invisible one spec at a time, and it often spans the boundary between a vendored base config and the user's own layer.
+- **Something superseded** - a plugin or tool that is archived or has gone quiet, whose job the editor, shell, or terminal now does natively, or that a clearly better-maintained option has replaced.
+- **A real gap** - a capability the setup lacks that the user's *own existing choices* imply they'd want. The justification has to come from this repo, not from a "top 10 plugins" list. If you can't point at something already here that makes the gap felt, it's a suggestion, not a gap.
+- **The less-watched corners** - shell plugins and aliases, overlap between terminal and multiplexer, installed CLI utilities, git aliases and hooks. They get less attention than the editor config and drift just as much.
 
-- **Redundancy worth collapsing** - two plugins or tools doing one job. This is usually the highest-value find, because removal is pure profit: less to maintain, fewer keymaps competing, faster startup, one thing to learn instead of two. Look hard at the whole set, not at each file in isolation - redundancy is invisible when you read one plugin spec at a time.
-- **Something superseded** - a plugin that is archived or effectively unmaintained, whose job Neovim core now does natively, or that a clearly better-maintained option has replaced. Check the *evidence*, not the vibe: last commit date, an archive notice, an upstream deprecation, a `:h` entry that now covers it.
-- **A real gap** - a capability the setup lacks that the user's *own existing choices* imply they'd want. The justification has to come from this repo, not from a "top 10 plugins" list. If you can't point at something already here that makes the gap felt, it's not a gap, it's a suggestion.
-- **Non-nvim stack choices** - zsh plugins and aliases, overlap between tmux and wezterm, the CLI utilities installed by `just util`, git aliases and hooks. These get less attention than the nvim config and drift just as much.
+Lower value, usually skip: cosmetic swaps, "this plugin is popular" with no argument for why it fits *this* setup, and migrating to a config distro or framework. The bar is the minimum change that solves a *real* problem, nothing speculative: something the user would call *worth doing*, not just *doable*.
 
-Lower value, usually skip: cosmetic swaps, "this plugin is popular" with no argument for why it fits *this* setup, anything requiring the user to relearn their workflow for a marginal gain, and migrating to a config distro or framework. Aim for the minimum change that solves a real problem, nothing speculative - it should be something the user would call *worth doing*, not just *doable*.
-
-**Weigh switching cost honestly.** This is the thing that separates a real dotfiles proposal from a bad one. Config is muscle memory. A plugin that is 20% better but rebinds keys the user has typed ten thousand times is a *bad* trade, and a proposal that ignores that is not credible. Say plainly what the user would have to relearn.
+**Weigh switching cost honestly.** Config is muscle memory. A plugin that is 20% better but rebinds keys the user has typed ten thousand times is a bad trade, and a pitch that hides that is not credible.
 
 ## The loop
 
-### 1. Survey what's actually here
+### 1. Survey
 
-Map the setup as it stands, so your proposal is genuinely new and actually fits:
-
-```sh
-ls .config/nvim/lua/custom/plugins/          # the plugins the user deliberately chose
-cat ~/.config/nvim/nvim-pack-lock.json       # everything installed, including transitive deps
-grep -rn 'vim.keymap.set' .config/nvim/lua/  # the keymaps in play - the collision surface
-grep -rn 'alias ' .zshrc .config/zsh/        # shell shortcuts, i.e. what the user types most
-just --list                                  # the install surface (see below)
-git log --oneline -20                        # what the user has been changing lately
-```
-
-Two structural facts about this repo that shape what you can propose:
-
-- `.config/nvim/init.lua` is vendored Kickstart.nvim, deliberately kept within a few lines of upstream so it can be replaced wholesale on update. It is not where proposals land. The real surface is `lua/keymaps.lua`, `lua/options.lua`, and `lua/custom/plugins/*.lua`, which load at the end of `init.lua` and intentionally override it. But **do read `init.lua`** during the survey - it's what installs mini.nvim, telescope, treesitter, LSP and friends, so a plugin you think is missing may already be there, and a redundancy may span the Kickstart/custom boundary. Plugins are managed by Neovim's built-in `vim.pack`, not lazy.nvim: each file under `lua/custom/plugins/` calls `vim.pack.add` and then its own `setup`.
-- Anything requiring a new binary needs a `just` recipe to install it. A proposal that adds a dependency without saying which recipe changes is incomplete.
-
-Don't over-survey. Enough to know the vocabulary and spot a real candidate. If two or three compete, pick the best value-to-disruption ratio and note the others at the end.
-
-**Before proposing to remove or replace anything, check whether it's actually used.** The config tells you what's *installed*, never what's *reached for* - a plugin abandoned two years ago and one used every morning are byte-for-byte indistinguishable in a spec file. Proposing to delete something the user depends on is the worst output this skill can produce, and it's also the cheapest error to avoid, because the evidence is sitting right outside the config:
+Start with the proposal log. Every earlier run added a line to
+`docs/proposals.md` (newest first), and repeating one of them wastes the run - the user has
+already seen it, and may have already rejected it:
 
 ```sh
-ls -d ~/some/configured/path        # does the directory it points at even exist?
-find ~/that/path -type f -newermt "3 months ago" | head   # is anything recent?
-git -C ~/that/repo log -1 --date=short --format="%ad"     # last activity
+cat docs/proposals.md 2>/dev/null
 ```
 
-Two plugins that look like obvious redundancy can turn out to be two live systems the user runs deliberately for different purposes. Equally, a stack that looks healthy can be pointed at a directory nobody has touched in a year - which turns a vague "you have two of these" into a specific, well-evidenced proposal. Either way the check changes the answer, so run it before you commit to a candidate rather than after.
+Treat every logged proposal as taken, whatever its status - `proposed` and
+`accepted` ones are in the pipeline, `rejected` ones the user said no to, `built`
+ones are already applied. Don't re-pitch a close variant either (the same swap
+with a different replacement, or the same removal argued another way) unless you
+can say what makes it materially different. Rejected lines also tell you what
+this user doesn't value - if several are the same kind of idea, steer away from
+that kind.
 
-### 2. Check the outside world
+Then get oriented in the setup. Map what it is made of **today** from the tree
+itself - any map written down here would go stale, and proposing something that
+is already there is an easy way for this skill to fail:
 
-This step is what makes the proposal worth reading, and it's the one you cannot skip. **The files cannot tell you the ecosystem moved.** A plugin spec looks exactly the same the day it's written and three years after the repo was archived. `improve` is blind to this by construction; `propose` is where it gets caught.
+```sh
+git ls-files                               # the config that is actually tracked
+just --list                                # the install surface; read the justfile for what each recipe installs
+git log --oneline -20                      # what the user has been changing lately
+grep -rn 'keymap\|bindkey\|^bind' .        # the key bindings in play - the collision surface
+grep -rn '^alias ' .                       # shell shortcuts, i.e. what the user types most
+```
 
-For the candidate(s) you're weighing, verify against current reality rather than recalled reality - your training cutoff is behind the user's Neovim:
+From there, find each tool's plugin list and its lockfile (which also shows
+transitive dependencies), and read the comments and the README as you go - this
+repo records its deliberate oddities in place. In particular, find anything
+vendored from upstream and meant to stay close to it. Read it, because it
+installs things too and a plugin you think is missing may already be there, but
+a proposal lands in the user's own layer, never in the vendored file. And note
+how software gets installed: a proposal that needs a new binary has to say which
+recipe installs it.
 
-- Is the repo archived, or has it gone quiet? Check the actual last-commit date.
-- Has Neovim core absorbed the functionality? Core has been steadily eating plugin territory (LSP config, commenting, snippets, and more). Check the version the user is on.
-- Is there a maintained successor the community actually moved to, or just a shinier alternative?
-- If proposing a replacement, does it cover the *specific* features this config uses? Read the config's own options before claiming parity.
+**Before pitching to remove or replace anything, check whether it's actually used.** The config tells you what's *installed*, never what's *reached for* - a plugin abandoned two years ago and one used every morning look identical in a spec file. Pitching the removal of something the user depends on is the worst output this skill can produce, and the cheapest to avoid, because the evidence sits right outside the config:
 
-Prefer checking to guessing. One verified fact ("archived in March, upstream points at X") makes a proposal; three plausible-sounding claims sink one.
+```sh
+ls -d ~/some/configured/path                             # does the directory it points at even exist?
+git -C ~/that/path log -1 --date=short --format='%ad'    # last activity
+git -C ~/that/path log --since='3 months ago' --oneline | wc -l
+```
 
-### 3. Decide and state it
+Two plugins that look like obvious redundancy can turn out to be two live systems the user runs deliberately. Equally, a healthy-looking stack can point at a directory nobody has touched in a year. Either way the check changes the answer, so run it before you commit to a candidate.
 
-Before writing the full proposal, name the one change you're proposing and *why it's the right one* in a sentence or two. If you can't articulate why the user would want it, it's not the right pick.
+**Then check the outside world.** The files cannot tell you the ecosystem moved: a plugin spec looks the same the day it's written and three years after the repo was archived. Verify against current reality, not recalled reality - your training data is older than the user's installed versions:
 
-If nothing genuinely worthwhile turns up, say so. An honest "this setup is in good shape, here's the one marginal idea and why I set the others aside" is a legitimate and useful outcome - it tells the user their config is done, which is worth knowing. Inventing a change to look productive is the failure mode this skill exists to avoid.
+- Is the repo archived, or has it gone quiet? Get the real last-commit date (`git ls-remote`, `gh api`, the plugin's own checkout).
+- Has core absorbed the job? Check against the version the user is actually running.
+- Is there a maintained successor people actually moved to, or just a shinier alternative?
+- Does the replacement cover the *specific* options and keys this config uses? Read the config before claiming parity.
 
-### 4. Write the proposal
+One verified fact makes a pitch; three plausible-sounding claims sink one.
 
-This is the deliverable. Keep it concrete and grounded in the actual files - reference real paths, real plugin names, real keymaps. Structure it as:
+Don't over-survey. A few minutes is enough to spot a real candidate. If two or three compete, pick the one with the best value-to-disruption ratio.
 
-- **What** - the change, in one or two sentences. Add, remove, replace, or consolidate what, exactly?
-- **Why** - the value, and the evidence behind it. What does the user get, and what specifically did you verify (archived repo, core coverage, the two plugins that overlap)?
-- **How it fits** - which files change (`lua/custom/plugins/<name>.lua`, `.zshrc`, the `justfile`), which existing settings and keymaps it touches, and what it interacts with. Enough that the reader can picture the shape without you writing it.
-- **Sketch** - the shape, not the finished config: the plugin spec skeleton, the keymaps that would change, or the abbreviation. Illustrative snippets are fine; a complete drop-in file is not. **Keep any command you recommend as narrow as the change.** The user will paste what you write, so a command wider than the proposal is a hazard rather than a convenience: `vim.pack.update()` updates every plugin and churns the whole lockfile when `vim.pack.update { 'name' }` was the actual need, and `brew upgrade` is not `brew upgrade <formula>`. Reach for the narrowest form that does the job, and if a wide command genuinely is required, say what else it will touch. Where you can, include the command that *verifies* the change landed - it's the difference between the user hoping it worked and knowing.
-- **Cost & risk** - rough size (small/medium/large), what the user has to relearn, what could break, whether it needs a `just` recipe or a new binary, whether `nvim-pack-lock.json` churns. Call out anything that would make it *not* worth it. Be straight here; a proposal that only lists upside isn't a proposal, it's a pitch.
-- **Open questions** - the decisions the user needs to make for this to proceed.
+### 2. Decide
 
-### 5. Hand it back
+Pick the one change to pitch. Check it against the log from step 1 - if it's already there, pick again. If you can't say in a sentence why the user would want it, it's not the right pick. If nothing genuinely worthwhile turns up, say so - an honest "this setup is in good shape" beats inventing a change, and tells the user something worth knowing.
 
-End the run with the proposal and nothing changed. Explicitly confirm you made no edits. Close with **Also considered** - the one or two other changes you weighed and set aside, one line each with the reason, so the user knows the space you looked at and doesn't have to wonder whether you noticed the obvious thing. Then stop: the next move is the user's - accept it, refine it, or ask for a different one.
+### 3. Pitch it
+
+Keep it to a few lines - enough to decide on, nothing more. Ground it in the real files, but save the detail for the plan:
+
+```
+Proposal: <title>
+<What gets added, removed, replaced, or consolidated - one or two sentences.>
+Why: <the benefit, and the one fact you verified that backs it - one sentence.>
+Size: <small|medium|large> - <what it touches, and what the user has to relearn (or "nothing to relearn")>
+```
+
+No sketch, no code, no open questions, no list of alternatives - all of that either belongs in the plan or doesn't matter if the answer is no. Only add a line if something would change the decision (a new binary, a feature the user loses, a wide lockfile churn).
+
+### 4. Log it and ask
+
+Add one line to `docs/proposals.md`, newest first: insert it directly below the heading, above the existing entries, so the latest proposal is always at the top. If the file doesn't exist, create it with the heading:
+
+```markdown
+# Proposals
+
+Logged by /propose so it doesn't repeat itself. Change a status to accepted, rejected, or built.
+```
+
+Each line is `- <YYYY-MM-DD> | proposed | <title> - <the What, in one sentence>`, for example:
+
+```markdown
+- 2026-09-26 | proposed | Drop the second fuzzy finder - remove plugin B and move its two keymaps to plugin A, which already covers them.
+```
+
+That line is only an illustration - don't copy it into the log. New lines always start as `proposed`. Don't stage or commit the file; the user decides whether the log goes in the repo.
+
+Then ask the user to accept or reject the proposal - with the AskUserQuestion tool if you have it (options: Accept, Reject), otherwise as a one-line question. Stop and wait.
+
+### 5. Record the verdict
+
+Update the proposal's line in `docs/proposals.md`:
+
+- **Reject** - set the status to `rejected`. Don't ask why. Then stop; offer to run again for a different idea.
+- **Accept** - set the status to `accepted` and go on to step 6.
+- **Anything else** (a tweak, a question) - answer or adjust the pitch, update the line's title and summary if the change itself changed, and ask again. Don't infer a verdict the user didn't give.
+
+```markdown
+- 2026-09-26 | rejected | Drop the second fuzzy finder - remove plugin B and move its two keymaps to plugin A, which already covers them.
+```
+
+Only touch the line for this proposal.
+
+### 6. Plan it
+
+Now the detail is worth writing, because the user wants the thing. Keep it concrete and grounded in the actual files:
+
+- **Shape** - which files change, which existing settings and keymaps it touches, and what it interacts with.
+- **Evidence** - what you verified and how (the last-commit date, the core feature and the version it landed in, the usage check), so the user can re-check it.
+- **Steps** - the edits, in order, then every command that installs, removes, or updates software, written out exactly. Keep each as narrow as the change: update or delete the one plugin, upgrade the one formula. A command wider than the proposal churns things the user never agreed to; if a wide one is truly required, say what else it touches. End with the command that *verifies* the change landed.
+- **Risks** - what the user has to relearn, what they lose, what could break, whether a lockfile churns, whether a `just` recipe or a new binary is needed. Be straight; a plan that only lists upside isn't credible.
+- **Questions** - only decisions you genuinely can't make from the repo or sensible defaults. For anything else, pick the obvious option and state it in the plan.
+
+Then ask the user to approve it - AskUserQuestion if you have it (options: Approve, Change, Stop). Nothing is changed yet. On **Change**, revise and ask again. On **Stop**, leave the line `accepted` and stop - they can apply it later.
+
+### 7. Build it
+
+Only after the plan is approved. Apply the plan and nothing else: every changed line and every command run should trace to it. Approval covers the commands the plan listed, exactly as written - if you find you need a different or wider one, stop and ask. Match the surrounding config's style and comment habits, leave vendored files alone, and if the change needs a new binary, add it to the recipe the plan named so a fresh machine gets it too. The limits from the hard rule still apply to anything outside the plan - don't commit, and don't install or remove anything the plan didn't name.
+
+Verify it the way the plan said, plus whatever the repo already uses to check itself (read the `justfile` and the formatter configs): the tool starts cleanly, the removed thing is gone from the lockfile, the replacement answers the keys the old one did. If something fails, fix it; if a fix would go beyond the plan, stop and ask.
+
+When everything passes, set the proposal's status to `built` and leave the changes uncommitted for the user to review. Finish with a short summary: what changed, how you verified it, and what to try first.
