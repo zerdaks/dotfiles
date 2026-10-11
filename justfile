@@ -21,12 +21,11 @@ stow:
 brew:
     brew alias | grep -q "clean=" || brew alias clean='cleanup && brew doctor' # `brew alias` is built in; the homebrew/aliases tap is deprecated
 
-# Install zsh prompt, plugins, and version managers
+# Install zsh prompt and plugins
 [group('shell')]
 zsh:
     brew install starship zoxide zsh-autosuggestions zsh-syntax-highlighting
     brew install fzf # .zshrc sources `fzf --zsh` at startup, so it must land here
-    brew install fnm # Node version manager, initialized in .zshrc
 
 # Install tmux
 [group('shell')]
@@ -64,6 +63,7 @@ nvim:
     brew install neovim tree-sitter-cli
     brew install make # telescope-fzf-native and LuaSnip are compiled by nvim's PackChanged hook
     brew install ripgrep # Telescope file search and live grep
+    brew install node # runs Mason's prettier and copilot-language-server
     brew install buf prettier sql-formatter # conform.nvim formatters that neither Mason nor another recipe installs
 
 # Install Go and its formatter

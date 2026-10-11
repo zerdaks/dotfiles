@@ -17,7 +17,7 @@ setopt HIST_REDUCE_BLANKS
 
 # Completions
 #
-# Homebrew's site-functions supplies brew, git, just, eza, fnm, gh and others.
+# Homebrew's site-functions supplies brew, git, just, eza, gh and others.
 fpath=("$HOMEBREW_PREFIX/share/zsh/site-functions" $fpath)
 autoload -Uz compinit && compinit -C
 # Homebrew's git completion only matches from the start of a filename, so
@@ -148,7 +148,6 @@ unset __zsh_conf
 source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 export FZF_CTRL_R_OPTS='--reverse' # Ctrl-R history search with the prompt on top
 source <(fzf --zsh)
-eval "$(fnm env --use-on-cd --shell zsh)"
 eval "$(zoxide init zsh)" # provides z and zi
 eval "$(starship init zsh)"
 source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
