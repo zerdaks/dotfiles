@@ -7,8 +7,8 @@ set quiet
 default:
     just --list
 
-# Run every recipe; note that postgres starts a background service
-all: stow zsh brew git nvim tmux fonts util go java postgres copilot
+# Run every recipe
+all: stow zsh brew git nvim tmux fonts util go java copilot
 
 # Install stow and link the dotfiles into $HOME
 [group('setup')]
@@ -75,10 +75,3 @@ go:
 [group('lang')]
 java:
     brew install openjdk # keg-only, so .zprofile puts it on PATH
-
-# Install PostgreSQL and pgcli
-[group('data')]
-postgres:
-    brew install postgresql@18
-    brew services start postgresql@18
-    brew install pgcli

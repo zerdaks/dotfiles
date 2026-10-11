@@ -20,7 +20,6 @@ export JAVA_HOME="$HOMEBREW_PREFIX/opt/openjdk/libexec/openjdk.jdk/Contents/Home
 
 path=(
     "$HOMEBREW_PREFIX/opt/make/libexec/gnubin"   # GNU Make
-    "$HOMEBREW_PREFIX/opt/postgresql@18/bin"     # keg-only, so not linked by default
     "$HOMEBREW_PREFIX/opt/openjdk/bin"           # Java
     "$GOPATH/bin"
     "$HOME/.local/bin"

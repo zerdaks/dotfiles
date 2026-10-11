@@ -2,6 +2,7 @@
 
 Logged by /propose so it doesn't repeat itself. Change a status to accepted, rejected, or built.
 
+- 2026-10-11 | built | Drop the PostgreSQL recipe - remove the postgres recipe (postgresql@18, its background service, pgcli) from the justfile and its PATH entry from .zprofile, and stop the orphaned server still running on this machine.
 - 2026-10-11 | built | Drop the standalone Lua toolchain - remove the lua recipe (lua, luarocks) from the justfile and the ~/.luarocks/bin PATH entry from .zprofile, since nvim runs its own LuaJIT and the only rocks ever installed stopped working when Homebrew moved Lua to 5.5.
 - 2026-10-11 | built | Drop hs for fzf's Ctrl-R - remove the fzf_history_search function and its hs alias from .zshrc, since fzf's own Ctrl-R history widget is already loaded.
 - 2026-10-11 | rejected | Replace telescope-undo with built-in Undotree - remove telescope-undo.nvim and point <leader>u at nvim's own :Undotree.
