@@ -8,7 +8,7 @@ default:
     just --list
 
 # Run every recipe; note that postgres starts a background service
-all: stow zsh brew git nvim tmux fonts util go lua java postgres copilot
+all: stow zsh brew git nvim tmux fonts util go java postgres copilot
 
 # Install stow and link the dotfiles into $HOME
 [group('setup')]
@@ -70,11 +70,6 @@ nvim:
 [group('lang')]
 go:
     brew install go goimports # goimports is used by conform.nvim
-
-# Install Lua and its package manager
-[group('lang')]
-lua:
-    brew install lua luarocks
 
 # Install a JDK for nvim-jdtls
 [group('lang')]

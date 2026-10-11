@@ -22,7 +22,6 @@ path=(
     "$HOMEBREW_PREFIX/opt/make/libexec/gnubin"   # GNU Make
     "$HOMEBREW_PREFIX/opt/postgresql@18/bin"     # keg-only, so not linked by default
     "$HOMEBREW_PREFIX/opt/openjdk/bin"           # Java
-    "$HOME/.luarocks/bin"                        # Lua package manager
     "$GOPATH/bin"
     "$HOME/.local/bin"
     "$HOME/.opencode/bin"
