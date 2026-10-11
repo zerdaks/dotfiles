@@ -1,9 +1,6 @@
 -- telescope, telescope-fzf-native and telescope-ui-select come from Kickstart.
--- Only these two extensions and the config below are ours.
-vim.pack.add {
-  'https://github.com/nvim-telescope/telescope-live-grep-args.nvim',
-  'https://github.com/debugloop/telescope-undo.nvim',
-}
+-- Only this extension and the config below are ours.
+vim.pack.add { 'https://github.com/debugloop/telescope-undo.nvim' }
 
 local actions = require 'telescope.actions'
 
@@ -46,7 +43,6 @@ require('telescope').setup {
 
 pcall(require('telescope').load_extension, 'fzf')
 pcall(require('telescope').load_extension, 'ui-select')
-require('telescope').load_extension 'live_grep_args'
 require('telescope').load_extension 'undo'
 
 local builtin = require 'telescope.builtin'
