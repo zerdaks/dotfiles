@@ -39,7 +39,3 @@ vim
 > System Settings &rarr; Keyboard &rarr; Keyboard Shortcuts... &rarr; Input Sources &rarr; Select the previous input source (uncheck)
 
 [https://stackoverflow.com/a/71337138](https://stackoverflow.com/a/71337138)
-
-```bash
-tm # followed by prefix + shift-i to install all
-```
