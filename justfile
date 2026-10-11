@@ -64,7 +64,7 @@ nvim:
     brew install neovim tree-sitter-cli
     brew install make # telescope-fzf-native and LuaSnip are compiled by nvim's PackChanged hook
     brew install ripgrep # Telescope file search and live grep
-    brew install buf prettier shfmt sql-formatter # conform.nvim; the rest come from the go and lua recipes
+    brew install buf prettier sql-formatter # conform.nvim formatters that neither Mason nor another recipe installs
 
 # Install Go and its formatter
 [group('lang')]
@@ -74,7 +74,7 @@ go:
 # Install Lua and its package manager
 [group('lang')]
 lua:
-    brew install lua luarocks lua-language-server stylua
+    brew install lua luarocks
 
 # Install a JDK for nvim-jdtls
 [group('lang')]
