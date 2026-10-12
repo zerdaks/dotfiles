@@ -8,7 +8,7 @@ default:
     just --list
 
 # Run every recipe
-all: stow zsh brew git nvim tmux fonts util go java copilot
+all: stow zsh brew git nvim tmux fonts util cloud go java copilot
 
 # Install stow and link the dotfiles into $HOME
 [group('setup')]
@@ -42,6 +42,13 @@ fonts:
 util:
     brew install bat eza jq tokei
     brew install sevenzip # provides 7zz, used by the unzip alias in .zshrc
+
+# Install the AWS and Kubernetes CLIs
+[group('shell')]
+cloud:
+    brew install awscli # provides aws, used by .config/zsh/aws.zsh
+    brew install kubernetes-cli # provides kubectl, used by .config/zsh/kubectl.zsh
+    brew install kubectx # provides kubectx and kubens
 
 # Install Copilot CLI
 [group('shell')]
