@@ -66,7 +66,6 @@ alias claude='claude --dangerously-skip-permissions'
 alias diff='diff --color'
 
 alias g=git
-alias gl=lazygit
 
 # zsh's history shows only the last 16 entries; start from event 1 for all of them
 alias h='history 1'
