@@ -2,6 +2,7 @@
 
 Logged by /propose so it doesn't repeat itself. Change a status to accepted, rejected, or built.
 
+- 2026-10-13 | built | Add delta to lazygit's diff panel - install git-delta in the git recipe and set it as lazygit's diff renderer with the Catppuccin Mocha theme that bat already uses, leaving .gitconfig and terminal git output untouched.
 - 2026-10-13 | built | Drop the Copilot CLI recipe - remove the copilot recipe from the justfile and uninstall the copilot-cli cask, leaving nvim's Copilot completions (Mason's copilot-language-server) untouched.
 - 2026-10-11 | built | Drop fnm for Homebrew's Node - remove fnm from the zsh recipe and its init line from .zshrc, and use the Node that Homebrew already installs as a dependency of czg, prettier and sql-formatter.
 - 2026-10-11 | built | Drop the PostgreSQL recipe - remove the postgres recipe (postgresql@18, its background service, pgcli) from the justfile and its PATH entry from .zprofile, and stop the orphaned server still running on this machine.

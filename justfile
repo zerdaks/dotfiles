@@ -62,6 +62,7 @@ git:
     brew install gh # provides the zsh completions .zshrc picks up
     brew install gitleaks # required by hooks/pre-push
     brew install lazygit # required by lazygit.nvim and .config/lazygit
+    brew install git-delta # diff renderer for .config/lazygit
     git config core.hooksPath hooks
 
 # Install Neovim and its external dependencies

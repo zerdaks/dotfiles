@@ -1,2 +1,5 @@
 os:
   editPreset: "nvim-remote"
+git:
+  diffRenderers:
+    - command: delta --dark --paging=never --syntax-theme='Catppuccin Mocha'
