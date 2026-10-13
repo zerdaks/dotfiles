@@ -8,7 +8,7 @@ default:
     just --list
 
 # Run every recipe
-all: stow zsh brew git nvim tmux fonts util cloud go java copilot
+all: stow zsh brew git nvim tmux wezterm fonts util cloud go java copilot
 
 # Install stow and link the dotfiles into $HOME
 [group('setup')]
@@ -31,6 +31,11 @@ zsh:
 [group('shell')]
 tmux:
     brew install tmux
+
+# Install WezTerm
+[group('shell')]
+wezterm:
+    brew install --cask wezterm # configured by .wezterm.lua
 
 # Install fonts
 [group('shell')]
