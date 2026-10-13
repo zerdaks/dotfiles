@@ -8,7 +8,7 @@ default:
     just --list
 
 # Run every recipe
-all: stow zsh brew git nvim tmux wezterm fonts util cloud go java copilot
+all: stow zsh brew git nvim tmux wezterm fonts util cloud go java
 
 # Install stow and link the dotfiles into $HOME
 [group('setup')]
@@ -54,11 +54,6 @@ cloud:
     brew install awscli # provides aws, used by .config/zsh/aws.zsh
     brew install kubernetes-cli # provides kubectl, used by .config/zsh/kubectl.zsh
     brew install kubectx # provides kubectx and kubens
-
-# Install Copilot CLI
-[group('shell')]
-copilot:
-    brew install copilot-cli
 
 # Configure Git and install related tools
 [group('git')]
