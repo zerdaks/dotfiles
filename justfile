@@ -70,7 +70,7 @@ nvim:
     brew install neovim tree-sitter-cli
     brew install make # telescope-fzf-native and LuaSnip are compiled by nvim's PackChanged hook
     brew install ripgrep # Telescope file search and live grep
-    brew install node # runs Mason's prettier and copilot-language-server
+    brew install node # runs Mason's copilot-language-server
     brew install buf prettier sql-formatter # conform.nvim formatters that neither Mason nor another recipe installs
 
 # Install Go and its formatter
