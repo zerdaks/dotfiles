@@ -8,7 +8,7 @@
 
 require 'custom.plugins.colorscheme'
 
-require 'custom.plugins.autopairs'
+require 'custom.plugins.pairs'
 require 'custom.plugins.tabline'
 require 'custom.plugins.conform'
 require 'custom.plugins.oil'
