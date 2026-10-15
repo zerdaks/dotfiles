@@ -708,7 +708,6 @@ do
     -- ts_ls = {},
 
     stylua = {}, -- Used to format Lua code
-    shfmt = {}, -- Used to format shell scripts
 
     -- Special Lua Config, as recommended by neovim help docs
     lua_ls = {
@@ -768,6 +767,7 @@ do
   local ensure_installed = vim.tbl_keys(servers or {})
   vim.list_extend(ensure_installed, {
     -- You can add other tools here that you want Mason to install
+    'shfmt', -- Used to format shell scripts
   })
 
   require('mason-tool-installer').setup { ensure_installed = ensure_installed }
