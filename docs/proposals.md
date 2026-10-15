@@ -2,6 +2,7 @@
 
 Logged by /propose so it doesn't repeat itself. Change a status to accepted, rejected, or built.
 
+- 2026-10-15 | built | Drop trouble.nvim for native quickfix - delete trouble.lua and its require, and point <leader>xx at vim.diagnostic.setqflist so the key still opens a workspace-wide diagnostics list.
 - 2026-10-14 | built | Replace nvim-autopairs with mini.pairs - delete autopairs.lua and its require, and enable mini.pairs from the mini.nvim that Kickstart already loads.
 - 2026-10-13 | built | Add delta to lazygit's diff panel - install git-delta in the git recipe and set it as lazygit's diff renderer with the Catppuccin Mocha theme that bat already uses, leaving .gitconfig and terminal git output untouched.
 - 2026-10-13 | built | Drop the Copilot CLI recipe - remove the copilot recipe from the justfile and uninstall the copilot-cli cask, leaving nvim's Copilot completions (Mason's copilot-language-server) untouched.

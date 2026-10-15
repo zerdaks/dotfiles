@@ -25,6 +25,15 @@ keymap.set('n', '<leader>D', function()
   vim.cmd 'normal! zz'
 end, { desc = 'Go to previous diagnostic' })
 
+-- Toggle a quickfix list of diagnostics from all buffers
+keymap.set('n', '<leader>xx', function()
+  if vim.fn.getqflist({ winid = 0 }).winid ~= 0 then
+    vim.cmd.cclose()
+  else
+    vim.diagnostic.setqflist()
+  end
+end, { desc = 'Toggle diagnostics quickfix list' })
+
 -- Go to next spelling error, centered
 keymap.set('n', '<leader>s', ']szz', { desc = 'Go to next spelling error' })
 

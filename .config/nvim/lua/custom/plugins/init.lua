@@ -13,7 +13,6 @@ require 'custom.plugins.tabline'
 require 'custom.plugins.conform'
 require 'custom.plugins.oil'
 require 'custom.plugins.telescope'
-require 'custom.plugins.trouble'
 
 require 'custom.plugins.lazygit'
 
