@@ -15,13 +15,13 @@ keymap.set('n', '<leader>.', '<cmd>b#<CR>', { desc = 'Go to previously opened bu
 
 -- Go to next diagnostic message, centered
 keymap.set('n', '<leader>d', function()
-  vim.diagnostic.jump { forward = true, count = 1 }
+  vim.diagnostic.jump { count = 1 }
   vim.cmd 'normal! zz'
 end, { desc = 'Go to next diagnostic' })
 
 -- Go to previous diagnostic message, centered
 keymap.set('n', '<leader>D', function()
-  vim.diagnostic.jump { forward = false, count = 1 }
+  vim.diagnostic.jump { count = -1 }
   vim.cmd 'normal! zz'
 end, { desc = 'Go to previous diagnostic' })
 
