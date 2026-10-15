@@ -1,4 +1,5 @@
 # commit is absent on purpose: it is linked into ~/.claude to work in every repo
+.claude/skills/cleanup
 .claude/skills/improve
 .claude/skills/propose
 
