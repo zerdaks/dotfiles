@@ -23,7 +23,6 @@ path=(
     "$HOMEBREW_PREFIX/opt/openjdk/bin"           # Java
     "$GOPATH/bin"
     "$HOME/.local/bin"
-    "$HOME/.opencode/bin"
     $path
 )
 
