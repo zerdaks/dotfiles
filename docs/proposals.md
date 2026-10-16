@@ -2,6 +2,8 @@
 
 Logged by /propose so it doesn't repeat itself. Change a status to accepted, rejected, or built.
 
+- 2026-10-16 | rejected | Drop nvim-jdtls for lspconfig's jdtls - delete jdtls.lua, its require and ftplugin/java.lua, enable the jdtls config nvim-lspconfig already ships, and point <leader>i at the server's source.organizeImports code action; reverted: lspconfig's config breaks gd into JDK classes (no classFileContentsSupport or jdt:// handler).
+- 2026-10-16 | rejected | Fish-style prefix history on Up/Down - bind the arrow keys in vi insert mode to zsh's built-in up/down-line-or-beginning-search widgets, so Up recalls only commands that start with what is already typed.
 - 2026-10-15 | built | Drop trouble.nvim for native quickfix - delete trouble.lua and its require, and point <leader>xx at vim.diagnostic.setqflist so the key still opens a workspace-wide diagnostics list.
 - 2026-10-14 | built | Replace nvim-autopairs with mini.pairs - delete autopairs.lua and its require, and enable mini.pairs from the mini.nvim that Kickstart already loads.
 - 2026-10-13 | built | Add delta to lazygit's diff panel - install git-delta in the git recipe and set it as lazygit's diff renderer with the Catppuccin Mocha theme that bat already uses, leaving .gitconfig and terminal git output untouched.
