@@ -17,7 +17,6 @@ require 'custom.plugins.telescope'
 require 'custom.plugins.lazygit'
 
 require 'custom.plugins.jdtls'
-require 'custom.plugins.vimtex'
 
 require 'custom.plugins.obsidian'
 require 'custom.plugins.orgmode'

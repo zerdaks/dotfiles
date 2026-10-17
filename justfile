@@ -8,7 +8,7 @@ default:
     just --list
 
 # Run every recipe
-all: stow zsh brew git nvim tmux wezterm fonts util cloud go java latex
+all: stow zsh brew git nvim tmux wezterm fonts util cloud go java
 
 # Install stow and link the dotfiles into $HOME
 [group('setup')]
@@ -83,8 +83,3 @@ go:
 [group('lang')]
 java:
     brew install openjdk # keg-only, so .zprofile puts it on PATH
-
-# Install a TeX distribution for vimtex
-[group('lang')]
-latex:
-    brew install --cask mactex-no-gui # provides latexmk; puts /Library/TeX/texbin on PATH via /etc/paths.d
