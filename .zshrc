@@ -4,9 +4,6 @@
 : ${XDG_CONFIG_HOME:=$HOME/.config}
 
 # History
-#
-# EXTENDED_HISTORY is deliberately off: it prefixes each entry with a timestamp,
-# which would break the line-oriented editing hd performs below.
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=50000
 SAVEHIST=50000
@@ -14,6 +11,14 @@ setopt SHARE_HISTORY
 setopt HIST_IGNORE_SPACE
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_REDUCE_BLANKS
+
+# Don't save a line whose first word is a plain name zsh can't resolve
+# (a typo like `gti`). Paths, assignments, $vars and syntax pass through.
+zshaddhistory() {
+    emulate -L zsh -o extended_glob
+    local first=${${(z)1}[1]}
+    [[ $first != [[:alnum:]_.+-]## ]] || whence -- $first >/dev/null
+}
 
 # Completions
 #
@@ -97,24 +102,13 @@ alias v=nvim
 
 # Functions
 
-# zsh has no equivalent of fish's `history delete`, and editing HISTFILE leaves
-# the entry in the in-memory list. Both helpers below exec a fresh shell so the
-# entry is gone from the file and from the current session's recall.
-
+# Emptying HISTFILE leaves the entries in the in-memory list, so exec a fresh
+# shell to drop them from the current session's recall too.
 history_clear() {
     : >| "$HISTFILE"
     exec zsh
 }
 alias hc=history_clear
-
-history_delete() {
-    fc -W
-    # zsh records the invocation before running it, so drop that entry first
-    [[ $(tail -n 1 "$HISTFILE") == hd ]] && sed -i '' -e '$d' "$HISTFILE"
-    sed -i '' -e '$d' "$HISTFILE"
-    exec zsh
-}
-alias hd=history_delete
 
 # takes source and destination; trailing arguments are passed through to rsync.
 # The source is normalized to always end in / so a bare directory (e.g. `back

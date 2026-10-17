@@ -2,6 +2,7 @@
 
 Logged by /propose so it doesn't repeat itself. Change a status to accepted, rejected, or built.
 
+- 2026-10-17 | built | Keep mistyped commands out of history - add a zshaddhistory hook to .zshrc that refuses to save a line whose first word is not a command zsh can find (alias, function, builtin, or binary), so typos like `gti status` never reach ~/.zsh_history, and remove the hd alias and its history_delete function.
 - 2026-10-17 | built | Drop vimtex and the latex recipe - delete vimtex.lua, its require and lockfile entry, and the latex recipe and its slot in `just all`, leaving TeX to ~/repos/fz-cv and ~/repos/docs, whose own install recipes already declare it.
 - 2026-10-16 | rejected | Drop nvim-jdtls for lspconfig's jdtls - delete jdtls.lua, its require and ftplugin/java.lua, enable the jdtls config nvim-lspconfig already ships, and point <leader>i at the server's source.organizeImports code action; reverted: lspconfig's config breaks gd into JDK classes (no classFileContentsSupport or jdt:// handler).
 - 2026-10-16 | rejected | Fish-style prefix history on Up/Down - bind the arrow keys in vi insert mode to zsh's built-in up/down-line-or-beginning-search widgets, so Up recalls only commands that start with what is already typed.
