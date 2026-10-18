@@ -54,7 +54,6 @@ style = "mauve"
 [git_commit]
 style = "maroon"
 tag_disabled = false
-tag_symbol = "  "
 
 # mid-rebase / merge / bisect, with the n/m progress starship tracks for us
 [git_state]
