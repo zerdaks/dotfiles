@@ -2,6 +2,7 @@
 
 Logged by /propose so it doesn't repeat itself. Change a status to accepted, rejected, or built.
 
+- 2026-10-22 | built | Make Mason the installer for Neovim-only tools - add custom/plugins/mason.lua that installs shfmt, buf, prettier, sql-formatter, goimports, jdtls and copilot-language-server, and drop them from the justfile brew lines, the vendored init.lua and the README :MasonInstall step.
 - 2026-10-21 | built | Uninstall p7zip - remove the p7zip formula, whose 7z binary nothing has called since the unzip alias moved to sevenzip's 7zz, leaving one 7-Zip on PATH.
 - 2026-10-17 | built | Keep mistyped commands out of history - add a zshaddhistory hook to .zshrc that refuses to save a line whose first word is not a command zsh can find (alias, function, builtin, or binary), so typos like `gti status` never reach ~/.zsh_history, and remove the hd alias and its history_delete function.
 - 2026-10-17 | built | Drop vimtex and the latex recipe - delete vimtex.lua, its require and lockfile entry, and the latex recipe and its slot in `just all`, leaving TeX to ~/repos/fz-cv and ~/repos/docs, whose own install recipes already declare it.

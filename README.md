@@ -30,7 +30,6 @@ reading `~/.config` is concerned.
 vim
 :lua vim.pack.update() # review the diff, then :write to apply or :quit to discard
 :Mason # followed by shift-u to update all
-:MasonInstall copilot-language-server jdtls
 :LspCopilotSignIn
 ```
 

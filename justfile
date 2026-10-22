@@ -71,13 +71,12 @@ nvim:
     brew install neovim tree-sitter-cli
     brew install make # telescope-fzf-native and LuaSnip are compiled by nvim's PackChanged hook
     brew install ripgrep # Telescope file search and live grep
-    brew install node # runs Mason's copilot-language-server
-    brew install buf prettier sql-formatter # conform.nvim formatters that neither Mason nor another recipe installs
+    brew install node
 
 # Install Go and its formatter
 [group('lang')]
 go:
-    brew install go goimports # goimports is used by conform.nvim
+    brew install go
 
 # Install a JDK for nvim-jdtls
 [group('lang')]

@@ -11,6 +11,7 @@ require 'custom.plugins.colorscheme'
 require 'custom.plugins.pairs'
 require 'custom.plugins.tabline'
 require 'custom.plugins.conform'
+require 'custom.plugins.mason'
 require 'custom.plugins.oil'
 require 'custom.plugins.telescope'
 
