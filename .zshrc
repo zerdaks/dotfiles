@@ -22,8 +22,8 @@ zshaddhistory() {
 
 # Completions
 #
-# Homebrew's site-functions supplies brew, git, just, eza, gh and others.
-fpath=("$HOMEBREW_PREFIX/share/zsh/site-functions" $fpath)
+# brew shellenv in .zprofile puts Homebrew's site-functions (brew, git, just, eza,
+# gh and others) on fpath.
 # No -C: it reuses ~/.zcompdump without rescanning fpath, so completions for
 # tools installed after the dump was written are never picked up.
 autoload -Uz compinit && compinit

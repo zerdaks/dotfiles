@@ -3,9 +3,9 @@
 # add Homebrew to path and set HOMEBREW_PREFIX, MANPATH, INFOPATH
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# keep path entries unique so this file is safe to source more than once
+# keep path and fpath entries unique so this file is safe to source more than once
 # (tmux starts each pane as a login shell)
-typeset -U path PATH
+typeset -U path PATH fpath
 
 # set XDG config home so XDG-aware tools (e.g. lazygit) use ~/.config on macOS
 export XDG_CONFIG_HOME="$HOME/.config"
