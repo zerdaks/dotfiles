@@ -1,6 +1,7 @@
 ---
 name: propose
 description: Survey this dotfiles repo and pitch one high-value change to the *stack itself* - a plugin or tool to add, remove, replace, or consolidate. Use whenever the user asks "what should I add", "should I swap X for Y", "are any of my plugins obsolete", "what am I missing", "propose an improvement to my setup", "is this still the right tool", or invokes /propose, without naming a specific change. The skill checks docs/proposals.md so it never repeats an earlier idea, gives a short overview and asks the user to accept or reject it, writes a plan only if they accept, and applies it only once they approve the plan.
+argument-hint: "[low|medium]"
 ---
 
 # Propose
@@ -12,6 +13,13 @@ Pick the single most valuable change to *what this setup is made of* and pitch i
 3. **Build** - only once the plan is approved.
 
 This is the sibling of `/improve`, aimed one level up. `improve` asks "is this config **correct**?" and finds its answers inside the repo. `propose` asks "is this config still the **right choice**?" - whether a plugin has been superseded, whether two tools are doing one job, whether something the user reaches for daily is missing - and usually has to look outside the repo to answer. The value is in *judgment plus restraint*: spotting the one change a thoughtful user would make next, and letting them decide cheaply before anyone spends effort on it. That's why the pitch is short - a rejected idea should cost the user ten seconds of reading, not a page.
+
+## Scope
+
+The skill takes an optional scope: `/propose low` or `/propose medium`. With no argument, use `low`.
+
+- **low** - favor the best value-to-disruption candidate, usually removing, swapping or consolidating one plugin or tool.
+- **medium** - favor the candidate that most widens what the setup can do: a capability the user's own choices imply they want, or one tool replacing a whole layer, beats a one-plugin swap even at more relearning. The aliases, key bindings and recent `git log` show what the user reaches for daily, so start the search there.
 
 ## Hard rule: nothing changes until the plan is approved
 
@@ -96,7 +104,7 @@ Two plugins that look like obvious redundancy can turn out to be two live system
 
 One verified fact makes a pitch; three plausible-sounding claims sink one.
 
-Don't over-survey. A few minutes is enough to spot a real candidate. If two or three compete, pick the one with the best value-to-disruption ratio.
+Don't over-survey. A few minutes is enough to spot a real candidate. If two or three compete, pick the one the scope favors.
 
 ### 2. Decide
 
