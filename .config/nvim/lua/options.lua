@@ -70,15 +70,9 @@ vim.api.nvim_create_autocmd('FileType', {
 -- Sign in with :LspCopilotSignIn, see `:help lsp-copilot`
 vim.lsp.enable 'copilot'
 
--- Show Copilot suggestions as ghost text in buffers where the server attaches
-vim.api.nvim_create_autocmd('LspAttach', {
-  callback = function(event)
-    local client = vim.lsp.get_client_by_id(event.data.client_id)
-    if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlineCompletion, event.buf) then
-      vim.lsp.inline_completion.enable(true, { bufnr = event.buf })
-    end
-  end,
-})
+-- Show Copilot suggestions as ghost text wherever a client that supports them
+-- attaches, including clients that start later
+vim.lsp.inline_completion.enable()
 
 -- Accept the current suggestion
 vim.keymap.set('i', '<C-l>', vim.lsp.inline_completion.get, { desc = 'Accept inline completion' })
