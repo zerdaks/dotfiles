@@ -2,6 +2,7 @@
 
 Logged by /propose so it doesn't repeat itself. Change a status to accepted, rejected, or built.
 
+- 2026-10-24 | rejected | Replace lazygit.nvim with a native terminal float - rewrite lazygit.lua so <leader>gl opens lazygit in a floating nvim terminal that closes and runs :checktime on exit, and drop the plugin and its lockfile entry.
 - 2026-10-22 | rejected | Move lazygit from an nvim plugin to a tmux popup - bind prefix g in .tmux.conf to open lazygit in a popup at the pane's directory, and delete lazygit.lua, its require and its lockfile entry.
 - 2026-10-22 | built | Make Mason the installer for Neovim-only tools - add custom/plugins/mason.lua that installs shfmt, buf, prettier, sql-formatter, goimports, jdtls and copilot-language-server, and drop them from the justfile brew lines, the vendored init.lua and the README :MasonInstall step.
 - 2026-10-21 | built | Uninstall p7zip - remove the p7zip formula, whose 7z binary nothing has called since the unzip alias moved to sevenzip's 7zz, leaving one 7-Zip on PATH.
