@@ -11,6 +11,7 @@ registry.refresh(function()
     'prettier', -- conform.nvim: css, html, javascript, typescript
     'shfmt', -- conform.nvim: bash, sh
     'sql-formatter', -- conform.nvim: sql
+    'typescript-language-server', -- ts_ls, enabled below
   } do
     local pkg = registry.get_package(name)
     if not pkg:is_installed() and not pkg:is_installing() then
@@ -18,3 +19,6 @@ registry.refresh(function()
     end
   end
 end)
+
+-- nvim-lspconfig ships the ts_ls config; it attaches to JS and TS buffers.
+vim.lsp.enable 'ts_ls'
