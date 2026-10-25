@@ -118,12 +118,14 @@ backup_run() {
     local src=$1
     shift
     [[ -d $src && $src != */ ]] && src+=/
-    rsync "$src" "$@" \
-        --verbose \
+    # Defaults go first so trailing flags (e.g. --no-perms) can override them.
+    rsync --verbose \
         --archive \
         --delete \
         --human-readable \
-        --exclude .git/
+        --exclude .git/ \
+        --exclude '._*' \
+        "$src" "$@"
 }
 
 backup_dry_run() {
