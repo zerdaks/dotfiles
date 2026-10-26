@@ -69,6 +69,7 @@ alias dback=backup_dry_run
 alias c=clear
 alias cat=bat
 alias claude='claude --dangerously-skip-permissions'
+alias cl=claude
 
 alias diff='diff --color'
 
