@@ -7,6 +7,7 @@ registry.refresh(function()
     'buf', -- conform.nvim: proto
     'copilot-language-server', -- options.lua
     'goimports', -- conform.nvim: go
+    'gopls', -- gopls, enabled below
     'jdtls', -- ftplugin/java.lua
     'prettier', -- conform.nvim: css, html, javascript, typescript
     'shfmt', -- conform.nvim: bash, sh
@@ -18,5 +19,6 @@ registry.refresh(function()
   end
 end)
 
--- nvim-lspconfig ships the ts_ls config; it attaches to JS and TS buffers.
+-- nvim-lspconfig ships the ts_ls and gopls configs; they attach to JS/TS and Go buffers.
 vim.lsp.enable 'ts_ls'
+vim.lsp.enable 'gopls'
