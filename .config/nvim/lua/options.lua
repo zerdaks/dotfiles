@@ -13,9 +13,7 @@ vim.opt.spell = true
 -- Open help windows to the right of the current window
 vim.api.nvim_create_autocmd('BufWinEnter', {
   callback = function()
-    if vim.bo.buftype == 'help' then
-      vim.cmd 'wincmd L'
-    end
+    if vim.bo.buftype == 'help' then vim.cmd 'wincmd L' end
   end,
 })
 
@@ -44,9 +42,7 @@ vim.opt.listchars = {
 
 -- Restore views for all file types when buffers are loaded
 vim.api.nvim_create_autocmd('BufWinEnter', {
-  callback = function()
-    vim.cmd 'silent! loadview'
-  end,
+  callback = function() vim.cmd 'silent! loadview' end,
 })
 
 -- Do not open folds when moving with Shift+[ or Shift+]

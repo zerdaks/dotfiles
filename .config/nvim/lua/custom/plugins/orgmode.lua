@@ -28,6 +28,4 @@ require('org-roam').setup {
   },
 }
 
-vim.keymap.set('n', '<leader>fl', function()
-  require('orgmode').action 'org_mappings.open_at_point'
-end, { desc = 'Org: Open URL at point' })
+vim.keymap.set('n', '<leader>fl', function() require('orgmode').action 'org_mappings.open_at_point' end, { desc = 'Org: Open URL at point' })
