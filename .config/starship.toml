@@ -32,9 +32,9 @@ style = "text"
 [os.symbols]
 Macos = " "
 
-# fish's fish_mode_prompt tags the line with the vi mode; starship's zsh
-# integration only forwards $KEYMAP, so insert and normal are all it can tell
-# apart - visual and replace would need zle widget wrapping in .zshrc.
+# Tag the prompt with the vi mode. starship's zsh integration only forwards
+# $KEYMAP, so insert and normal are all it can tell apart - visual and replace
+# would need zle widget wrapping in .zshrc.
 [character]
 success_symbol = "[\\[I\\] ❯](green)"
 error_symbol = "[\\[I\\] ❯](red)"
