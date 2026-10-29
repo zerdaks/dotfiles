@@ -92,7 +92,6 @@ alias r='exec zsh'
 alias rmds='find . -name .DS_Store -delete'
 
 alias tm=tmux
-alias tokei='tokei --hidden'
 
 alias unmount='diskutil eject'
 alias untar='tar -xzvf'

@@ -45,7 +45,7 @@ fonts:
 # Install various utilities
 [group('shell')]
 util:
-    brew install bat eza jq tokei
+    brew install bat eza jq
     brew install sevenzip # provides 7zz, used by the unzip alias in .zshrc
 
 # Install the AWS and Kubernetes CLIs
