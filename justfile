@@ -69,7 +69,6 @@ git:
 [group('nvim')]
 nvim:
     brew install neovim tree-sitter-cli
-    brew install make # telescope-fzf-native and LuaSnip are compiled by nvim's PackChanged hook
     brew install ripgrep # Telescope file search and live grep
     brew install node
 
