@@ -2,6 +2,7 @@
 
 Logged by /propose so it doesn't repeat itself. Change a status to accepted, rejected, or built.
 
+- 2026-10-30 | built | Drop Homebrew's GNU make - remove the make formula from the nvim recipe and its gnubin PATH entry from .zprofile, and let the plugin builds use the GNU Make 3.81 that ships with the Command Line Tools.
 - 2026-10-24 | rejected | Replace lazygit.nvim with a native terminal float - rewrite lazygit.lua so <leader>gl opens lazygit in a floating nvim terminal that closes and runs :checktime on exit, and drop the plugin and its lockfile entry.
 - 2026-10-22 | rejected | Move lazygit from an nvim plugin to a tmux popup - bind prefix g in .tmux.conf to open lazygit in a popup at the pane's directory, and delete lazygit.lua, its require and its lockfile entry.
 - 2026-10-22 | built | Make Mason the installer for Neovim-only tools - add custom/plugins/mason.lua that installs shfmt, buf, prettier, sql-formatter, goimports, jdtls and copilot-language-server, and drop them from the justfile brew lines, the vendored init.lua and the README :MasonInstall step.
