@@ -8,7 +8,7 @@ default:
     just --list
 
 # Run every recipe
-all: stow zsh brew git nvim tmux wezterm ghostty fonts util cloud go java
+all: stow zsh brew git nvim tmux ghostty fonts util cloud go java
 
 # Install stow and link the dotfiles into $HOME
 [group('setup')]
@@ -31,11 +31,6 @@ zsh:
 [group('shell')]
 tmux:
     brew install tmux
-
-# Install WezTerm
-[group('shell')]
-wezterm:
-    brew install --cask wezterm # configured by .wezterm.lua
 
 # Install Ghostty
 [group('shell')]

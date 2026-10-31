@@ -110,7 +110,7 @@ format = "[$time]($style)"
 style = "overlay1"
 time_format = "%R"
 
-# Catppuccin Mocha, matching .wezterm.lua, .config/ghostty/config, .config/bat/config and the tmux theme
+# Catppuccin Mocha, matching .config/ghostty/config, .config/bat/config and the tmux theme
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
 flamingo = "#f2cdcd"
