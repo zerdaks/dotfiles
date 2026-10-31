@@ -1,0 +1,7 @@
+# Mirrors .wezterm.lua while the two are compared side by side.
+theme = Catppuccin Mocha
+font-family = Hack Nerd Font Mono
+font-size = 12
+background-opacity = 0.7
+background-blur = 10
+macos-titlebar-style = hidden
