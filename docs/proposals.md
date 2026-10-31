@@ -2,6 +2,9 @@
 
 Logged by /propose so it doesn't repeat itself. Change a status to accepted, rejected, or built.
 
+- 2026-10-31 | built | Try Ghostty alongside WezTerm - add a ghostty recipe and a .config/ghostty/config that mirrors the six settings in .wezterm.lua, keeping WezTerm and its recipe untouched until one of them wins.
+- 2026-10-31 | rejected | Fold the org-roam notes into the Obsidian vault - move the 26 notes in ~/orgfiles into ~/repos/notes as Markdown, then delete orgmode.lua, its require and the orgmode, org-bullets and org-roam lockfile entries, leaving obsidian.nvim as the one notes plugin.
+
 - 2026-10-30 | built | Drop Homebrew's GNU make - remove the make formula from the nvim recipe and its gnubin PATH entry from .zprofile, and let the plugin builds use the GNU Make 3.81 that ships with the Command Line Tools.
 - 2026-10-24 | rejected | Replace lazygit.nvim with a native terminal float - rewrite lazygit.lua so <leader>gl opens lazygit in a floating nvim terminal that closes and runs :checktime on exit, and drop the plugin and its lockfile entry.
 - 2026-10-22 | rejected | Move lazygit from an nvim plugin to a tmux popup - bind prefix g in .tmux.conf to open lazygit in a popup at the pane's directory, and delete lazygit.lua, its require and its lockfile entry.
