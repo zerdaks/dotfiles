@@ -2,6 +2,8 @@
 
 Logged by /propose so it doesn't repeat itself. Change a status to accepted, rejected, or built.
 
+- 2026-10-31 | rejected | Debug Go tests inside Neovim - add custom/plugins/debug.lua with nvim-dap, nvim-dap-go and nvim-dap-view, have Mason install delve, and map breakpoints, stepping and debug-nearest-test to free keys.
+- 2026-10-31 | rejected | Replace tmux with Ghostty splits and tabs - recreate the .tmux.conf bindings as ctrl+space key sequences in .config/ghostty/config, then delete .tmux.conf, the tmux recipe and the tm alias.
 - 2026-10-31 | built | Try Ghostty alongside WezTerm - add a ghostty recipe and a .config/ghostty/config that mirrors the six settings in .wezterm.lua, keeping WezTerm and its recipe untouched until one of them wins.
 - 2026-10-31 | rejected | Fold the org-roam notes into the Obsidian vault - move the 26 notes in ~/orgfiles into ~/repos/notes as Markdown, then delete orgmode.lua, its require and the orgmode, org-bullets and org-roam lockfile entries, leaving obsidian.nvim as the one notes plugin.
 
